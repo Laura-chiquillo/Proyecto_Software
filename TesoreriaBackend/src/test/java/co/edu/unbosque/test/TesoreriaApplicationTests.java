@@ -1,10 +1,10 @@
-package co.edu.unbosque.srptechnology.srptechnology;
+package co.edu.unbosque.test;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SrptechnologyApplicationTests {
+class TesoreriaApplicationTests {
 
 	@Test
 	void contextLoads() {
