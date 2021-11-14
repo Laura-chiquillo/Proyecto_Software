@@ -72,3 +72,12 @@ body{
 .login-box a:hover{
     color: #fff;
 }
+.boton{
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #b80f22;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+}
