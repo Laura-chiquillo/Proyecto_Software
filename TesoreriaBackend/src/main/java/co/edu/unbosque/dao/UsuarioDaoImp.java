@@ -22,7 +22,7 @@ public class UsuarioDaoImp implements UsuarioDao{
 	
 	@Override
 	public List<User> getUsuarios() {
-		String query = "From empleado";		
+		String query = "From User";		
 		return entityManager.createQuery(query).getResultList();
 	}
 
