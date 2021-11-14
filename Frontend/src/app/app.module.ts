@@ -7,10 +7,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { ToolbarComponent } from './shared/components/toolbar/toolbar.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
+import { RegistroComponent } from './components/registro/registro.component';
 @NgModule({
   declarations: [
-    AppComponent,ToolbarComponent
+    AppComponent,ToolbarComponent, RegistroComponent
   ],
   imports: [
     BrowserModule,
