@@ -25,7 +25,13 @@ const routes: Routes = [
         (m) => m.AboutModule
       ),
   },
-  { path: 'registro', loadChildren: () => import('./components/auth/registro/registro.module').then(m => m.RegistroModule) },
+  {
+    path: 'registro',
+    loadChildren: () =>
+      import('./components/auth/registro/registro.module').then(
+        (m) => m.RegistroModule
+      ),
+  },
 ];
 
 @NgModule({
