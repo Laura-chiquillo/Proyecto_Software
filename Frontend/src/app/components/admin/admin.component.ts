@@ -32,4 +32,9 @@ export class AdminComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
+  actualizar(selectedItem: any) {
+    console.log("Selected item Id: ", selectedItem.Id);
+    alert(selectedItem.id_emp);
+  }
+
 }
