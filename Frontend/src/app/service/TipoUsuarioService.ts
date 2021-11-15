@@ -9,7 +9,7 @@ import { throwError } from "rxjs";
 export class TipoUsuarioService {
 
     constructor(private http:HttpClient){}
-    Url = 'http://localhost:8080/api/v1/apin/logi/';
+    Url = 'http://localhost:8080/api/v1/api/login/';
 
     loginAut(credenciales:TipoUsuario){
         return this.http.post(this.Url, credenciales)
