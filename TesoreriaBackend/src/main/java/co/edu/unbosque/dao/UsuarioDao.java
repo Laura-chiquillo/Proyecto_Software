@@ -16,6 +16,6 @@ public interface UsuarioDao {
 	
 	User getUser(String correo);
 
-	int actualizar(Long id_emp);
+	void actualizar(User user);
 	
 }

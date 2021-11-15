@@ -1,7 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { ListaUsiarioService } from 'src/app/service/ListaUsuarioService';
+import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
+import { ListaUsuario } from 'src/app/entity/ListaUsuario';
 
 
 @Component({
@@ -12,6 +16,7 @@ import { ListaUsiarioService } from 'src/app/service/ListaUsuarioService';
 export class AdminComponent implements OnInit {
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  listausuario: ListaUsuario = new ListaUsuario();
   constructor(private service:ListaUsiarioService) { 
   }
 
@@ -32,9 +37,25 @@ export class AdminComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  actualizar(selectedItem: any) {
-    console.log("Selected item Id: ", selectedItem.Id);
-    alert(selectedItem.id_emp);
+  actualizar(empleado: any){
+    this.service.actualizar(empleado.id_emp, empleado).subscribe(
+      data => {
+        alert("Usuario desbloqueado")
+        window.location.reload();
+      })
+
   }
+
+  registrarUsuario2(empleado: any) {
+
+    this.service.eliminar(empleado.id_emp, empleado);
+    this.service.registrarUsuario2(empleado.id_emp, empleado).subscribe(
+      data => {
+        alert("Usuario desbloqueado")
+        window.location.reload();
+    
+      })
+
+    }
 
 }

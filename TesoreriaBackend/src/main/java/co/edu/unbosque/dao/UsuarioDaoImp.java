@@ -37,10 +37,8 @@ public class UsuarioDaoImp implements UsuarioDao{
 
 	@Override
 	public void registrar(User user) {
-		entityManager.merge(user);		
+		entityManager.merge(user);
 	}
-	
-	
 	
 	@Override
 	public boolean VerificarCredenciales(User user) {
@@ -60,8 +58,13 @@ public class UsuarioDaoImp implements UsuarioDao{
 	}
 	
     @Override  
-    public int actualizar(Long id_emp) {
-    	String query = "UPDATE empleado e SET estado_emp = true WHERE e.id_emp = :id_emp";
-    	return entityManager.createQuery(query).executeUpdate();
+    public void actualizar(User user) {
+    	user.setEstado_emp(true);
+    	entityManager.merge(user);
+    	//String query = "UPDATE User e SET e.estado_emp = true WHERE e.id_emp = :id_emp";
+    	//entityManager..merge(user);
+    	
+    	
     }  
+
 }

@@ -51,8 +51,8 @@ public class UserController {
 		return ResponseEntity.status(401).body(user) ;
 	}
 	
-	@RequestMapping(value= "api/users/{id_emp}", method = RequestMethod.PUT)
-	public void actualizar(@PathVariable Long id_emp) {
-		usuarioDao.actualizar(id_emp);
+	@RequestMapping(value= "api/users/{id_emp}", method = RequestMethod.PATCH)
+	public void actualizar(@RequestBody User user) {
+		usuarioDao.actualizar(user);
 	}
 }
