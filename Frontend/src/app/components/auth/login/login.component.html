@@ -14,17 +14,18 @@
         <form>
             <!----Username-->
             <label for="username">Username</label>
-            <input type="text" placeholder="Enter Username">
+            <input type="text" name="correo_emp" placeholder="Enter Username" [(ngModel)]="tipoUsuario.correo_emp" autocomplete="off">
             <!---Password-->
             <label for="password">Password</label>
-            <input type="password" placeholder="Enter Password">
+            <input type="password" name="contrasena_emp" placeholder="Enter Password"  [(ngModel)]="tipoUsuario.contrasena_emp" autocomplete="off">
 
-            <input type="submit" value="Log In">
+            <button (click)="Login()" type="submit" >Log in</button>
+            
             <div class="brContraseña">
                 <a href="#">Perdiste tu contraseña</a>
             </div>
             <div class="brRegistrar">
-                <a href="">Registrarse</a>
+                <a href="http://localhost:4200/registro">Registrarse</a>
             </div>
         </form>
     </div>
