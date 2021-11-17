@@ -6,7 +6,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
+import org.hibernate.EntityNameResolver;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import co.edu.unbosque.model.User;
@@ -22,7 +25,7 @@ public class UsuarioDaoImp implements UsuarioDao{
 	
 	@Override
 	public List<User> getUsuarios() {
-		String query = "From empleado";		
+		String query = "From User";		
 		return entityManager.createQuery(query).getResultList();
 	}
 
@@ -37,8 +40,10 @@ public class UsuarioDaoImp implements UsuarioDao{
 		entityManager.merge(user);		
 	}
 	
+
 	
 	
+
 	@Override
 	public boolean VerificarCredenciales(User user) {
 		String query = "FROM User e  WHERE e.correo_emp = :correo_emp AND e.contrasena_emp= :contrasena_emp";		
@@ -55,4 +60,17 @@ public class UsuarioDaoImp implements UsuarioDao{
 		String query = "FROM User e WHERE e.correo_emp = :correo_emp";
 		return entityManager.createQuery(query, User.class).setParameter("correo_emp",correo).getResultList().get(0);
 	}
+
+	
+	@Transactional
+	public void actualizar(User user) {
+
+		Long id = user.getId_emp();
+
+		entityManager.createQuery("UPDATE User e SET e.estado_emp=true WHERE e.id_emp='" + String.valueOf(id) + "'")
+				.executeUpdate();
+
+	}
+
+
 }
