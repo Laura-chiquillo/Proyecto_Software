@@ -49,13 +49,10 @@ public class UserController {
 			return ResponseEntity.ok().body(usuarioDao.getUser(user.getCorreo_emp()));
 		}
 		return ResponseEntity.status(401).body(user) ;
-<<<<<<< HEAD
-=======
 	}
 	
-	@RequestMapping(value= "api/users/{id_emp}", method = RequestMethod.PATCH)
+	@RequestMapping(value= "api/users/{id_emp}", method = RequestMethod.PUT)
 	public void actualizar(@RequestBody User user) {
 		usuarioDao.actualizar(user);
->>>>>>> john-Romo
 	}
 }

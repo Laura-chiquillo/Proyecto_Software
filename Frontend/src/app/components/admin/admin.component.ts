@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ListaUsiarioService } from 'src/app/service/ListaUsuarioService';
+import { Usuario } from 'src/app/entity/Usuario';
 
 
 @Component({
@@ -9,8 +10,10 @@ import { ListaUsiarioService } from 'src/app/service/ListaUsuarioService';
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
+
 export class AdminComponent implements OnInit {
-  
+  usuario: Usuario = new Usuario();
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(private service:ListaUsiarioService) { 
   }
@@ -32,9 +35,17 @@ export class AdminComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  actualizar(selectedItem: any) {
-    console.log("Selected item Id: ", selectedItem.Id);
-    alert(selectedItem.id_emp);
-  }
+  actualizar(empleado: any){
+   this.usuario = empleado;
+   this.service.actualizar(this.usuario).subscribe(
+     data => {
+       console.log(data)
+       alert("Usuario desbloqueado.")
+       window.location.reload();
+     }
+   )
+   console.log(this.usuario.estado_emp)
+
+ }
 
 }
