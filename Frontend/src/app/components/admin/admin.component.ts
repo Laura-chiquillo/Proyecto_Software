@@ -1,16 +1,8 @@
-<<<<<<< HEAD
-import { Component, OnInit } from '@angular/core';
-=======
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
 import { ListaUsiarioService } from 'src/app/service/ListaUsuarioService';
-import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
-import { ListaUsuario } from 'src/app/entity/ListaUsuario';
 
->>>>>>> john-Romo
 
 @Component({
   selector: 'app-admin',
@@ -18,20 +10,18 @@ import { ListaUsuario } from 'src/app/entity/ListaUsuario';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-<<<<<<< HEAD
-=======
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  listausuario: ListaUsuario = new ListaUsuario();
   constructor(private service:ListaUsiarioService) { 
   }
->>>>>>> john-Romo
 
-  constructor() { }
+  displayedColumns: string[] = ['id_emp', 'nombres_emp',
+  'apellidos_emp', 'num_id_emp', 'correo_emp',
+  'sexo_emp', 'telefono_emp', 'id_nivel', 'id_fun', 'estado_emp',
+  'contrasena_emp', 'tipo_documento_emp', 'acciones'];
+  dataSource = new MatTableDataSource<any>();
 
   ngOnInit(): void {
-<<<<<<< HEAD
-=======
     this.service.loginAut().subscribe(data => {
       console.log(data)
       this.dataSource = new MatTableDataSource(data);
@@ -42,26 +32,9 @@ export class AdminComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  actualizar(empleado: any){
-    this.service.actualizar(empleado.id_emp, empleado).subscribe(
-      data => {
-        alert("Usuario desbloqueado")
-        window.location.reload();
-      })
-
->>>>>>> john-Romo
+  actualizar(selectedItem: any) {
+    console.log("Selected item Id: ", selectedItem.Id);
+    alert(selectedItem.id_emp);
   }
-
-  registrarUsuario2(empleado: any) {
-
-    this.service.eliminar(empleado.id_emp, empleado);
-    this.service.registrarUsuario2(empleado.id_emp, empleado).subscribe(
-      data => {
-        alert("Usuario desbloqueado")
-        window.location.reload();
-    
-      })
-
-    }
 
 }
