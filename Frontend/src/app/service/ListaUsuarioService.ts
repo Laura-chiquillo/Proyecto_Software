@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { ListaUsuario }from '../entity/ListaUsuario'
 import { Observable } from "rxjs";
+import { Usuario } from 'src/app/entity/Usuario';
 @Injectable({
     providedIn: 'root'
 }) 
@@ -22,7 +23,7 @@ export class ListaUsiarioService {
         return this.http.delete<any>(this.Url + `${empleado.id_emp}`)
     }
 
-    actualizar(id: string, empleado: any): Observable<any> {
-        return this.http.patch<any>(this.Url + `${empleado.id_emp}`, empleado)
+    actualizar(usuario: Usuario): Observable<any> {
+        return this.http.put(`${this.Url}/${usuario.id_emp}`, usuario)
     }
 }
