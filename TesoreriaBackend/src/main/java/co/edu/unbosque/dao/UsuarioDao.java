@@ -1,7 +1,6 @@
 package co.edu.unbosque.dao;
 
 import java.util.List;
-import java.util.Optional;
 
 import co.edu.unbosque.model.User;
 
@@ -14,9 +13,7 @@ public interface UsuarioDao {
 	void registrar(User user);
 
 	boolean VerificarCredenciales(User user);
-
+	
 	User getUser(String correo);
-
-	void actualizar(User user);
-
+	
 }
