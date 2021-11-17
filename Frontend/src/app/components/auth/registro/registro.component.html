@@ -1,94 +1,181 @@
 <body>
   <div class="container">
-          <h1>Crear Nuevo Usuario</h1>
-
-          <div class="general">
-              <div class="title">Informacion General</div>
-              <!--<h2>Informacion General</h2>-->
-          <div class="datos">
-              <div class="input-box">
-                  <span class="detalles">Nombres</span>
-                  <input type="text"  class="Nombre">
+    <h1>Crear Nuevo Usuario</h1>
+    <div class="general">
+      <div class="title">Informacion Personal</div>
+      <div class="datos">
+        <form class="datos" [formGroup]="registroForm" (ngSubmit)="onSaveForm()">
+          <div class="input-box">
+            <span class="detalles">Nombres</span>
+            <input type="text" formControlName="nombre">
+            <div class="alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+              <div class="container-error-message" *ngIf="nombre.errors?.required">
+                Nombre es requerido
               </div>
-              <div class="input-box">
-                  <span class="detalles">Telefono</span>
-                  <input type="text"  class="Telefono">
+              <div class="container-error-message" *ngIf="nombre.errors?.minlength">
+                Nombre debe tener por lo menos 5 caracteres.
               </div>
-              <div class="input-box">
-                  <span class="detalles">Apellidos</span>
-                  <input type="text"  class="Apellidos">
+            </div>
+          </div>
+          <div class="input-box">
+            <span class="detalles">Apellidos</span>
+            <input type="text" formControlName="apellido">
+            <div class="alert-danger" *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
+              <div class="container-error-message" *ngIf="apellido.errors?.required">
+                Apellido es requerido
               </div>
-              <div class="input-box">
-                  <span class="detalles">Correo</span>
-                  <input type="text"  class="Correo">
+              <div class="container-error-message" *ngIf="apellido.errors?.minlength">
+                Nombre debe tener por lo menos 5 caracteres.
               </div>
-              <div class="input-box">
-                  <span class="detalles">Contraseña</span>
-                  <input type="password"  class="Contraseña">
+            </div>
+          </div>
+          <div class="input-box">
+            <span class="detalles">Telefono</span>
+            <input type="text" formControlName="telefono">
+            <div class="alert-danger" *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)">
+              <div class="container-error-message" *ngIf="telefono.errors?.required">
+                Numero de telefono es requerido.
               </div>
-
-              <div class="input-box">
-                  <span class="detalles">Confirmar Contraseña</span>
-                  <input type="password"  class="Confirmar">
+              <div class="container-error-message" *ngIf="telefono.errors?.minlength || telefono.errors?.maxlength">
+                Debe ser de 10 caracteres.
               </div>
-
-
-              <div class="input-box">
-                  <span class="detalles">Tipo de Documento</span>
-                  <select name="TDocumento">
-                      <option selected value="0">Seleccionar</option>
-                      <option value="1">Cedula de Ciudadania</option>
-                      <option value="2">Cedula de Extrangeria</option>
-                      <option value="3">Registro Civil</option>
-                      <option value="4">NIT</option>
-                  </select>
+              <div class="container-error-message"
+                *ngIf="(telefono.dirty || telefono.touched) && telefono.invalid && telefono.errors?.pattern">
+                Telefono tiene que tener un formato valido.
               </div>
-
-
-              <div class="input-box">
-                  <span class="detalles">N° de Documento</span>
-                  <input type="text"  class="NDocumento">
+            </div>
+          </div>
+          <div class="input-box">
+            <span class="detalles">Email</span>
+            <input type="text" formControlName="email">
+            <div class="alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+              <div class="container-error-message" *ngIf="email.errors?.required">
+                Correo electronico es requerido.
               </div>
-              <div class="input-box">
-                  <span class="detalles">Sexo</span>
-                  <select name="Sexo">
-                      <option selected value="0">Seleccionar</option>
-                      <option value="1">Masculino</option>
-                      <option value="2">Femenino</option>
-                      <option value="3">Otro</option>
-                  </select>
+              <div class="container-error-message" *ngIf="email.errors?.minlength">
+                Correo electronico debe tener por lo menos 8 caracteres.
               </div>
+              <div class="container-error-message"
+                *ngIf="(email.dirty || email.touched) && email.invalid && email.errors?.pattern">
+                Correo electronico debe ser de un formato valido.
+              </div>
+            </div>
+          </div>
+          <div class="input-box">
+            <span class="detalles">Contraseña</span>
+            <input type="password" formControlName="contrasena">
+            <div class="alert-danger" *ngIf="contrasena.invalid && (contrasena.dirty || contrasena.touched)">
+              <div class="container-error-message" *ngIf="contrasena.errors?.required">
+                Contraseña es requerida.
+              </div>
+              <div class="container-error-message" *ngIf="contrasena.errors?.minlength">
+                Contraseña debe tener por lo menos 8 caracteres.
+              </div>
+              <div class="container-error-message"
+                *ngIf="(contrasena.dirty || contrasena.touched) && contrasena.invalid && contrasena.errors?.pattern">
+                Contraseña debe tener por lo menos una mayuscula, un numero y un caracter especial.
+              </div>
+            </div>
+          </div>
+          <div class="input-box">
+            <span class="detalles">Confirmar Contraseña</span>
+            <input type="password" formControlName="confContrasena">
+            <div class="alert-danger"
+              *ngIf="confContrasena.invalid && (confContrasena.dirty || confContrasena.touched)">
+              <div class="container-error-message" *ngIf="confContrasena.errors?.required">
+                Contraseña es requerida.
+              </div>
+              <div class="container-error-message" *ngIf="confContrasena.errors?.minlength">
+                Contraseña debe tener por lo menos 8 caracteres.
+              </div>
+            </div>
+          </div>
+          <div class="input-box">
+            <span class="detalles">Tipo de Documento</span>
+            <select formControlName="tDocumento" (change)="changeDocument($event)">
+              <option value="">Tipo de documento</option>
+              <option *ngFor="let typedocument of typedocument" [ngValue]="typedocument">{{typedocument}}</option>
+            </select>
+            <div class="alert-danger" *ngIf="tDocumento.invalid && (tDocumento.dirty || tDocumento.touched)">
+              <div class="container-error-message" *ngIf="tDocumento.errors?.required">
+                Tipo de documento requerido.
+              </div>
+            </div>
           </div>
 
+
+          <div class="input-box">
+            <span class="detalles">N° de Documento</span>
+            <input type="text" formControlName="nDocumento">
+            <div class="alert-danger" *ngIf="nDocumento.invalid && (nDocumento.dirty || nDocumento.touched)">
+              <div class="container-error-message" *ngIf="nDocumento.errors?.required">
+                Numero de documento requerido.
+              </div>
+              <div class="container-error-message" *ngIf="nDocumento.errors?.minlength || nDocumento.errors?.maxlength">
+                Debe ser de 10 caracteres.
+              </div>
+              <div class="container-error-message"
+                *ngIf="(nDocumento.dirty || nDocumento.touched) && nDocumento.invalid && nDocumento.errors?.pattern">
+                Numero de documento tiene que tener un formato valido.
+              </div>
+            </div>
+          </div>
+
+          <div class="input-box">
+            <span class="detalles">Genero</span>
+            <select formControlName="genero" (change)="changeGender($event)">
+              <option value="">Genero</option>
+              <option *ngFor="let gender of gender" [ngValue]="gender">{{gender}}</option>
+            </select>
+            <div class="alert-danger" *ngIf="genero.invalid && (genero.dirty || genero.touched)">
+              <div class="container-error-message" *ngIf="genero.errors?.required">
+                Genero requerido.
+              </div>
+            </div>
           </div>
           <div class="permisos">
-              <div class="title">Permisos</div>
-              <div class="datos">
-                  <div class="input-box">
-                      <span class="detalles">Nivel de Usuario</span>
-                      <select name="NUsuario">
-                          <option value="0">Seleccionar</option>
-                          <option value="1">Administrador</option>
-                      </select>
+          <div class="title">Permisos</div>
+            <div class="datos">
+              <div class="input-box">
+                <span class="detalles">Nivel de Usuario</span>
+                <select formControlName="tUsuario" (change)="changeLVL($event)">
+                  <option value="">Tipo de usuario</option>
+                  <option *ngFor="let userlvl of userlvl" [ngValue]="userlvl">{{userlvl}}</option>
+                </select>
+                <!-- <div class="alert-danger" *ngIf="tUsuario.invalid && (tUsuario.dirty || tUsuario.touched)">
+                  <div class="container-error-message" *ngIf="tUsuario.errors?.required">
+                    Nivel de usuario requerido.
                   </div>
-                  <div class="input-box">
-                      <span class="detalles">Funcionalidad</span>
-                      <select name="Funcionalidad">
-                          <option value="0">Seleccionar</option>
-                          <option value="1">Ser la Verga</option>
-                      </select>
+                </div> -->
+              </div>
+              <div class="input-box">
+                <span class="detalles">Funcionalidad</span>
+                <select formControlName="funcionalidad" (change)="changeFunctionality($event)">
+                  <option value="">Funcionalidad</option>
+                  <option *ngFor="let function of function" [ngValue]="function">{{function}}</option>
+                </select>
+                <div class="alert-danger" *ngIf="funcionalidad.invalid && (funcionalidad.dirty || funcionalidad.touched)">
+                  <div class="container-error-message" *ngIf="funcionalidad.errors?.required">
+                    Funcionalidad requerida.
                   </div>
+                </div>
               </div>
-
+            </div>
           </div>
-          <div class="botones">
-              <div class="boton">
-                  <input type="submit" value="Guardar">
-              </div>
-              <div class="boton">
-                  <input type="submit" value="Cancelar">
-              </div>
+        </form>
+      </div>
+      
+      <div class="botones">
+        <div class="boton">
+          <input type="submit" value="Guardar">
+        </div>
+        <div class="boton">
+          <input type="submit" value="Cancelar">
+        </div>
 
-          </div>
+      </div>
+
+
+    </div>
   </div>
 </body>
