@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators,FormBuilder} from '@angular/forms';
 import { Router } from '@angular/router';
 import { TipoUsuarioService } from 'src/app/service/TipoUsuarioService';
 
@@ -14,7 +14,11 @@ export class RegistroComponent {
   public registroForm: FormGroup;
 
   private emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
+  
+  gender: any = ['Masculino','Femenino','otro'];
+  userlvl: any = ['Administrador','Empleado'];
+  function: any = ['Tesorero', 'Empleado','Financiero'];
+  typedocument: any = ['Cedula de Ciudadania','Cedula de Extrangeria','Registro Civil','NIT']
 
   constructor(private router:Router, private service:TipoUsuarioService) {
     this.registroForm = this.createForm();
@@ -29,7 +33,7 @@ export class RegistroComponent {
    get nDocumento() {return this.registroForm.get('nDocumento');}
    get tUsuario() {return this.registroForm.get('tUsuario');}
    get funcionalidad() {return this.registroForm.get('funcionalidad');}
-   get sexo() {return this.registroForm.get('sexo');}
+   get genero() {return this.registroForm.get('genero');}
 
   createForm(){
     return new FormGroup({
@@ -42,9 +46,30 @@ export class RegistroComponent {
       tDocumento: new FormControl('',[Validators.required]),
       nDocumento: new FormControl('',[Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('[- +()0-9]+')]),
       funcionalidad: new FormControl('',[Validators.required]),
-      sexo: new FormControl('',[Validators.required])
+      genero: new FormControl('',[Validators.required])
     })
   }
+  changeGender(e) {
+    this.gender.setValue(e.target.value, {
+      onlySelf: true
+    })
+  }
+  changeLVL(e) {
+    this.userlvl.setValue(e.target.value, {
+      onlySelf: true
+    })
+  }
+  changeFunctionality(e) {
+    this.function.setValue(e.target.value, {
+      onlySelf: true
+    })
+  }
+  changeDocument(e) {
+    this.typedocument.setValue(e.target.value, {
+      onlySelf: true
+    })
+  }
+
   onResetForm(): void{
     this.registroForm.reset();
   }
