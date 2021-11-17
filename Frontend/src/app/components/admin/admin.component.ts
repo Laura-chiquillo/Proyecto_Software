@@ -3,10 +3,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ListaUsiarioService } from 'src/app/service/ListaUsuarioService';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { ListaUsuario } from 'src/app/entity/ListaUsuario';
-import { Usuario } from 'src/app/entity/Usuario';
-import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -18,11 +17,8 @@ export class AdminComponent implements OnInit {
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   listausuario: ListaUsuario = new ListaUsuario();
-  usuario: Usuario = new Usuario();
-
-  constructor(
-    private service:ListaUsiarioService
-    ) { }
+  constructor(private service:ListaUsiarioService) { 
+  }
 
   displayedColumns: string[] = ['id_emp', 'nombres_emp',
   'apellidos_emp', 'num_id_emp', 'correo_emp',
@@ -42,16 +38,24 @@ export class AdminComponent implements OnInit {
   }
 
   actualizar(empleado: any){
-    this.usuario = empleado;
-    this.service.actualizar(this.usuario).subscribe(
+    this.service.actualizar(empleado.id_emp, empleado).subscribe(
       data => {
-        console.log(data)
-        alert("Usuario desbloqueado.")
+        alert("Usuario desbloqueado")
         window.location.reload();
-      }
-    )
-    console.log(this.usuario.estado_emp)
+      })
 
   }
+
+  registrarUsuario2(empleado: any) {
+
+    this.service.eliminar(empleado.id_emp, empleado);
+    this.service.registrarUsuario2(empleado.id_emp, empleado).subscribe(
+      data => {
+        alert("Usuario desbloqueado")
+        window.location.reload();
+    
+      })
+
+    }
 
 }
