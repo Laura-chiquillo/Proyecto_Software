@@ -42,7 +42,7 @@ export class RegistroComponent {
       telefono: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('[- +()0-9]+')]),
       contrasena: new FormControl('',[Validators.required,Validators.minLength(8),Validators.pattern('(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!#^~%*?&,.<>"\'\\;:\{\\\}\\\[\\\]\\\|\\\+\\\-\\\=\\\_\\\)\\\(\\\)\\\`\\\/\\\\\\]])[A-Za-z0-9\d$@].{7,}')]),
       tDocumento: new FormControl('',[Validators.required]),
-      nDocumento: new FormControl('',[Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('[- +()0-9]+')]),
+      nDocumento: new FormControl('',[Validators.required, Validators.minLength(5), Validators.maxLength(10), Validators.pattern('[- +()0-9]+')]),
       funcionalidad: new FormControl('',[Validators.required]),
       genero: new FormControl('',[Validators.required])
     })
