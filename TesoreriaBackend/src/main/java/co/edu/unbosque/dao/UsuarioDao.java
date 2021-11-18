@@ -15,5 +15,8 @@ public interface UsuarioDao {
 	boolean VerificarCredenciales(User user);
 	
 	User getUser(String correo);
+
+	void actualizar(User user);
+
 	
 }
