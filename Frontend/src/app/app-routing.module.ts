@@ -32,8 +32,17 @@ const routes: Routes = [
         (m) => m.RegistroModule
       ),
   },
-  { path: 'home', loadChildren: () => import('./components/ingreso-gasto/ingreso/ingreso.module').then(m => m.IngresoModule) },
-  { path: 'home', loadChildren: () => import('./components/ingreso-gasto/gasto/gasto.module').then(m => m.GastoModule) },
+  { path: 'ingreso',
+  loadChildren: () =>
+    import('./components/ingreso-gasto/ingreso/ingreso.module').then(
+      m => m.IngresoModule
+      )
+    },
+  { path: 'gasto',
+  loadChildren: () => import('./components/ingreso-gasto/gasto/gasto.module').then(
+    m => m.GastoModule
+    )
+  },
 ];
 
 @NgModule({
