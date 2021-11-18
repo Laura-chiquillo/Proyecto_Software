@@ -2,7 +2,7 @@
   <div class="container">
     <h1>Crear Nuevo Usuario</h1>
     <div class="general">
-      <div class="title">Informacion Personal</div>
+      <div class="title">Información Personal</div>
       <div class="datos">
         <form class="datos" [formGroup]="registroForm" (ngSubmit)="onSaveForm()">
           <div class="input-box">
@@ -22,10 +22,10 @@
             <input type="text" formControlName="apellido">
             <div class="alert-danger" *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
               <div class="container-error-message" *ngIf="apellido.errors?.required">
-                Apellido es requerido
+                Apellidos son requeridos
               </div>
               <div class="container-error-message" *ngIf="apellido.errors?.minlength">
-                Nombre debe tener por lo menos 5 caracteres.
+                Apellidos deben tener por lo menos 5 caracteres.
               </div>
             </div>
           </div>
@@ -34,14 +34,14 @@
             <input type="text" formControlName="telefono">
             <div class="alert-danger" *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)">
               <div class="container-error-message" *ngIf="telefono.errors?.required">
-                Numero de telefono es requerido.
+                Número de telefono es requerido.
               </div>
               <div class="container-error-message" *ngIf="telefono.errors?.minlength || telefono.errors?.maxlength">
                 Debe ser de 10 caracteres.
               </div>
               <div class="container-error-message"
                 *ngIf="(telefono.dirty || telefono.touched) && telefono.invalid && telefono.errors?.pattern">
-                Telefono tiene que tener un formato valido.
+                Telefono tiene que tener un formato válido.
               </div>
             </div>
           </div>
@@ -50,14 +50,14 @@
             <input type="text" formControlName="email">
             <div class="alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
               <div class="container-error-message" *ngIf="email.errors?.required">
-                Correo electronico es requerido.
+                Correo electrónico es requerido.
               </div>
               <div class="container-error-message" *ngIf="email.errors?.minlength">
-                Correo electronico debe tener por lo menos 8 caracteres.
+                Correo electrónico debe tener por lo menos 8 caracteres.
               </div>
               <div class="container-error-message"
                 *ngIf="(email.dirty || email.touched) && email.invalid && email.errors?.pattern">
-                Correo electronico debe ser de un formato valido.
+                Correo electrónico debe ser de un formato válido.
               </div>
             </div>
           </div>
@@ -73,20 +73,7 @@
               </div>
               <div class="container-error-message"
                 *ngIf="(contrasena.dirty || contrasena.touched) && contrasena.invalid && contrasena.errors?.pattern">
-                Contraseña debe tener por lo menos una mayuscula, un numero y un caracter especial.
-              </div>
-            </div>
-          </div>
-          <div class="input-box">
-            <span class="detalles">Confirmar Contraseña</span>
-            <input type="password" formControlName="confContrasena">
-            <div class="alert-danger"
-              *ngIf="confContrasena.invalid && (confContrasena.dirty || confContrasena.touched)">
-              <div class="container-error-message" *ngIf="confContrasena.errors?.required">
-                Contraseña es requerida.
-              </div>
-              <div class="container-error-message" *ngIf="confContrasena.errors?.minlength">
-                Contraseña debe tener por lo menos 8 caracteres.
+                 La contraseña debe tener por lo menos una mayúscula, un número y un carácter especial.
               </div>
             </div>
           </div>
@@ -102,34 +89,32 @@
               </div>
             </div>
           </div>
-
-
           <div class="input-box">
             <span class="detalles">N° de Documento</span>
             <input type="text" formControlName="nDocumento">
             <div class="alert-danger" *ngIf="nDocumento.invalid && (nDocumento.dirty || nDocumento.touched)">
               <div class="container-error-message" *ngIf="nDocumento.errors?.required">
-                Numero de documento requerido.
+                Número de documento requerido.
               </div>
               <div class="container-error-message" *ngIf="nDocumento.errors?.minlength || nDocumento.errors?.maxlength">
-                Debe ser de 10 caracteres.
+                Deben ser mínimo 5 caracteres.
               </div>
               <div class="container-error-message"
                 *ngIf="(nDocumento.dirty || nDocumento.touched) && nDocumento.invalid && nDocumento.errors?.pattern">
-                Numero de documento tiene que tener un formato valido.
+                Número de documento tiene que tener un formato válido.
               </div>
             </div>
           </div>
 
           <div class="input-box">
-            <span class="detalles">Genero</span>
+            <span class="detalles">Género</span>
             <select formControlName="genero" (change)="changeGender($event)">
-              <option value="">Genero</option>
+              <option value="">Género</option>
               <option *ngFor="let gender of gender" [ngValue]="gender">{{gender}}</option>
             </select>
             <div class="alert-danger" *ngIf="genero.invalid && (genero.dirty || genero.touched)">
               <div class="container-error-message" *ngIf="genero.errors?.required">
-                Genero requerido.
+                Género requerido.
               </div>
             </div>
           </div>
@@ -138,15 +123,15 @@
             <div class="datos">
               <div class="input-box">
                 <span class="detalles">Nivel de Usuario</span>
-                <select formControlName="tUsuario" (change)="changeLVL($event)">
+                <select formControlName="tUsuario" (change)="changelevel($event)">
                   <option value="">Tipo de usuario</option>
-                  <option *ngFor="let userlvl of userlvl" [ngValue]="userlvl">{{userlvl}}</option>
+                  <option *ngFor="let userlevel of userlevel" [ngValue]="userlevel">{{userlevel}}</option>
                 </select>
-                <!-- <div class="alert-danger" *ngIf="tUsuario.invalid && (tUsuario.dirty || tUsuario.touched)">
-                  <div class="container-error-message" *ngIf="tUsuario.errors?.required">
-                    Nivel de usuario requerido.
-                  </div>
-                </div> -->
+                 <!-- <div class="alert-danger" *ngIf="tUsuario.invalid && (tUsuario.dirty || tUsuario.touched)">
+                   <div class="container-error-message" *ngIf="tUsuario.errors?.required">
+                     Nivel de usuario requerido.
+                   </div>
+                 </div> -->
               </div>
               <div class="input-box">
                 <span class="detalles">Funcionalidad</span>
@@ -154,10 +139,10 @@
                   <option value="">Funcionalidad</option>
                   <option *ngFor="let function of function" [ngValue]="function">{{function}}</option>
                 </select>
-                <div class="alert-danger" *ngIf="funcionalidad.invalid && (funcionalidad.dirty || funcionalidad.touched)">
-                  <div class="container-error-message" *ngIf="funcionalidad.errors?.required">
+                 <div class="alert-danger" *ngIf="funcionalidad.invalid && (funcionalidad.dirty || funcionalidad.touched)">
+                    <div class="container-error-message" *ngIf="funcionalidad.errors?.required">
                     Funcionalidad requerida.
-                  </div>
+                 </div>
                 </div>
               </div>
             </div>
