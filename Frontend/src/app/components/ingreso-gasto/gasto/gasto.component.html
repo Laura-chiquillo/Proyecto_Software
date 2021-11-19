@@ -1,149 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Gasto</title>
+</head>
+
 <body>
-  <div class="container">
-      <h1>Nuevo Gasto</h1>
 
-      <div class="general">
-          <div class="title">Informacion General</div>
+    <h1>Nuevo Gasto</h1>
 
-          <form class="datos">
-              <div class="datos">
-                  <div class="input-box">
-                      <span class="detalles">Numero Gasto</span>
-                      <input type="number" class="nIngreso">
-                  </div>
+    <form class="form-register">
 
-                  <div class="input-box">
-                      <span class="detalles">Fecha</span>
-                      <input type="date" class="fecha">
-                  </div>
+        <h3>Informacion General</h3>
 
-                  <div class="input-box">
-                      <span class="detalles">Beneficiario</span>
-                      <select name="beneficiario">
-                          <option value="0">Seleccionar</option>
-                      </select>
-                  </div>
+        <span>Numero Ingreso</span>
+        <input class="datos" type="text" name="nIngreso" placeholder="Numero Ingreso">
 
-                  <div class="input-box">
-                      <span class="detalles">Cuenta Bancaria</span>
-                      <select name="cuentaBancaria">
-                          <option value="0">Seleccionar</option>
-                      </select>
-                  </div>
+        <span>Fecha</span>
+        <input class="datos" type="date" name="fecha">
 
-                  <div class="input-box">
-                      <span class="detalles">Metodo de Pago</span>
-                      <select name="metodoPago">
-                          <option value="0">Seleccionar</option>
-                      </select>
-                  </div>
+        <span>Beneficiario</span>
+        <select class="datos" name="beneficiario">
+            <option value="0">Seleccionar</option>
+        </select>
 
-                  <div class="input-box">
-                      <span class="detalles">Notas adicionales</span>
-                      <textarea name="notasG" cols="50" rows="10"></textarea>
-                  </div>
+        <span>Cuenta Bancaria</span>
+        <select class="datos" name="cuentaBancaria">
+            <option value="0">Seleccionar</option>
+        </select>
 
-              </div>
-          </form>
+        <span>Metodo de Pago</span>
+        <select class="datos" name="metodoPago">
+            <option value="0">Seleccionar</option>
+        </select>
+
+        <span>Notas Adicionales</span>
+        <textarea class="datos" name="notasAdicionales" id="" cols="30" rows="10"></textarea>
 
 
-      </div>
+        <h3>Cuenta Contable</h3>
 
-      <div class="cContable">
-          <div class="title">Cuenta Contable</div>
+        <span>Concepto</span>
+        <select class="datos" name="Concepto">
+            <option value="0">Seleccionar</option>
+        </select>
 
-          <form class="datos">
-              <div class="datos">
-                  <div class="input-box">
-                      <span class="detalles">Concepto</span>
-                      <select name="Concepto">
-                          <option value="0">Seleccionar</option>
-                      </select>
-                  </div>
+        <span>Valor</span>
+        <input class="datos" type="text" name="valor" placeholder="">
 
-                  <div class="input-box">
-                      <span class="detalles">Valor</span>
-                      <input type="number" class="valorC">
-                  </div>
+        <span>Impuesto (IVA)</span>
+        <input class="datos" type="text" name="valor" placeholder="">
 
-                  <div class="input-box">
-                      <span class="detalles">Impuesto (IVA)</span>
-                      <input type="number" class="impuesto">
-                  </div>
+        <span>Cantidad</span>
+        <input class="datos" type="text" name="valor" placeholder="">
 
-                  <div class="input-box">
-                      <span class="detalles">Cantidad</span>
-                      <input type="number" class="cantidad">
-                  </div>
-
-                  <div class="input-box">
-                      <span class="detalles">Notas adicionales</span>
-                      <textarea name="notasC" cols="50" rows="10"></textarea>
-                  </div>
-
-                  <div class="input-box">
-                      <span class="detalles">Total $</span>
-                  </div>
-
-              </div>
-          </form>
+        <span>Notas Adicionales</span>
+        <textarea class="datos" name="notasAdicionales" id="" cols="30" rows="10"></textarea>
 
 
-      </div>
+        <h3>Retencion</h3>
 
-      <div class="retencion">
-          <div class="title">Retencion</div>
+        <span>Tipo</span>
+        <select class="datos" name="tipo">
+            <option value="0">Seleccionar</option>
+        </select>
 
-          <form class="datos">
-              <div class="datos">
-                  <div class="input-box">
-                      <span class="detalles">Tipo</span>
-                      <select name="Concepto">
-                          <option value="0">Seleccionar</option>
-                      </select>
-                  </div>
+        <span>Base</span>
+        <input class="datos" type="text" name="valor" placeholder="">
 
-                  <div class="input-box">
-                      <span class="detalles">Base</span>
-                      <input type="number" class="base">
-                  </div>
+        <span>Valor</span>
+        <input class="datos" type="text" name="valor" placeholder="">
 
-                  <div class="input-box">
-                      <span class="detalles">Valor</span>
-                      <input type="number" class="valorR">
-                  </div>
+        <p>Subtotal $</p>
+        <p>IVA $</p>
+        <p>Total $</p>
 
-              </div>
-          </form>
+        <input class="boton" type="submit" value="Guardar">
 
-      </div>
+        <input class="boton" type="submit" value="Cancelar">
 
-      <div class="valores">
-          <div class="input-box">
-              <span class="detalles">Subtotal $</span>
-          </div>
-
-          <div class="input-box">
-              <span class="detalles">IVA $</span>
-          </div>
-
-          <div class="input-box">
-              <span class="detalles">Total $</span>
-          </div>
-
-      </div>
-
-      <div class="botones">
-          <div class="boton">
-              <input type="submit" value="Guardar">
-          </div>
-
-          <div class="boton">
-              <input type="submit" value="Cancelar">
-          </div>
-
-      </div>
-
-  </div>
-
+    </form>
 </body>
+
+</html>
