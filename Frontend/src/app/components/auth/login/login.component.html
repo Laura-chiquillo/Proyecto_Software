@@ -19,13 +19,10 @@
             <label for="password">Password</label>
             <input type="password" name="contrasena_emp" placeholder="Enter Password"  [(ngModel)]="tipoUsuario.contrasena_emp" autocomplete="off">
 
-            <button (click)="Login()" type="submit" >Log in</button>
+            <button class="boton" (click)="Login()" type="submit" >Log in</button>
             
             <div class="brContraseña">
                 <a href="#">Perdiste tu contraseña</a>
-            </div>
-            <div class="brRegistrar">
-                <a href="http://localhost:4200/registro">Registrarse</a>
             </div>
         </form>
     </div>
