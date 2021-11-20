@@ -1,0 +1,121 @@
+<header class="header">
+  <h1>Menu Administrador
+  </h1>
+</header>
+
+
+<mat-tab-group animationDuration="1000ms">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon"><img src="https://www.svgrepo.com/show/17679/user.svg" /></mat-icon>
+      <span>Ver Usuarios</span>
+    </ng-template>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="id_emp">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.id_emp}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="nombres_emp">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Nombres </th>
+        <td mat-cell *matCellDef="let element"> {{element.nombres_emp}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="apellidos_emp">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Apellidos </th>
+        <td mat-cell *matCellDef="let element"> {{element.apellidos_emp}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="num_id_emp">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Num </th>
+        <td mat-cell *matCellDef="let element"> {{element.num_id_emp}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="correo_emp">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Correo </th>
+        <td mat-cell *matCellDef="let element"> {{element.correo_emp}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="sexo_emp">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Sexo </th>
+        <td mat-cell *matCellDef="let element"> {{element.sexo_emp}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="telefono_emp">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Teléfono </th>
+        <td mat-cell *matCellDef="let element"> {{element.telefono_emp}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="id_nivel">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> ID Nivel </th>
+        <td mat-cell *matCellDef="let element"> {{element.id_nivel}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="id_fun">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> ID Funcionalidad </th>
+        <td mat-cell *matCellDef="let element"> {{element.id_fun}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="estado_emp">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Estado Emp </th>
+        <td mat-cell *matCellDef="let element"> {{element.estado_emp}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="contrasena_emp">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Contraseña </th>
+        <td mat-cell *matCellDef="let element"> {{element.contrasena_emp}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="tipo_documento_emp">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Tipo Documento </th>
+        <td mat-cell *matCellDef="let element"> {{element.tipo_documento_emp}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;">Acción</th>
+        <td mat-cell *matCellDef="let element" style="text-align: center;">
+          <button (click)="actualizar(element)" type="submit" [disabled]="element.estado_emp">Desbloquear</button>
+        </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon"><img src="https://www.svgrepo.com/show/290079/users.svg"></mat-icon>
+      <span>Registrar Empleados</span>
+    </ng-template>
+    <router-outlet>
+    </router-outlet>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon"><img src="https://www.svgrepo.com/show/14570/account-balance.svg"></mat-icon>
+      <span [routerLink]="['/admin/login']" >Ingresos y Gastos</span>
+    </ng-template>
+    <router-outlet>
+    </router-outlet>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon"><img src="https://www.svgrepo.com/show/259173/bank.svg" /></mat-icon>
+      <span>Cuentas Bancarias</span>
+    </ng-template>
+    Content 3
+  </mat-tab>
+
+</mat-tab-group>
