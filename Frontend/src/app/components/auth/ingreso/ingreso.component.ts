@@ -10,7 +10,7 @@ import { TipoUsuarioService } from 'src/app/service/TipoUsuarioService';
 })
 export class IngresoComponent {
 
-  public ingresoForm: FormGroup;
+  ingresoForm: FormGroup;
 
   constructor(private router: Router, private service: TipoUsuarioService) {
     this.ingresoForm = this.createForm();
@@ -43,7 +43,7 @@ export class IngresoComponent {
       impuesto: new FormControl('', [Validators.required]),
       cantidad: new FormControl('', [Validators.required, Validators.pattern('[- +()0-9]+')]),
       notasAdicionales2: new FormControl('', [Validators.required]),
-      tipoRetencion: new FormControl('')
+      tipoRetencion: new FormControl(''),
     })
 
   }
