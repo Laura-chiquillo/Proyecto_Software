@@ -48,6 +48,10 @@ public class User {
 	@Column(name="tipo_documento_emp")
 	private String tipo_documento_emp;
 	
+	public User() {
+		
+	}
+	
 	public User(long id_emp,String nombres_emp, String apellidos_emp,
 				String num_id_empl, String correo_emp, char sexo_emp, String telefono_emp,
 				String id_nivel, String id_fun, boolean estado_emp, String contrasena_emp) {
