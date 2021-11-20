@@ -13,11 +13,7 @@ import { IngresoRoutingModule } from './ingreso-routing.module';
     ReactiveFormsModule,
     CommonModule,
     IngresoRoutingModule,
-    FormsModule
-  ],
-  exports: [
     FormsModule,
-    ReactiveFormsModule
   ]
 })
 export class IngresoModule { }

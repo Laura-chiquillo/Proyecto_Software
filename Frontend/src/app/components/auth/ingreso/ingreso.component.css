@@ -30,7 +30,7 @@
     border-radius: 5px;
   }
   
-  .permisos{
+  .cuentaContable{
     max-width: 1000px;
     width: 100%;
     background: #fff;
@@ -54,13 +54,13 @@
     background:  linear-gradient(135deg, #71b7e6, #9b59b6);;
   }
   
-  .permisos .title{
+  .cuentaContable .title{
     font-size: 25px;
     font-weight: 500;
     position: relative;
   }
   
-  .permisos .title::before{
+  .cuentaContable .title::before{
     content: '';
     position: absolute;
     left: 0;
@@ -76,7 +76,7 @@
     justify-content: space-between;
   }
   
-  .permisos .datos{
+  .cuentaContable .datos{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;

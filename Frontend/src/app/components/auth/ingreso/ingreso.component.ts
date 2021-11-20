@@ -8,30 +8,27 @@ import { TipoUsuarioService } from 'src/app/service/TipoUsuarioService';
   templateUrl: './ingreso.component.html',
   styleUrls: ['./ingreso.component.css']
 })
-export class IngresoComponent implements OnInit {
+export class IngresoComponent {
 
-  public registroForm: FormGroup;
+  public ingresoForm: FormGroup;
 
   constructor(private router: Router, private service: TipoUsuarioService) {
-    this.registroForm = this.createForm();
+    this.ingresoForm = this.createForm();
   }
 
-  get fecha() { return this.registroForm.get('fecha'); }
-  get beneficiario() { return this.registroForm.get('beneficiario'); }
-  get cuentaBancaria() { return this.registroForm.get('cuentaBancaria'); }
-  get metodoPago() { return this.registroForm.get('metodoPago'); }
-  get extra() { return this.registroForm.get('extra'); }
-  get notasAdicionales() { return this.registroForm.get('notasAdicionales'); }
-  get concepto() { return this.registroForm.get('concepto'); }
-  get valor_concepto() { return this.registroForm.get('valor_concepto'); }
-  get impuesto() { return this.registroForm.get('impuesto'); }
-  get cantidad() { return this.registroForm.get('cantidad'); }
-  get notasAdicionales2() { return this.registroForm.get('notasAdicionales2'); }
-  get tipoRetencion() { return this.registroForm.get('tipoRetencion'); }
+  get fecha() { return this.ingresoForm.get('fecha'); }
+  get beneficiario() { return this.ingresoForm.get('beneficiario'); }
+  get cuentaBancaria() { return this.ingresoForm.get('cuentaBancaria'); }
+  get metodoPago() { return this.ingresoForm.get('metodoPago'); }
+  get extra() { return this.ingresoForm.get('extra'); }
+  get notasAdicionales() { return this.ingresoForm.get('notasAdicionales'); }
+  get concepto() { return this.ingresoForm.get('concepto'); }
+  get valor_concepto() { return this.ingresoForm.get('valor_concepto'); }
+  get impuesto() { return this.ingresoForm.get('impuesto'); }
+  get cantidad() { return this.ingresoForm.get('cantidad'); }
+  get notasAdicionales2() { return this.ingresoForm.get('notasAdicionales2'); }
+  get tipoRetencion() { return this.ingresoForm.get('tipoRetencion'); }
 
-
-  ngOnInit(): void {
-  }
 
   createForm() {
     return new FormGroup({
@@ -88,7 +85,7 @@ export class IngresoComponent implements OnInit {
   }
 
   onResetForm(): void{
-    this.registroForm.reset();
+    this.ingresoForm.reset();
   }
 
   onSaveForm():void {
