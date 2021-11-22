@@ -1,8 +1,6 @@
-package co.edu.unbosque.dao;
+package co.edu.unbosque.model;
 
 import java.util.List;
-
-import co.edu.unbosque.model.User;
 
 public interface UsuarioDao {
 
@@ -17,6 +15,6 @@ public interface UsuarioDao {
 	User getUser(String correo);
 
 	void actualizar(User user);
-
 	
+	void bloquear(User user);
 }

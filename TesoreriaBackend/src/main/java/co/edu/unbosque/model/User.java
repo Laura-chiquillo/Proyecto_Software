@@ -49,6 +49,7 @@ public class User {
 	private String tipo_documento_emp;
 	
 	public User() {
+		
 	}
 	
 	public User(long id_emp,String nombres_emp, String apellidos_emp,
