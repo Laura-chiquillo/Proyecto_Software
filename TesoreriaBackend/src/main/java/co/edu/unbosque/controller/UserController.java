@@ -52,4 +52,9 @@ public class UserController {
 	public void actualizar(@RequestBody User user) {
 		usuarioDao.actualizar(user);
 	}
+	
+	@RequestMapping(value= "api/bloquear", method = RequestMethod.PUT)
+	public void bloquear(@RequestBody User user) {
+		usuarioDao.bloquear(user);
+	}
 }

@@ -15,6 +15,6 @@ public interface UsuarioDao {
 	User getUser(String correo);
 
 	void actualizar(User user);
-
 	
+	void bloquear(User user);
 }

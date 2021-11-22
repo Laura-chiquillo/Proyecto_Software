@@ -3,7 +3,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ListaUsiarioService } from 'src/app/service/ListaUsuarioService';
 import { Usuario } from 'src/app/entity/Usuario';
-import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-admin',
