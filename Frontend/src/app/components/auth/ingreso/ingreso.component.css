@@ -11,7 +11,7 @@
   background: #fff;
 }
 
-.form-register{
+.ingresoForm{
   width: 1000px;
   background: #fff;
   padding: 30px;
@@ -20,7 +20,7 @@
   border-radius: 'calibri';
 }
 
-.form-register h3{
+.ingresoForm h3{
   font-size: 22px;
   margin-top: 40px;
   margin-bottom: 20px;
@@ -39,7 +39,7 @@
   font-size: 18px;
 }
 
-.form-register .boton{
+.ingresoForm .boton{
   margin: 20px 0 12px 0;
   width: 100%;
   outline: none;
@@ -52,14 +52,14 @@
   padding: 12px;
 }
 
-.form-register span{
+.ingresoForm span{
   background: #fff;
 }
 
-.form-register p{
+.ingresoForm p{
   background: #fff;
 }
 
-.form-register textarea{
+.ingresoForm textarea{
   resize: none;
 }

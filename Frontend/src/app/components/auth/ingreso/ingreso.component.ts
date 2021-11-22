@@ -1,18 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TipoUsuarioService } from 'src/app/service/TipoUsuarioService';
+import { Impuesto } from 'src/app/entity/Impuesto';
+import { ListaImpuestoService } from 'src/app/service/ListaImpuestoService';
 
 @Component({
   selector: 'app-ingreso',
   templateUrl: './ingreso.component.html',
   styleUrls: ['./ingreso.component.css']
 })
-export class IngresoComponent {
 
-  ingresoForm: FormGroup;
+export class IngresoComponent implements OnInit {
 
-  constructor(private router: Router, private service: TipoUsuarioService) {
+  public ingresoForm: FormGroup;
+  listaImpuesto: Impuesto[] = [];
+  elegido: String;
+
+  constructor(private router: Router, public service: ListaImpuestoService, private formBuilder: FormBuilder) {
     this.ingresoForm = this.createForm();
   }
 
@@ -29,6 +33,22 @@ export class IngresoComponent {
   get notasAdicionales2() { return this.ingresoForm.get('notasAdicionales2'); }
   get tipoRetencion() { return this.ingresoForm.get('tipoRetencion'); }
 
+  ngOnInit(): void {
+
+    this.service.getImpuesto().subscribe(data => {
+
+      this.listaImpuesto = data;
+
+    });
+
+    console.log(this.listaImpuesto)
+
+    this.ingresoForm.get('impuesto').valueChanges.subscribe(value => {
+      this.service.getImpuesto().subscribe(resp => {
+        this.listaImpuesto = resp;
+      })
+    });
+  }
 
   createForm() {
     return new FormGroup({
@@ -84,12 +104,11 @@ export class IngresoComponent {
     })
   }
 
-  onResetForm(): void{
+  onResetForm(): void {
     this.ingresoForm.reset();
   }
 
-  onSaveForm():void {
-    
+  onSaveForm(): void {
+    console.log(this.ingresoForm.value);
   }
-
 }
