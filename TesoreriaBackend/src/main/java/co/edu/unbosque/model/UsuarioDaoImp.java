@@ -1,4 +1,4 @@
-package co.edu.unbosque.dao;
+package co.edu.unbosque.model;
 
 import java.util.List;
 
@@ -6,13 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
-import org.hibernate.EntityNameResolver;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-
-import co.edu.unbosque.model.User;
 
 @Repository
 @Transactional
@@ -60,7 +55,7 @@ public class UsuarioDaoImp implements UsuarioDao{
 		String query = "FROM User e WHERE e.correo_emp = :correo_emp";
 		return entityManager.createQuery(query, User.class).setParameter("correo_emp",correo).getResultList().get(0);
 	}
-
+	
 	
 	@Transactional
 	public void actualizar(User user) {
@@ -71,6 +66,16 @@ public class UsuarioDaoImp implements UsuarioDao{
 				.executeUpdate();
 
 	}
+	
+	@Transactional
+	public void bloquear(User user) {
 
+		Long id = this.getUser(user.getCorreo_emp()).getId_emp();
 
+		entityManager.createQuery("UPDATE User e SET e.estado_emp=:estado_emp WHERE e.id_emp='" + String.valueOf(id) + "'")
+		.setParameter("estado_emp", user.isEstado_emp())		
+		.executeUpdate();
+
+	}
+	
 }

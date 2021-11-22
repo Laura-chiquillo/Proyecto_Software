@@ -19,4 +19,7 @@ export class ListaUsiarioService {
     actualizar(usuario: Usuario): Observable<any> {
         return this.http.put(`${this.Url}/${usuario.id_emp}`, usuario)
     }
+    bloquear(usuario: Usuario): Observable<any> {
+        return this.http.put(`${'http://localhost:8080/api/v1/api/bloquear'}`, usuario)
+    }
 }

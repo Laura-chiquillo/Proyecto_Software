@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {ReactiveFormsModule} from '@angular/forms';
-
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { RegistroRoutingModule } from './registro-routing.module';
 import { RegistroComponent } from './registro.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -14,7 +15,11 @@ import { RegistroComponent } from './registro.component';
   imports: [
     ReactiveFormsModule,
     CommonModule,
-    RegistroRoutingModule
+    RegistroRoutingModule,
+    FormsModule,
+    BrowserModule,
+    HttpClientModule,
+    BrowserAnimationsModule
   ]
 })
 export class RegistroModule  {
