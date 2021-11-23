@@ -6,18 +6,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.edu.unbosque.dao.BeneficiarioDao;
+import co.edu.unbosque.dao.ConceptoDao;
+import co.edu.unbosque.dao.CuentaDao;
 import co.edu.unbosque.dao.ImpuestoDao;
+import co.edu.unbosque.dao.MetodoPagoDao;
+import co.edu.unbosque.dao.RetencionDao;
 import co.edu.unbosque.dao.UsuarioDao;
-import co.edu.unbosque.dao.UsuarioDaoImp;
+import co.edu.unbosque.model.Beneficiario;
+import co.edu.unbosque.model.Concepto;
+import co.edu.unbosque.model.CuentaBancaria;
 import co.edu.unbosque.model.Impuesto;
+import co.edu.unbosque.model.MetodoPago;
+import co.edu.unbosque.model.Retencion;
 import co.edu.unbosque.model.User;
 
 @RestController
@@ -31,6 +38,21 @@ public class UserController {
 
 	@Autowired
 	private ImpuestoDao impuestoDao;
+
+	@Autowired
+	private BeneficiarioDao beneficiarioDao;
+
+	@Autowired
+	private ConceptoDao conceptoDao;
+
+	@Autowired
+	private MetodoPagoDao metodoPagoDao;
+
+	@Autowired
+	private RetencionDao retencionDao;
+
+	@Autowired
+	private CuentaDao cuentaDao;
 
 	@RequestMapping(value = "api/users", method = RequestMethod.GET)
 	public List<User> getUsers() {
@@ -61,8 +83,34 @@ public class UserController {
 		usuarioDao.actualizar(user);
 	}
 
-	@RequestMapping(value = "api/ingreso", method = RequestMethod.GET)
+	@RequestMapping(value = "api/impuesto", method = RequestMethod.GET)
 	public List<Impuesto> getImpuesto() {
 		return impuestoDao.getImpuesto();
 	}
+
+	@RequestMapping(value = "api/beneficiario", method = RequestMethod.GET)
+	public List<Beneficiario> getBeneficiario() {
+		return beneficiarioDao.getBeneficiaro();
+	}
+
+	@RequestMapping(value = "api/concepto", method = RequestMethod.GET)
+	public List<Concepto> getConcepto() {
+		return conceptoDao.getConcepto();
+	}
+
+	@RequestMapping(value = "api/pago", method = RequestMethod.GET)
+	public List<MetodoPago> getMetodoPago() {
+		return metodoPagoDao.getMetodoPago();
+	}
+
+	@RequestMapping(value = "api/retencion", method = RequestMethod.GET)
+	public List<Retencion> getRetencion() {
+		return retencionDao.getRetencion();
+	}
+
+	@RequestMapping(value = "api/cuenta", method = RequestMethod.GET)
+	public List<CuentaBancaria> getCuenta() {
+		return cuentaDao.getCuenta();
+	}
+
 }
