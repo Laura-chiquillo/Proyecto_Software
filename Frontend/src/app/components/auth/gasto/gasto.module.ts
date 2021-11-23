@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GastoComponent } from './gasto/gasto.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GastoRoutingModule } from './gasto-routing.module';
+import { GastoComponent } from './gasto.component';
 
 
 @NgModule({
@@ -9,7 +10,10 @@ import { GastoComponent } from './gasto/gasto.component';
     GastoComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    GastoRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class GastoModule { }

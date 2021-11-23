@@ -32,6 +32,7 @@ const routes: Routes = [
         (m) => m.RegistroModule
       ),
   },
+  { path: 'gasto', loadChildren: () => import('./components/auth/gasto/gasto.module').then(m => m.GastoModule) },
 ];
 
 @NgModule({
