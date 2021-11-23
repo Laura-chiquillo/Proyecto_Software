@@ -22,6 +22,7 @@ import { IngresoRoutingModule } from './ingreso-routing.module';
     MatFormFieldModule,
     MatSelectModule
   ],
+  exports: [ReactiveFormsModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class IngresoModule { }

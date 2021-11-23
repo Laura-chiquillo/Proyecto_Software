@@ -2,7 +2,7 @@
 
     <h1>Nuevo Ingreso</h1>
 
-    <form #ingresoForm (ngSubmit)="onSaveForm()" class="ingresoForm">
+    <form [formGroup]="ingresoForm" (ngSubmit)="onSaveForm()" class="ingresoForm">
 
         <h3>Información General</h3>
 
