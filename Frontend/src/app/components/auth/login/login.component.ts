@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
       this.actualizar.bloquear(this.usuario).subscribe(data =>{
         console.log(data)
         alert("usuario bloqueado")
+        window.location.reload();
       })
       console.log(this.usuario.estado_emp)
     }
