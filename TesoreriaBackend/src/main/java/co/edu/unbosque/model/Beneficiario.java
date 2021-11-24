@@ -19,9 +19,6 @@ public class Beneficiario {
 	@Column(name = "nombre_benef")
 	private String nombre_benef;
 
-	@Column(name = "id_tipo_id")
-	private String id_tipo_id;
-
 	@Column(name = "num_id_benef")
 	private String num_id_benef;
 
@@ -38,12 +35,11 @@ public class Beneficiario {
 
 	}
 
-	public Beneficiario(long id_benef, String nombre_benef, String id_tipo_id, String num_id_benef, String correo_benef,
+	public Beneficiario(long id_benef, String nombre_benef, String num_id_benef, String correo_benef,
 			String telefono_benef, String id_tipo_benef) {
 		super();
 		this.id_benef = id_benef;
 		this.nombre_benef = nombre_benef;
-		this.id_tipo_id = id_tipo_id;
 		this.num_id_benef = num_id_benef;
 		this.correo_benef = correo_benef;
 		this.telefono_benef = telefono_benef;
@@ -64,14 +60,6 @@ public class Beneficiario {
 
 	public void setNombre_benef(String nombre_benef) {
 		this.nombre_benef = nombre_benef;
-	}
-
-	public String getId_tipo_id() {
-		return id_tipo_id;
-	}
-
-	public void setId_tipo_id(String id_tipo_id) {
-		this.id_tipo_id = id_tipo_id;
 	}
 
 	public String getNum_id_benef() {
@@ -108,9 +96,9 @@ public class Beneficiario {
 
 	@Override
 	public String toString() {
-		return "Beneficiario [id_benef=" + id_benef + ", nombre_benef=" + nombre_benef + ", id_tipo_id=" + id_tipo_id
-				+ ", num_id_benef=" + num_id_benef + ", correo_benef=" + correo_benef + ", telefono_benef="
-				+ telefono_benef + ", id_tipo_benef=" + id_tipo_benef + "]";
+		return "Beneficiario [id_benef=" + id_benef + ", nombre_benef=" + nombre_benef + ", num_id_benef="
+				+ num_id_benef + ", correo_benef=" + correo_benef + ", telefono_benef=" + telefono_benef
+				+ ", id_tipo_benef=" + id_tipo_benef + "]";
 	}
 
 }

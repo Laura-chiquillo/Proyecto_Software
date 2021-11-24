@@ -11,7 +11,7 @@
     background: #fff;
   }
   
-  .ingresoForm{
+  .gastoForm{
     width: 1000px;
     background: #fff;
     padding: 30px;
@@ -20,7 +20,7 @@
     border-radius: 'calibri';
   }
   
-  .ingresoForm h3{
+  .gastoForm h3{
     font-size: 22px;
     margin-top: 40px;
     margin-bottom: 20px;
@@ -39,7 +39,7 @@
     font-size: 18px;
   }
   
-  .ingresoForm .boton{
+  .gastoForm .boton{
     margin: 20px 0 12px 0;
     width: 100%;
     outline: none;
@@ -52,15 +52,15 @@
     padding: 12px;
   }
   
-  .ingresoForm span{
+  .gastoForm span{
     background: #fff;
   }
   
-  .ingresoForm p{
+  .gastoForm p{
     background: #fff;
   }
   
-  .ingresoForm textarea{
+  .gastoForm textarea{
     resize: none;
   }
   

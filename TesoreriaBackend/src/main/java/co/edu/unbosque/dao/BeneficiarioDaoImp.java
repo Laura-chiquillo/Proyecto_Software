@@ -22,7 +22,7 @@ public class BeneficiarioDaoImp implements BeneficiarioDao {
 	@Override
 	public List<Beneficiario> getBeneficiaro() {
 
-		return entityManager.createQuery("FROM Beneficiario").getResultList();
+		return entityManager.createQuery("FROM Beneficiario ORDER BY id_benef ASC").getResultList();
 
 	}
 
