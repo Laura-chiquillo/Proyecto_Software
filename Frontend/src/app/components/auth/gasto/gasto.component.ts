@@ -7,12 +7,7 @@ import { Beneficiario } from 'src/app/entity/Beneficiario';
 import { CuentaBancaria } from 'src/app/entity/CuentaBancaria';
 import { MetodoPago } from 'src/app/entity/MetodoPago';
 import { Retencion } from 'src/app/entity/Retencion';
-import { ListaImpuestoService } from 'src/app/service/ListaImpuestoService';
-import { ListaBeneficiarioService } from 'src/app/service/ListaBeneficiarioService';
-import { ListaConceptoService } from 'src/app/service/ListaConceptoService';
-import { ListaPagoService } from 'src/app/service/ListaPagoService';
-import { ListaRetencionService } from 'src/app/service/ListaRetencionService';
-import { ListaCuentaService } from 'src/app/service/ListaCuentaService';
+import { ListaExtrasService } from 'src/app/service/ListaExtrasService';
 
 
 @Component({
@@ -23,49 +18,50 @@ import { ListaCuentaService } from 'src/app/service/ListaCuentaService';
 export class GastoComponent implements OnInit {
 
   public gastoForm: FormGroup;
-  listaImpuesto: Impuesto[] = [];
-  listaConcepto: Concepto[] = [];
-  listaBenef: Beneficiario[] = [];
-  listaCuenta: CuentaBancaria[] = [];
-  listaMetodo: MetodoPago[] = [];
-  listaRetencion: Retencion[] = [];
+  public listaImpuesto: Impuesto[] = [];
+  public listaConcepto: Concepto[] = [];
+  public listaBenef: Beneficiario[] = [];
+  public listaCuenta: CuentaBancaria[] = [];
+  public listaMetodo: MetodoPago[] = [];
+  public listaRetencion: Retencion[] = [];
+  public numMovim: number;
 
-  constructor(private router: Router, public service_impuesto: ListaImpuestoService, 
-    private formBuilder: FormBuilder, public service_benef: ListaBeneficiarioService, 
-    public service_concepto: ListaConceptoService, public service_pago: ListaPagoService,
-    public service_retencion: ListaRetencionService, public service_cuenta: ListaCuentaService) { }
+  constructor(private router: Router, private service: ListaExtrasService,
+    private formBuilder: FormBuilder) {
+
+    this.gastoForm = this.createForm();
+
+  }
 
   ngOnInit(): void {
 
-    this.service_impuesto.getImpuesto().subscribe(data => {
-      this.listaImpuesto = data;
+    this.service.getImpuesto().subscribe(impuesto => {
+      this.listaImpuesto = impuesto;
+    })
 
-    });
+    this.service.getBeneficiario().subscribe(benef => {
+      this.listaBenef = benef;
+    })
 
-    this.service_benef.getBeneficiario().subscribe(data => {
-      this.listaBenef = data;
+    this.service.getConceptoGasto().subscribe(concepto => {
+      this.listaConcepto = concepto;
+    })
 
-    });
+    this.service.getMetodoPago().subscribe(pago => {
+      this.listaMetodo = pago;
+    })
 
-    this.service_concepto.getConcepto().subscribe(data => {
-      this.listaConcepto = data;
+    this.service.getRetencion().subscribe(retencion => {
+      this.listaRetencion = retencion;
+    })
 
-    });
+    this.service.getCuenta().subscribe(cuenta => {
+      this.listaCuenta = cuenta;
+    })
 
-    this.service_pago.getMetodoPago().subscribe(data => {
-      this.listaMetodo = data;
-
-    });
-
-    this.service_retencion.getRetencion().subscribe(data => {
-      this.listaRetencion = data;
-
-    });
-
-    this.service_cuenta.getCuenta().subscribe(data => {
-      this.listaCuenta = data;
-
-    });
+    this.service.getNumMov().subscribe(num => {
+      this.numMovim = num;
+    })
 
   }
 
@@ -140,6 +136,10 @@ export class GastoComponent implements OnInit {
 
   onSaveForm(): void {
     console.log(this.gastoForm.value);
+  }
+
+  numMov(){
+    return this.numMovim;
   }
 
 }

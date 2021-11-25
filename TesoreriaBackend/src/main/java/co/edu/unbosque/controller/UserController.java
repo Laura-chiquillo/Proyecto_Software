@@ -17,6 +17,7 @@ import co.edu.unbosque.dao.ConceptoDao;
 import co.edu.unbosque.dao.CuentaDao;
 import co.edu.unbosque.dao.ImpuestoDao;
 import co.edu.unbosque.dao.MetodoPagoDao;
+import co.edu.unbosque.dao.MovimientosDao;
 import co.edu.unbosque.dao.RetencionDao;
 import co.edu.unbosque.dao.UsuarioDao;
 import co.edu.unbosque.model.Beneficiario;
@@ -53,6 +54,9 @@ public class UserController {
 
 	@Autowired
 	private CuentaDao cuentaDao;
+
+	@Autowired
+	private MovimientosDao movimDao;
 
 	@RequestMapping(value = "api/users", method = RequestMethod.GET)
 	public List<User> getUsers() {
@@ -93,9 +97,14 @@ public class UserController {
 		return beneficiarioDao.getBeneficiaro();
 	}
 
-	@RequestMapping(value = "api/concepto", method = RequestMethod.GET)
-	public List<Concepto> getConcepto() {
-		return conceptoDao.getConcepto();
+	@RequestMapping(value = "api/conceptoGasto", method = RequestMethod.GET)
+	public List<Concepto> getConceptoGasto() {
+		return conceptoDao.getConceptoGasto();
+	}
+	
+	@RequestMapping(value = "api/conceptoIngreso", method = RequestMethod.GET)
+	public List<Concepto> getConceptoIngreso() {
+		return conceptoDao.getConceptoIngreso();
 	}
 
 	@RequestMapping(value = "api/pago", method = RequestMethod.GET)
@@ -111,6 +120,11 @@ public class UserController {
 	@RequestMapping(value = "api/cuenta", method = RequestMethod.GET)
 	public List<CuentaBancaria> getCuenta() {
 		return cuentaDao.getCuenta();
+	}
+
+	@RequestMapping(value = "api/numMov", method = RequestMethod.GET)
+	public int numGasto() {
+		return movimDao.numMov();
 	}
 
 }

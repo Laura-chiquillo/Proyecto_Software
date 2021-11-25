@@ -104,7 +104,16 @@
   <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon class="example-tab-icon"><img src="https://www.svgrepo.com/show/14570/account-balance.svg"></mat-icon>
-      <span [routerLink]="['./gasto']">Gasto</span>
+      <span [routerLink]="['./ingreso']">Nuevo Ingreso</span>
+    </ng-template>
+    <router-outlet>
+    </router-outlet>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon"><img src="https://www.svgrepo.com/show/14570/account-balance.svg"></mat-icon>
+      <span [routerLink]="['./gasto']">Nuevo Gasto</span>
     </ng-template>
     <router-outlet>
     </router-outlet>

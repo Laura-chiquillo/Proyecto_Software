@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
 
 import { IngresoComponent } from './ingreso.component';
 
@@ -9,10 +8,9 @@ describe('IngresoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [IngresoComponent],
-      imports: [ReactiveFormsModule]
+      declarations: [ IngresoComponent ]
     })
-      .compileComponents();
+    .compileComponents();
   });
 
   beforeEach(() => {
@@ -24,5 +22,4 @@ describe('IngresoComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
 });

@@ -1,28 +1,19 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule, FormArray } from '@angular/forms';
-import { IngresoComponent } from './ingreso.component';
-import { BrowserModule } from '@angular/platform-browser';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IngresoRoutingModule } from './ingreso-routing.module';
+import { IngresoComponent } from './ingreso.component';
+
 
 @NgModule({
   declarations: [
     IngresoComponent
   ],
   imports: [
-    ReactiveFormsModule,
     CommonModule,
     IngresoRoutingModule,
     FormsModule,
-    FormArray,
-    BrowserModule,
-    MatFormFieldModule,
-    MatSelectModule
-  ],
-  exports: [ReactiveFormsModule],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    ReactiveFormsModule
+  ]
 })
 export class IngresoModule { }

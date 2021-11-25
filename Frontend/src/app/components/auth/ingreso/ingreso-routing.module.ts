@@ -5,7 +5,7 @@ import { IngresoComponent } from './ingreso.component';
 const routes: Routes = [{ path: '', component: IngresoComponent }];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
 export class IngresoRoutingModule { }

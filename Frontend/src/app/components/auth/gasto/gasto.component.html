@@ -6,8 +6,8 @@
 
         <h3>Información General</h3>
 
-        <span>Número Gasto</span>
-        <input class="datos" type="text" name="nGasto" [disabled]="true">
+        <span>Número Movimiento</span>
+        <input class="datos" type="number" [disabled]="true" [value]='numMov()'>
 
         <span>Fecha</span>
         <input class="datos" type="date" name="fecha" formControlName="fecha">
@@ -19,23 +19,15 @@
 
 
         <span>Beneficiario</span>
-        <select class="datos" name="beneficiario" formControlName="beneficiario" (change)="changeBeneficiario($event)">
-            <option value="0">Seleccionar</option>
-            <option *ngFor="let beneficiary of listaBenef" [value]="beneficiary.id_benef">{{beneficiary.nombre_benef}}
+        <select class="datos" formControlName="beneficiario" (change)="changeBeneficiario($event)">
+            <option [value]="benef.id_benef" *ngFor="let benef of listaBenef">
+                {{benef.nombre_benef}}
             </option>
         </select>
-        <div class="alert-danger" *ngIf="beneficiario.invalid && (beneficiario.dirty || beneficiario.touched)">
-            <div class="container-error-message" *ngIf="beneficiario.errors?.required">
-                Por favor seleccione un beneficiario.
-            </div>
-        </div>
-
-
 
         <span>Cuenta Bancaria</span>
         <select class="datos" name="cuentaBancaria" formControlName="cuentaBancaria" (change)="changeCuenta($event)">
-            <option value="0">Seleccionar</option>
-            <option *ngFor="let account of listaCuenta" [value]="account.id_cuenta">{{account}}</option>
+            <option *ngFor="let account of listaCuenta" [value]="account.id_cuenta">{{account.nombre_cuenta}}</option>
         </select>
         <div class="alert-danger" *ngIf="cuentaBancaria.invalid && (cuentaBancaria.dirty || cuentaBancaria.touched)">
             <div class="container-error-message" *ngIf="cuentaBancaria.errors?.required">
@@ -46,7 +38,6 @@
 
         <span>Método de Pago</span>
         <select class="datos" name="metodoPago" formControlName="metodoPago" (change)="changeMetodoPago($event)">
-            <option value="0">Seleccionar</option>
             <option *ngFor="let payment of listaMetodo" [value]="payment.id_pago">{{payment.nombre_pago}}</option>
         </select>
         <div class="alert-danger" *ngIf="metodoPago.invalid && (metodoPago.dirty || metodoPago.touched)">
@@ -63,8 +54,8 @@
 
         <span>Concepto</span>
         <select class="datos" name="Concepto" formControlName="concepto" (change)="changeConcepto($event)">
-            <option value="0">Seleccionar</option>
-            <option *ngFor="let concept of listaConcepto" [value]="concept">{{concept}}</option>
+            <option *ngFor="let concept of listaConcepto" [value]="concept.id_concepto">{{concept.nombre_concepto}}
+            </option>
         </select>
         <div class="alert-danger" *ngIf="concepto.invalid && (concepto.dirty || concepto.touched)">
             <div class="container-error-message" *ngIf="concepto.errors?.required">
@@ -78,18 +69,14 @@
             <div class="container-error-message" *ngIf="valor_concepto.errors?.required">
                 Por favor ingrese un valor para el concepto.
             </div>
-            <div class="container-error-message" *ngIf="valor_concepto.errors?.minlength">
-                Correo electrónico debe tener por lo menos 8 caracteres.
-            </div>
             <div class="container-error-message"
                 *ngIf="(valor_concepto.dirty || valor_concepto.touched) && valor_concepto.invalid && valor_concepto.errors?.pattern">
-                Correo electrónico debe ser de un formato válido.
+                Utilice un formato que coincida con el solicitado.
             </div>
         </div>
 
         <span>Impuesto</span>
         <select class="datos" name="valor" formControlName="impuesto" (change)="changeImpuesto($event)">
-            <option value="0">Seleccionar</option>
             <option *ngFor="let tax of listaImpuesto" [value]="tax.id_impuesto">{{tax.nombre_imp}}</option>
         </select>
         <div class="alert-danger" *ngIf="impuesto.invalid && (impuesto.dirty || impuesto.touched)">
@@ -106,7 +93,7 @@
             </div>
             <div class="container-error-message"
                 *ngIf="(cantidad.dirty || cantidad.touched) && cantidad.invalid && cantidad.errors?.pattern">
-                Por favor ingrese un valor válido.
+                Utilice un formato que coincida con el solicitado.
             </div>
         </div>
 
@@ -119,11 +106,14 @@
 
         <span>Tipo</span>
         <select class="datos" name="tipo" formControlName="tipoRetencion" (change)="changeRetencion($event)">
-            <option value="0">Seleccionar</option>
             <option *ngFor="let retencion of listaRetencion" [value]="retencion.id_retencion">{{retencion.nombre_retr}}
             </option>
         </select>
-
+        <div class="alert-danger" *ngIf="tipoRetencion.invalid && (tipoRetencion.dirty || tipoRetencion.touched)">
+            <div class="container-error-message" *ngIf="tipoRetencion.errors?.required">
+                Por favor seleccione un tipo de retención.
+            </div>
+        </div>
 
 
         <p>Subtotal $</p>

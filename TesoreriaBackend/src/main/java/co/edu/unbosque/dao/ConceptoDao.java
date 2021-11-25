@@ -6,6 +6,8 @@ import co.edu.unbosque.model.Concepto;
 
 public interface ConceptoDao {
 	
-	List<Concepto> getConcepto();
+	List<Concepto> getConceptoIngreso();
+	
+	List<Concepto> getConceptoGasto();
 
 }

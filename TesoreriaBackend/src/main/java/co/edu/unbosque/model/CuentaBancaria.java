@@ -34,12 +34,15 @@ public class CuentaBancaria {
 	@Column(name = "id_banco")
 	private String id_banco;
 
+	@Column(name = "nombre_cuenta")
+	private String nombre_cuenta;
+
 	public CuentaBancaria() {
 
 	}
 
 	public CuentaBancaria(long id_cuenta, String num_cuenta, long saldo_cuenta, String notas_adicionales,
-			String pais_cuenta, String id_tipo_cuenta, String id_banco) {
+			String pais_cuenta, String id_tipo_cuenta, String id_banco, String nombre_cuenta) {
 		super();
 		this.id_cuenta = id_cuenta;
 		this.num_cuenta = num_cuenta;
@@ -48,6 +51,7 @@ public class CuentaBancaria {
 		this.pais_cuenta = pais_cuenta;
 		this.id_tipo_cuenta = id_tipo_cuenta;
 		this.id_banco = id_banco;
+		this.nombre_cuenta = nombre_cuenta;
 	}
 
 	public long getId_cuenta() {
@@ -106,11 +110,20 @@ public class CuentaBancaria {
 		this.id_banco = id_banco;
 	}
 
+	public String getNombre_cuenta() {
+		return nombre_cuenta;
+	}
+
+	public void setNombre_cuenta(String nombre_cuenta) {
+		this.nombre_cuenta = nombre_cuenta;
+	}
+
 	@Override
 	public String toString() {
 		return "CuentaBancaria [id_cuenta=" + id_cuenta + ", num_cuenta=" + num_cuenta + ", saldo_cuenta="
 				+ saldo_cuenta + ", notas_adicionales=" + notas_adicionales + ", pais_cuenta=" + pais_cuenta
-				+ ", id_tipo_cuenta=" + id_tipo_cuenta + ", id_banco=" + id_banco + "]";
+				+ ", id_tipo_cuenta=" + id_tipo_cuenta + ", id_banco=" + id_banco + ", nombre_cuenta=" + nombre_cuenta
+				+ "]";
 	}
 
 }
