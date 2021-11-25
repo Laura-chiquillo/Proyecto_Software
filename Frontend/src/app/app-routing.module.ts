@@ -32,10 +32,12 @@ const routes: Routes = [
         (m) => m.RegistroModule
       ),
   },
+  { path: 'gasto', loadChildren: () => import('./components/auth/gasto/gasto.module').then(m => m.GastoModule) },
+  { path: 'ingreso', loadChildren: () => import('./components/auth/ingreso/ingreso.module').then(m => m.IngresoModule) },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
