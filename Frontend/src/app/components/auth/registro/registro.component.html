@@ -36,8 +36,8 @@
               <div class="container-error-message" *ngIf="telefono.errors?.required">
                 Número de telefono es requerido.
               </div>
-              <div class="container-error-message" *ngIf="telefono.errors?.minlength || telefono.errors?.maxlength">
-                Debe ser de 10 caracteres.
+              <div class="container-error-message" *ngIf="telefono.errors?.maxlength">
+                No puede exceder los15 caracteres.
               </div>
               <div class="container-error-message"
                 *ngIf="(telefono.dirty || telefono.touched) && telefono.invalid && telefono.errors?.pattern">
@@ -127,11 +127,11 @@
                   <option value="">Tipo de usuario</option>
                   <option *ngFor="let userlvl of userlvl" [ngValue]="userlvl">{{userlvl}}</option>
                 </select>
-                <!-- <div class="alert-danger" *ngIf="tUsuario.invalid && (tUsuario.dirty || tUsuario.touched)">
+                 <div class="alert-danger" *ngIf="tUsuario.invalid && (tUsuario.dirty || tUsuario.touched)">
                    <div class="container-error-message" *ngIf="tUsuario.errors?.required">
                      Nivel de usuario requerido.
                    </div>
-                 </div> -->
+                 </div>
               </div>
               <div class="input-box">
                 <span class="detalles">Funcionalidad</span>

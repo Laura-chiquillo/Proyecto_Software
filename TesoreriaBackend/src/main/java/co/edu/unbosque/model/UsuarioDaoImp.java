@@ -12,15 +12,14 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Transactional
 @EntityScan(basePackages = "co.edu.unbosque.model")
-public class UsuarioDaoImp implements UsuarioDao{
-	
-	
+public class UsuarioDaoImp implements UsuarioDao {
+
 	@PersistenceContext
 	private EntityManager entityManager;
-	
+
 	@Override
 	public List<User> getUsuarios() {
-		String query = "From User";		
+		String query = "From User";
 		return entityManager.createQuery(query).getResultList();
 	}
 
@@ -32,31 +31,23 @@ public class UsuarioDaoImp implements UsuarioDao{
 
 	@Override
 	public void registrar(User user) {
-		entityManager.merge(user);		
+		entityManager.merge(user);
 	}
-	
-
-	
-	
 
 	@Override
 	public boolean VerificarCredenciales(User user) {
-		String query = "FROM User e  WHERE e.correo_emp = :correo_emp AND e.contrasena_emp= :contrasena_emp";		
-		List<User> lista = entityManager.createQuery(query,User.class)
-				.setParameter("correo_emp", user.getCorreo_emp())
-				.setParameter("contrasena_emp", user.getContrasena_emp())
-				.getResultList();	
-		
+		String query = "FROM User e  WHERE e.correo_emp = :correo_emp AND e.contrasena_emp= :contrasena_emp";
+		List<User> lista = entityManager.createQuery(query, User.class).setParameter("correo_emp", user.getCorreo_emp())
+				.setParameter("contrasena_emp", user.getContrasena_emp()).getResultList();
+
 		return !lista.isEmpty();
 	}
-	
+
 	@Override
 	public User getUser(String correo) {
 		String query = "FROM User e WHERE e.correo_emp = :correo_emp";
-		return entityManager.createQuery(query, User.class).setParameter("correo_emp",correo).getResultList().get(0);
+		return entityManager.createQuery(query, User.class).setParameter("correo_emp", correo).getResultList().get(0);
 	}
-	
-	
 	@Transactional
 	public void actualizar(User user) {
 
@@ -72,10 +63,4 @@ public class UsuarioDaoImp implements UsuarioDao{
 
 		Long id = this.getUser(user.getCorreo_emp()).getId_emp();
 
-		entityManager.createQuery("UPDATE User e SET e.estado_emp=:estado_emp WHERE e.id_emp='" + String.valueOf(id) + "'")
-		.setParameter("estado_emp", user.isEstado_emp())		
-		.executeUpdate();
-
-	}
-	
 }

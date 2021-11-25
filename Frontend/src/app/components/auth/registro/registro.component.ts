@@ -20,7 +20,7 @@ export class RegistroComponent {
   gender: any = ['Masculino','Femenino','otro'];
   userlvl: any = ['Administrador','Empleado'];
   function: any = ['Tesorero', 'Empleado','Financiero'];
-  typedocument: any = ['Cedula de Ciudadania','Cedula de Extrangeria','Registro Civil','NIT']
+  typedocument: any = ['Cédula de Ciudadania','Cédula de Extranjería','Registro Civil','NIT']
 
   constructor(private router:Router,public registroService:RegistroService) {
     this.registroForm = this.createForm();
@@ -41,11 +41,12 @@ export class RegistroComponent {
       nombre: new FormControl('',[Validators.required, Validators.minLength(5)]),
       email: new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern(this.emailPattern)]),
       apellido: new FormControl('',[Validators.required, Validators.minLength(5)]),
-      telefono: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('[- +()0-9]+')]),
+      telefono: new FormControl('', [Validators.required, Validators.maxLength(15), Validators.pattern('[- +()0-9]+')]),
       contrasena: new FormControl('',[Validators.required,Validators.minLength(8),Validators.pattern('(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!#^~%*?&,.<>"\'\\;:\{\\\}\\\[\\\]\\\|\\\+\\\-\\\=\\\_\\\)\\\(\\\)\\\`\\\/\\\\\\]])[A-Za-z0-9\d$@].{7,}')]),
       tDocumento: new FormControl('',[Validators.required]),
       nDocumento: new FormControl('',[Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('[- +()0-9]+')]),
       funcionalidad: new FormControl('',[Validators.required]),
+      tUsuario: new FormControl('',[Validators.required]),
       genero: new FormControl('',[Validators.required])
     })
   }
