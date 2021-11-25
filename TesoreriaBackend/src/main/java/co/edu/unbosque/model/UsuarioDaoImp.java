@@ -48,6 +48,7 @@ public class UsuarioDaoImp implements UsuarioDao {
 		String query = "FROM User e WHERE e.correo_emp = :correo_emp";
 		return entityManager.createQuery(query, User.class).setParameter("correo_emp", correo).getResultList().get(0);
 	}
+
 	@Transactional
 	public void actualizar(User user) {
 
@@ -57,10 +58,11 @@ public class UsuarioDaoImp implements UsuarioDao {
 				.executeUpdate();
 
 	}
-	
+
 	@Transactional
 	public void bloquear(User user) {
 
 		Long id = this.getUser(user.getCorreo_emp()).getId_emp();
 
+	}
 }

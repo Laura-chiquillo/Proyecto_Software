@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.edu.unbosque.dao.BeneficiarioDao;
-import co.edu.unbosque.dao.ConceptoDao;
-import co.edu.unbosque.dao.CuentaDao;
-import co.edu.unbosque.dao.ImpuestoDao;
-import co.edu.unbosque.dao.MetodoPagoDao;
-import co.edu.unbosque.dao.MovimientosDao;
-import co.edu.unbosque.dao.RetencionDao;
-import co.edu.unbosque.dao.UsuarioDao;
+import co.edu.unbosque.model.BeneficiarioDao;
+import co.edu.unbosque.model.ConceptoDao;
+import co.edu.unbosque.model.CuentaDao;
+import co.edu.unbosque.model.ImpuestoDao;
+import co.edu.unbosque.model.MetodoPagoDao;
+import co.edu.unbosque.model.MovimientosDao;
+import co.edu.unbosque.model.RetencionDao;
+import co.edu.unbosque.model.UsuarioDao;
 import co.edu.unbosque.model.Beneficiario;
 import co.edu.unbosque.model.Concepto;
 import co.edu.unbosque.model.CuentaBancaria;
@@ -86,14 +86,6 @@ public class UserController {
 	public void actualizar(@RequestBody User user) {
 		usuarioDao.actualizar(user);
 	}
-<<<<<<< HEAD
-	
-	@RequestMapping(value= "api/bloquear", method = RequestMethod.PUT)
-	public void bloquear(@RequestBody User user) {
-		usuarioDao.bloquear(user);
-	}
-}
-=======
 
 	@RequestMapping(value = "api/impuesto", method = RequestMethod.GET)
 	public List<Impuesto> getImpuesto() {
@@ -136,4 +128,3 @@ public class UserController {
 	}
 
 }
->>>>>>> Daniela-Benavides-2

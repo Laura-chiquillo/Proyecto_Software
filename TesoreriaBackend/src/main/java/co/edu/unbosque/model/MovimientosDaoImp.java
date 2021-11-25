@@ -1,4 +1,4 @@
-package co.edu.unbosque.dao;
+package co.edu.unbosque.model;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

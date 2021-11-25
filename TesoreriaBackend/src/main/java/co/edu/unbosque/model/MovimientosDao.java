@@ -1,4 +1,4 @@
-package co.edu.unbosque.dao;
+package co.edu.unbosque.model;
 
 public interface MovimientosDao {
 
