@@ -4,4 +4,6 @@ public interface MovimientosDao {
 
 	int numMov();
 
+	void registrar(Movimientos mov);
+
 }

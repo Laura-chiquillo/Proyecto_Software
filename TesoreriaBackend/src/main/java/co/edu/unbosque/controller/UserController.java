@@ -17,6 +17,7 @@ import co.edu.unbosque.model.ConceptoDao;
 import co.edu.unbosque.model.CuentaDao;
 import co.edu.unbosque.model.ImpuestoDao;
 import co.edu.unbosque.model.MetodoPagoDao;
+import co.edu.unbosque.model.Movimientos;
 import co.edu.unbosque.model.MovimientosDao;
 import co.edu.unbosque.model.RetencionDao;
 import co.edu.unbosque.model.UsuarioDao;
@@ -86,7 +87,12 @@ public class UserController {
 	public void actualizar(@RequestBody User user) {
 		usuarioDao.actualizar(user);
 	}
-
+	
+	@RequestMapping(value = "api/bloquear", method = RequestMethod.PUT)
+	public void bloquear(@RequestBody User user) {
+		usuarioDao.bloquear(user);
+	}
+	
 	@RequestMapping(value = "api/impuesto", method = RequestMethod.GET)
 	public List<Impuesto> getImpuesto() {
 		return impuestoDao.getImpuesto();
@@ -126,5 +132,10 @@ public class UserController {
 	public int numGasto() {
 		return movimDao.numMov();
 	}
-
+	
+	@RequestMapping(value = "api/movimiento", method = RequestMethod.POST)
+	public void registrarMovimientos(@RequestBody Movimientos mov) {
+		movimDao.registrar(mov);
+	}
+	
 }
