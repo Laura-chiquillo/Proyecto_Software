@@ -54,7 +54,7 @@ public class User {
 	
 	public User(long id_emp,String nombres_emp, String apellidos_emp,
 				String num_id_empl, String correo_emp, char sexo_emp, String telefono_emp,
-				String id_nivel, String id_fun, boolean estado_emp, String contrasena_emp) {
+				String id_nivel, String id_fun, boolean estado_emp, String contrasena_emp, String tipo_documento_emp) {
 		super();
 		
 		this.id_emp= id_emp;
@@ -68,6 +68,7 @@ public class User {
 		this.id_fun= id_fun;
 		this.estado_emp= estado_emp;
 		this.contrasena_emp= contrasena_emp;
+		this.tipo_documento_emp = tipo_documento_emp;
 	}
 
 	public long getId_emp() {
@@ -156,6 +157,14 @@ public class User {
 
 	public void setContrasena_emp(String contrasena_emp) {
 		this.contrasena_emp = contrasena_emp;
+	}
+	
+	public String getTipo_documento_emp() {
+		return tipo_documento_emp;
+	}
+
+	public void setTipo_documento_emp(String tipo_documento_emp) {
+		this.tipo_documento_emp = tipo_documento_emp;
 	}
 
 	@Override

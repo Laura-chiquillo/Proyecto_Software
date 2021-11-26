@@ -8,8 +8,6 @@ public interface UsuarioDao {
 
 	void eliminar(Long id_emp);
 
-	void registrar(User user);
-
 	boolean VerificarCredenciales(User user);
 	
 	User getUser(String correo);
@@ -17,4 +15,6 @@ public interface UsuarioDao {
 	void actualizar(User user);
 	
 	void bloquear(User user);
+
+	void registrar(User user);
 }

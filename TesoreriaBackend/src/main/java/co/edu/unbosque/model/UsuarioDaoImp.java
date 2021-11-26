@@ -29,10 +29,7 @@ public class UsuarioDaoImp implements UsuarioDao {
 		entityManager.remove(user);
 	}
 
-	@Override
-	public void registrar(User user) {
-		entityManager.merge(user);
-	}
+	
 
 	@Override
 	public boolean VerificarCredenciales(User user) {
@@ -64,5 +61,26 @@ public class UsuarioDaoImp implements UsuarioDao {
 
 		Long id = this.getUser(user.getCorreo_emp()).getId_emp();
 
+	}
+
+	@Override
+	public void registrar(User user) {
+		
+		String query = "INSERT INTO empleado (id_emp,nombres_emp,apellidos_emp,num_id_empl,correo_emp,sexo_emp,telefono_emp,id_nivel,id_fun,estado_emp,contrasena_emp,tipo_documento_emp) "
+									  + "VALUES (:id_emp,:nombres_emp,:apellidos_emp,:num_id_empl,:correo_emp,:sexo_emp,:telefono_emp,:id_nivel,:id_fun,:estado_emp,:contrasena_emp,:tipo_documento_emp)";
+		entityManager.createNativeQuery(query)
+		.setParameter("id_emp",user.getId_emp())
+		.setParameter("nombres_emp",user.getNombres_emp())
+		.setParameter("apellidos_emp",user.getApellidos_emp())
+		.setParameter("num_id_empl", user.getNum_id_empl() )
+		.setParameter("correo_emp",user.getCorreo_emp())
+		.setParameter("sexo_emp",user.getSexo_emp())
+		.setParameter("telefono_emp",Integer.parseInt(user.getTelefono_emp()))
+		.setParameter("id_nivel",user.getId_nivel())
+		.setParameter("id_fun",user.getId_fun())
+		.setParameter("estado_emp",Boolean.valueOf(user.isEstado_emp()))
+		.setParameter("contrasena_emp",user.getContrasena_emp())
+		.setParameter("tipo_documento_emp",user.getTipo_documento_emp())
+		.executeUpdate();
 	}
 }
