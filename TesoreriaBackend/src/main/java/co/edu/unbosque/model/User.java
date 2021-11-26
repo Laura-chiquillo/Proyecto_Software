@@ -172,7 +172,7 @@ public class User {
 		return "User [nombres_emp=" + nombres_emp + ", apellidos_emp=" + apellidos_emp + ", num_id_empl=" + num_id_emp
 				+ ", correo_emp=" + correo_emp + ", sexo_emp=" + sexo_emp + ", telefono_emp=" + telefono_emp
 				+ ", id_nivel=" + id_nivel + ", id_fun=" + id_fun + ", estado_emp=" + estado_emp + ", contrasena_emp="
-				+ contrasena_emp + "]";
+				+ contrasena_emp + tipo_documento_emp +", tipo_documento_emp" + "]";
 	}
 	
 	
