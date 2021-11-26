@@ -6,17 +6,12 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class RegistroService {
-  private API_SERVER = "http://localhost:8080/usuario/";
+  private API_SERVER = "http://localhost:8080/api/v1/api/registro";
   constructor(private httpClient: HttpClient) { }
 
-    public getAllusuarios(): Observable<any>{ 
-      return this.httpClient.get(this.API_SERVER);
-    }
     public saveUsuario (usuarios:any): Observable<any>{
       return this.httpClient.post(this.API_SERVER,usuarios)
     }
-    public deleteUsuario(id):Observable<any>{
-      return this.httpClient.delete(this.API_SERVER + "delete/"+id);
-    }
+  
 }
 

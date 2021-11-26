@@ -36,8 +36,11 @@
               <div class="container-error-message" *ngIf="telefono.errors?.required">
                 Número de telefono es requerido.
               </div>
+              <div class="container-error-message" *ngIf="telefono.errors?.minlength">
+                debe tener minimo 7 caracteres.
+              </div>
               <div class="container-error-message" *ngIf="telefono.errors?.maxlength">
-                No puede exceder los15 caracteres.
+                No puede exceder los 15 caracteres.
               </div>
               <div class="container-error-message"
                 *ngIf="(telefono.dirty || telefono.touched) && telefono.invalid && telefono.errors?.pattern">
@@ -96,8 +99,11 @@
               <div class="container-error-message" *ngIf="nDocumento.errors?.required">
                 Número de documento requerido.
               </div>
-              <div class="container-error-message" *ngIf="nDocumento.errors?.minlength || nDocumento.errors?.maxlength">
+              <div class="container-error-message" *ngIf="nDocumento.errors?.minlength">
                 Deben ser mínimo 5 caracteres.
+              </div>
+              <div class="container-error-message" *ngIf="nDocumento.errors?.maxlength">
+                Deben ser maximo 15 caracteres.
               </div>
               <div class="container-error-message"
                 *ngIf="(nDocumento.dirty || nDocumento.touched) && nDocumento.invalid && nDocumento.errors?.pattern">

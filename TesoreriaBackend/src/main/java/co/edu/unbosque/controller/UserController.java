@@ -63,7 +63,7 @@ public class UserController {
 		return usuarioDao.getUsuarios();
 	}
 
-	@RequestMapping(value = "api/users", method = RequestMethod.POST)
+	@RequestMapping(value = "api/registro", method = RequestMethod.POST)
 	public void registrarUsuario(@RequestBody User user) {
 		usuarioDao.registrar(user);
 	}
