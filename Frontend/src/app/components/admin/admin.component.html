@@ -104,7 +104,7 @@
   <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon class="example-tab-icon"><img src="https://www.svgrepo.com/show/14570/account-balance.svg"></mat-icon>
-      <span [routerLink]="['/admin/login']" >Ingresos y Gastos</span>
+      <span  >Ingresos y Gastos</span>
     </ng-template>
     <router-outlet>
     </router-outlet>
@@ -113,9 +113,10 @@
   <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon class="example-tab-icon"><img src="https://www.svgrepo.com/show/259173/bank.svg" /></mat-icon>
-      <span>Cuentas Bancarias</span>
+      <span [routerLink]="['/admin/ConciliacionBancaria']">Cuentas Bancarias</span>
     </ng-template>
-    Content 3
+    <router-outlet>
+    </router-outlet>
   </mat-tab>
 
 </mat-tab-group>

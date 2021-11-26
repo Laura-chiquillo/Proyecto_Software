@@ -5,29 +5,37 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list';
-import {MatTableModule} from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator'; 
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTabsModule } from '@angular/material/tabs';
-
-
-const myModule = [MatCardModule,
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatInputModule} from '@angular/material/input';
+import {MatGridListModule} from '@angular/material/grid-list';
+const myModule = [
+  MatCardModule,
   MatButtonModule,
   MatMenuModule,
   MatToolbarModule,
   MatIconModule,
   MatSidenavModule,
-  MatListModule, MatTableModule, MatPaginatorModule, MatTooltipModule,MatTabsModule]
-
+  MatListModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatTooltipModule,
+  MatTabsModule,
+  MatFormFieldModule,
+  MatDatepickerModule,
+  MatInputModule,
+  MatGridListModule,
+];
 
 @NgModule({
-  declarations: [
-  ],
-  imports: [
-    CommonModule, myModule],
-  exports: [myModule]
+  declarations: [],
+  imports: [CommonModule, myModule],
+  exports: [myModule],
 })
-
-export class MaterialModule { }
+export class MaterialModule {}

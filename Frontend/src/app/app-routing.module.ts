@@ -32,6 +32,20 @@ const routes: Routes = [
         (m) => m.RegistroModule
       ),
   },
+  {
+    path: 'ConciliacionBancaria',
+    loadChildren: () =>
+      import(
+        './components/registroBancario/conciliacion-bancaria/conciliacion-bancaria.module'
+      ).then((m) => m.ConciliacionBancariaModule),
+  },
+  {
+    path: 'AgregarCuenta',
+    loadChildren: () =>
+      import(
+        './components/registroBancario/agregar-cuenta/agregar-cuenta.module'
+      ).then((m) => m.AgregarCuentaModule),
+  },
 ];
 
 @NgModule({
