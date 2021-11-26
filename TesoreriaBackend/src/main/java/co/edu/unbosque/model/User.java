@@ -21,8 +21,8 @@ public class User {
 	@Column(name="apellidos_emp")
 	private String apellidos_emp;
 	
-	@Column(name="num_id_empl")
-	private String num_id_empl;
+	@Column(name="num_id_emp")
+	private String num_id_emp;
 	
 	@Column(name="correo_emp")
 	private String correo_emp;
@@ -53,14 +53,14 @@ public class User {
 	}
 	
 	public User(long id_emp,String nombres_emp, String apellidos_emp,
-				String num_id_empl, String correo_emp, char sexo_emp, String telefono_emp,
+				String num_id_emp, String correo_emp, char sexo_emp, String telefono_emp,
 				String id_nivel, String id_fun, boolean estado_emp, String contrasena_emp, String tipo_documento_emp) {
 		super();
 		
 		this.id_emp= id_emp;
 		this.nombres_emp= nombres_emp;
 		this.apellidos_emp= apellidos_emp;
-		this.num_id_empl= num_id_empl;
+		this.num_id_emp= num_id_emp;
 		this.correo_emp= correo_emp;
 		this.sexo_emp= sexo_emp;
 		this.telefono_emp= telefono_emp;
@@ -95,12 +95,12 @@ public class User {
 		this.apellidos_emp = apellidos_emp;
 	}
 
-	public String getNum_id_empl() {
-		return num_id_empl;
+	public String getNum_id_emp() {
+		return num_id_emp;
 	}
 
-	public void setNum_id_empl(String num_id_empl) {
-		this.num_id_empl = num_id_empl;
+	public void setNum_id_emp(String num_id_emp) {
+		this.num_id_emp = num_id_emp;
 	}
 
 	public String getCorreo_emp() {
@@ -169,7 +169,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [nombres_emp=" + nombres_emp + ", apellidos_emp=" + apellidos_emp + ", num_id_empl=" + num_id_empl
+		return "User [nombres_emp=" + nombres_emp + ", apellidos_emp=" + apellidos_emp + ", num_id_empl=" + num_id_emp
 				+ ", correo_emp=" + correo_emp + ", sexo_emp=" + sexo_emp + ", telefono_emp=" + telefono_emp
 				+ ", id_nivel=" + id_nivel + ", id_fun=" + id_fun + ", estado_emp=" + estado_emp + ", contrasena_emp="
 				+ contrasena_emp + "]";

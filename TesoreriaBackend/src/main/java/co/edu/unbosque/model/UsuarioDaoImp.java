@@ -66,13 +66,13 @@ public class UsuarioDaoImp implements UsuarioDao {
 	@Override
 	public void registrar(User user) {
 		
-		String query = "INSERT INTO empleado (id_emp,nombres_emp,apellidos_emp,num_id_empl,correo_emp,sexo_emp,telefono_emp,id_nivel,id_fun,estado_emp,contrasena_emp,tipo_documento_emp) "
-									  + "VALUES (:id_emp,:nombres_emp,:apellidos_emp,:num_id_empl,:correo_emp,:sexo_emp,:telefono_emp,:id_nivel,:id_fun,:estado_emp,:contrasena_emp,:tipo_documento_emp)";
+		String query = "INSERT INTO empleado (id_emp,nombres_emp,apellidos_emp,num_id_emp,correo_emp,sexo_emp,telefono_emp,id_nivel,id_fun,estado_emp,contrasena_emp,tipo_documento_emp) "
+									  + "VALUES (:id_emp,:nombres_emp,:apellidos_emp,:num_id_emp,:correo_emp,:sexo_emp,:telefono_emp,:id_nivel,:id_fun,:estado_emp,:contrasena_emp,:tipo_documento_emp)";
 		entityManager.createNativeQuery(query)
 		.setParameter("id_emp",user.getId_emp())
 		.setParameter("nombres_emp",user.getNombres_emp())
 		.setParameter("apellidos_emp",user.getApellidos_emp())
-		.setParameter("num_id_empl", user.getNum_id_empl() )
+		.setParameter("num_id_emp", user.getNum_id_emp() )
 		.setParameter("correo_emp",user.getCorreo_emp())
 		.setParameter("sexo_emp",user.getSexo_emp())
 		.setParameter("telefono_emp",Integer.parseInt(user.getTelefono_emp()))
