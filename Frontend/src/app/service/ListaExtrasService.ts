@@ -25,11 +25,11 @@ export class ListaExtrasService {
     }
 
     getConceptoIngreso(){
-        return this.http.get<Concepto[]>(this.Url+'/api/conceptoGasto');
+        return this.http.get<Concepto[]>(this.Url+'/api/conceptoIngreso');
     }
 
     getConceptoGasto(){
-        return this.http.get<Concepto[]>(this.Url+'/api/conceptoIngreso');
+        return this.http.get<Concepto[]>(this.Url+'/api/conceptoGasto');
     }
 
     getImpuesto() {
