@@ -83,4 +83,13 @@ public class UsuarioDaoImp implements UsuarioDao {
 		.setParameter("tipo_documento_emp",user.getTipo_documento_emp())
 		.executeUpdate();
 	}
+	@Override
+	public int num() {
+
+		return Integer.parseInt(entityManager
+				.createQuery("SELECT id_emp FROM User ORDER BY id_emp DESC")
+				.getResultList().get(0).toString()) + 1;
+
+	}
+	
 }

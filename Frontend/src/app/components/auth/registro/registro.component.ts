@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroup, Validators,FormBuilder} from '@angular/forms';
 import { Router } from '@angular/router';
-import { RegistroService } from 'src/app/service/registro.service';
+import { Usuario } from 'src/app/entity/Usuario';
+import { RegistroService } from 'src/app/service/registroService';
 
 @Component({
   selector: 'app-registro',
@@ -15,14 +16,15 @@ export class RegistroComponent {
 
   private emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   
-  usuario: any;
+  number: number;
   gender: any = ['M','F','O'];
-  userlvl: any = ['Administrador','Empleado'];
-  function: any = ['Tesorero', 'Empleado','Financiero'];
   typedocument: any = ['Cédula de Ciudadania','Cédula de Extranjería','Registro Civil','NIT']
 
   constructor(private router:Router,public registroService:RegistroService) {
     this.registroForm = this.createForm();
+    this.registroService.getId().subscribe(num => {
+      this.number = num;
+    })
    }
    get nombre() {return this.registroForm.get('nombre');}
    get apellido() {return this.registroForm.get('apellido');}
@@ -37,9 +39,9 @@ export class RegistroComponent {
 
   createForm(){
     return new FormGroup({
-      nombre: new FormControl('',[Validators.required, Validators.minLength(5)]),
+      nombre: new FormControl('',[Validators.required, Validators.minLength(1), Validators.pattern('[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{2,} [a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{2,}')]),
       email: new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern(this.emailPattern)]),
-      apellido: new FormControl('',[Validators.required, Validators.minLength(5)]),
+      apellido: new FormControl('',[Validators.required, Validators.minLength(1), Validators.pattern('[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{2,} [a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{2,}')]),
       telefono: new FormControl('', [Validators.required,Validators.minLength(7) ,Validators.maxLength(15), Validators.pattern('[- +()0-9]+')]),
       contrasena: new FormControl('',[Validators.required,Validators.minLength(8),Validators.pattern('(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!#^~%*?&,.<>"\'\\;:\{\\\}\\\[\\\]\\\|\\\+\\\-\\\=\\\_\\\)\\\(\\\)\\\`\\\/\\\\\\]])[A-Za-z0-9\d$@].{7,}')]),
       tDocumento: new FormControl('',[Validators.required]),
@@ -54,16 +56,6 @@ export class RegistroComponent {
       onlySelf: true
     })
   }
-  changeLVL(e) {
-    this.userlvl.setValue(e.target.value, {
-      onlySelf: true
-    })
-  }
-  changeFunctionality(e) {
-    this.function.setValue(e.target.value, {
-      onlySelf: true
-    })
-  }
   changeDocument(e) {
     this.typedocument.setValue(e.target.value, {
       onlySelf: true
@@ -75,8 +67,24 @@ export class RegistroComponent {
   }
 
   onSaveForm():void {
-    this.registroService.saveUsuario(this.registroForm.value).subscribe(resp => {
-      this.registroForm.reset();
+      const usuario: Usuario = {
+      id_emp: this.number,
+      nombres_emp: this.nombre.value,
+      apellidos_emp: this.apellido.value,
+      num_id_emp: this.nDocumento.value,
+      correo_emp: this.email.value,
+      sexo_emp: this.genero.value,
+      telefono_emp: this.telefono.value,
+      id_nivel: this.tUsuario.value,
+      id_fun: this.funcionalidad.value,
+      estado_emp: true,
+      contrasena_emp: this.contrasena.value,
+      tipo_documento_emp: this.tDocumento.value
+
+    };
+    this.registroService.saveUsuario(usuario).subscribe(resp => {
+      alert("Se ha registrado exitosamente")
+      window.location.reload()
     },
       error => { console.error(error) }
     )

@@ -17,4 +17,6 @@ public interface UsuarioDao {
 	void bloquear(User user);
 
 	void registrar(User user);
+	
+	int num();
 }
