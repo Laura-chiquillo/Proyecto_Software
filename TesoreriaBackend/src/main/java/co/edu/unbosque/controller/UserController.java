@@ -17,6 +17,7 @@ import co.edu.unbosque.model.ConceptoDao;
 import co.edu.unbosque.model.CuentaDao;
 import co.edu.unbosque.model.ImpuestoDao;
 import co.edu.unbosque.model.MetodoPagoDao;
+import co.edu.unbosque.model.Movimientos;
 import co.edu.unbosque.model.MovimientosDao;
 import co.edu.unbosque.model.RetencionDao;
 import co.edu.unbosque.model.UsuarioDao;
@@ -125,6 +126,11 @@ public class UserController {
 	@RequestMapping(value = "api/numMov", method = RequestMethod.GET)
 	public int numGasto() {
 		return movimDao.numMov();
+	}
+	
+	@RequestMapping(value = "/api/registroMov", method = RequestMethod.POST)
+	public void registrarMovimiento(@RequestBody Movimientos movimiento) {
+		movimDao.registrar(movimiento);
 	}
 
 }
