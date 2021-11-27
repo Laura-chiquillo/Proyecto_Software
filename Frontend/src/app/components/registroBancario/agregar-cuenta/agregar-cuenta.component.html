@@ -1,1 +1,89 @@
-<p>agregar-cuenta works!</p>
+<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon><img src="https://www.svgrepo.com/show/20663/menu.svg"></mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+    <button mat-menu-item>
+        <mat-icon><img src="https://www.svgrepo.com/show/25655/bank-card.svg"></mat-icon>
+        <span> <a href="http://localhost:4200/admin/AgregarCuenta">Agregar Cuenta Bancaria</a></span>
+    </button>
+    <button mat-menu-item>
+        <mat-icon><img src="https://www.svgrepo.com/show/11992/home-delivery-service.svg"></mat-icon>
+        <span><a href="http://localhost:4200/admin/ConciliacionBancaria">Conciliación Bancaria</a></span>
+    </button>
+    <button mat-menu-item>
+        <mat-icon><img src="https://www.svgrepo.com/show/15171/list.svg"> </mat-icon>
+        <span>Lista Conciliaciones</span>
+    </button>
+    <button mat-menu-item>
+        <mat-icon><img src="https://www.svgrepo.com/show/31698/bank-pin.svg"> </mat-icon>
+        <span>Cuentas Bancarias</span>
+    </button>
+</mat-menu>
+<h1>Agregar Cuenta Bancaria</h1>
+
+
+<mat-card class="card sombra">
+    <form class="form-Agregar">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>SRP Tecnology</mat-label>
+            <input matInput disabled value="SRP Tecnology">
+        </mat-form-field>
+        <div class="flexbox-container">
+            <div>
+                <p>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Tipo De Cuenta</mat-label>
+                        <mat-select>
+                            <mat-option>Elige el Tipo De Cuenta</mat-option>
+                            <mat-option *ngFor="let TipoDeCuenta of TipoDeCuenta" [value]="TipoDeCuenta">
+                                {{TipoDeCuenta}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Nombre del Banco</mat-label>
+                        <mat-select>
+                            <mat-option>Elige el Tipo De Bancos</mat-option>
+                            <mat-option *ngFor="let Bancos of Bancos" [value]="Bancos">
+                                {{Bancos}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                </p>
+                <p>
+                    <mat-form-field class="example-full-width11" appearance="fill">
+                        <mat-label>Número Cuenta Bancaria</mat-label>
+                        <input matInput>
+                    </mat-form-field>
+
+                <p>
+                    <mat-form-field class="example-full-width11" appearance="fill">
+                        <mat-label>Saldo</mat-label>
+                        <input matInput>
+                    </mat-form-field>
+
+                </p>
+                <p>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Paises</mat-label>
+                        <mat-select>
+                            <mat-option>Elige el Pais</mat-option>
+                            <mat-option *ngFor="let Pais of Pais" [value]="Pais">
+                                {{Pais}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </p>
+            </div>
+            <div>
+                <h2>Notas Adicionales</h2>
+                <p>
+                    <mat-form-field class="example-full-width1" appearance="fill">
+                        <mat-label>Notas Adicionales</mat-label>
+                        <textarea matInput placeholder=""></textarea>
+                    </mat-form-field>
+                </p>
+            </div>
+        </div>
+    </form>
+</mat-card>
