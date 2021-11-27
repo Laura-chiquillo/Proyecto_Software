@@ -9,6 +9,7 @@ import { MetodoPago } from 'src/app/entity/MetodoPago';
 import { Retencion } from 'src/app/entity/Retencion';
 import { ListaExtrasService } from 'src/app/service/ListaExtrasService';
 import { Movimiento } from 'src/app/entity/Movimiento';
+import { GastoService } from 'src/app/service/GastoService';
 
 
 @Component({
@@ -28,10 +29,8 @@ export class GastoComponent implements OnInit {
   public numMovim: number;
   public estado: boolean;
 
-  movimiento: Movimiento = new Movimiento();
-
   constructor(private router: Router, private service: ListaExtrasService,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder, private movimiento: GastoService) {
 
     this.gastoForm = this.createForm();
 
@@ -158,31 +157,16 @@ export class GastoComponent implements OnInit {
   }
 
   onSaveForm(): void {
-    console.log(this.gastoForm.value);
+
+    
+    this.movimiento.Gasto().subscribe(data =>{
+      alert("se a generado un nuevo gasto.")
+      window.location.reload()
+    })
   }
 
   numMov(){
     return this.numMovim;
-  }
-
-  guardar(){
-    this.movimiento["id_tipo_mov"] = "2"
-
-    console.log(this.movimiento.id_movim)
-    console.log(this.movimiento.fecha_movim)
-    console.log(this.movimiento.num_pago)
-    console.log(this.movimiento.valor_concepto)
-    console.log(this.movimiento.cantidad_movim)
-    console.log(this.movimiento.total_movim)
-    console.log(this.movimiento.notas_info)
-    console.log(this.movimiento.notas_concepto)
-    console.log(this.movimiento.id_benef)
-    console.log(this.movimiento.id_pago)
-    console.log(this.movimiento.id_concepto)
-    console.log(this.movimiento.id_cuenta)
-    console.log(this.movimiento.id_impuesto)
-    console.log(this.movimiento.id_retencion)
-    console.log(this.movimiento.id_tipo_mov)
   }
 
   Cancelar(){

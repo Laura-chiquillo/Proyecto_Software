@@ -6,12 +6,12 @@ import { Movimiento } from "../entity/Movimiento";
 @Injectable({
     providedIn: 'root'
 }) 
-export class TipoUsuarioService {
+export class GastoService {
 
     constructor(private http:HttpClient){}
     Url = 'http://localhost:8080/api/v1/api/movimiento';
 
-    loginAut(credenciales:Movimiento){
+    Gasto(credenciales:Movimiento){
         return this.http.post(this.Url, credenciales)
     }
 }
