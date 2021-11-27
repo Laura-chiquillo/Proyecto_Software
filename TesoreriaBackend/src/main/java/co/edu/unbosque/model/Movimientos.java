@@ -48,9 +48,6 @@ public class Movimientos {
 	@Column(name = "id_concepto")
 	private String id_concepto;
 
-	@Column(name = "id_emp")
-	private String id_emp;
-
 	@Column(name = "id_cuenta")
 	private String id_cuenta;
 
@@ -83,7 +80,6 @@ public class Movimientos {
 		this.id_benef = id_benef;
 		this.id_pago = id_pago;
 		this.id_concepto = id_concepto;
-		this.id_emp = id_emp;
 		this.id_cuenta = id_cuenta;
 		this.id_impuesto = id_impuesto;
 		this.id_retencion = id_retencion;
@@ -178,14 +174,6 @@ public class Movimientos {
 		this.id_concepto = id_concepto;
 	}
 
-	public String getId_emp() {
-		return id_emp;
-	}
-
-	public void setId_emp(String id_emp) {
-		this.id_emp = id_emp;
-	}
-
 	public String getId_cuenta() {
 		return id_cuenta;
 	}
@@ -223,7 +211,7 @@ public class Movimientos {
 		return "Movimientos [id_movim=" + id_movim + ", fecha_movim=" + fecha_movim + ", num_pago=" + num_pago
 				+ ", valor_concepto=" + valor_concepto + ", cantidad_movim=" + cantidad_movim + ", total_movim="
 				+ total_movim + ", notas_info=" + notas_info + ", notas_concepto=" + notas_concepto + ", id_benef="
-				+ id_benef + ", id_pago=" + id_pago + ", id_concepto=" + id_concepto + ", id_emp=" + id_emp
+				+ id_benef + ", id_pago=" + id_pago + ", id_concepto=" + id_concepto 
 				+ ", id_cuenta=" + id_cuenta + ", id_impuesto=" + id_impuesto + ", id_retencion=" + id_retencion
 				+ ", id_tipo_mov=" + id_tipo_mov + "]";
 	}
