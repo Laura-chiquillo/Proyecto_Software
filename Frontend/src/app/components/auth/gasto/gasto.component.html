@@ -9,7 +9,7 @@
         <h3>Información General</h3>
 
         <span>Número Movimiento</span>
-        <input class="datos"  type="number" [disabled]="true" [value]='numMov()' [(ngModel)]="movimiento.id_movim">
+        <input class="datos" name="id_movim" type="number" [disabled]="true" [value]='numMov()' [(ngModel)]="movimiento.id_movim">
 
         <span>Fecha</span>
         <input class="datos" type="date" name="fecha" [(ngModel)]="movimiento.fecha_movim" formControlName="fecha">
@@ -49,7 +49,7 @@
         </div>
 
         <span formControlName='num' [hidden]='estado'>Número de Transacción</span>
-        <input class="datos" type="text" name="valor" formControlName="extra" [hidden]='estado' [(ngModel)]="movimiento.num_pago">
+        <input class="datos" type="text" name="num_pago" formControlName="extra" [hidden]='estado' [(ngModel)]="movimiento.num_pago">
         <div class="alert-danger" *ngIf="extra.invalid && (extra.dirty || extra.touched)">
             <div class="container-error-message" *ngIf="extra.errors?.required">
                 Por favor ingrese un valor.
@@ -61,7 +61,7 @@
         </div>
 
         <span>Notas Adicionales</span>
-        <textarea class="datos" name="notasAdicionales" id="" [(ngModel)]="movimiento.notas_info" cols="30" rows="10"></textarea>
+        <textarea class="datos" name="notasAdicionales" id="notas_info" [(ngModel)]="movimiento.notas_info" cols="30" rows="10"></textarea>
 
 
         <h3>Cuenta Contable</h3>
