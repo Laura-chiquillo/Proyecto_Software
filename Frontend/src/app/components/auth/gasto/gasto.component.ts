@@ -8,6 +8,7 @@ import { CuentaBancaria } from 'src/app/entity/CuentaBancaria';
 import { MetodoPago } from 'src/app/entity/MetodoPago';
 import { Retencion } from 'src/app/entity/Retencion';
 import { ListaExtrasService } from 'src/app/service/ListaExtrasService';
+import { Movimiento } from 'src/app/entity/Movimiento';
 
 
 @Component({
@@ -25,6 +26,9 @@ export class GastoComponent implements OnInit {
   public listaMetodo: MetodoPago[] = [];
   public listaRetencion: Retencion[] = [];
   public numMovim: number;
+  public estado: boolean;
+
+  movimiento: Movimiento = new Movimiento();
 
   constructor(private router: Router, private service: ListaExtrasService,
     private formBuilder: FormBuilder) {
@@ -63,6 +67,23 @@ export class GastoComponent implements OnInit {
       this.numMovim = num;
     })
 
+    this.estado = true
+
+    this.gastoForm.get('metodoPago').valueChanges.subscribe(value => {
+      if (value == '2') {
+        this.estado = false
+        this.num.statusChanges
+      } else if (value == '3' || value == '4' || value == '5' || value == '6') {
+        this.estado = false
+        this.num.setValue('Número Consignación')
+        this.num.statusChanges
+      } else if (value == '1') {
+        this.estado = true
+        this.extra.setValue('')
+        this.num.statusChanges
+
+      }
+    })
   }
 
   get fecha() { return this.gastoForm.get('fecha'); }
@@ -70,13 +91,14 @@ export class GastoComponent implements OnInit {
   get cuentaBancaria() { return this.gastoForm.get('cuentaBancaria'); }
   get metodoPago() { return this.gastoForm.get('metodoPago'); }
   get notasAdicionales() { return this.gastoForm.get('notasAdicionales'); }
+  get extra() { return this.gastoForm.get('extra'); }
   get concepto() { return this.gastoForm.get('concepto'); }
   get valor_concepto() { return this.gastoForm.get('valor_concepto'); }
   get impuesto() { return this.gastoForm.get('impuesto'); }
   get cantidad() { return this.gastoForm.get('cantidad'); }
   get notasAdicionales2() { return this.gastoForm.get('notasAdicionales2'); }
   get tipoRetencion() { return this.gastoForm.get('tipoRetencion'); }
-
+  get num() { return this.gastoForm.get('num'); }
   createForm() {
     return new FormGroup({
       fecha: new FormControl('', [Validators.required]),
@@ -84,6 +106,7 @@ export class GastoComponent implements OnInit {
       cuentaBancaria: new FormControl('', [Validators.required]),
       metodoPago: new FormControl('', [Validators.required]),
       notasAdicionales: new FormControl('', [Validators.required]),
+      extra: new FormControl('', [Validators.required, Validators.pattern('[- +()0-9]+')]),
       concepto: new FormControl('', [Validators.required]),
       valor_concepto: new FormControl('', [Validators.required, Validators.pattern('[- +()0-9]+')]),
       impuesto: new FormControl('', [Validators.required]),
@@ -142,4 +165,27 @@ export class GastoComponent implements OnInit {
     return this.numMovim;
   }
 
+  guardar(){
+    this.movimiento["id_tipo_mov"] = "2"
+
+    console.log(this.movimiento.id_movim)
+    console.log(this.movimiento.fecha_movim)
+    console.log(this.movimiento.num_pago)
+    console.log(this.movimiento.valor_concepto)
+    console.log(this.movimiento.cantidad_movim)
+    console.log(this.movimiento.total_movim)
+    console.log(this.movimiento.notas_info)
+    console.log(this.movimiento.notas_concepto)
+    console.log(this.movimiento.id_benef)
+    console.log(this.movimiento.id_pago)
+    console.log(this.movimiento.id_concepto)
+    console.log(this.movimiento.id_cuenta)
+    console.log(this.movimiento.id_impuesto)
+    console.log(this.movimiento.id_retencion)
+    console.log(this.movimiento.id_tipo_mov)
+  }
+
+  Cancelar(){
+    window.location.reload();
+  }
 }

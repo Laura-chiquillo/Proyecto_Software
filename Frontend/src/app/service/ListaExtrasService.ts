@@ -47,6 +47,5 @@ export class ListaExtrasService {
     getNumMov(){
         return this.http.get<number>(this.Url+"/api/numMov");
     }
-
     
 }

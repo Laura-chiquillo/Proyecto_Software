@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html>
 <body>
 
     <h1>Nuevo Gasto</h1>
@@ -7,10 +9,10 @@
         <h3>Información General</h3>
 
         <span>Número Movimiento</span>
-        <input class="datos" type="number" [disabled]="true" [value]='numMov()'>
+        <input class="datos"  type="number" [disabled]="true" [value]='numMov()' [(ngModel)]="movimiento.id_movim">
 
         <span>Fecha</span>
-        <input class="datos" type="date" name="fecha" formControlName="fecha">
+        <input class="datos" type="date" name="fecha" [(ngModel)]="movimiento.fecha_movim" formControlName="fecha">
         <div class="alert-danger" *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)">
             <div class="container-error-message" *ngIf="fecha.errors?.required">
                 La fecha es requerida.
@@ -19,15 +21,15 @@
 
 
         <span>Beneficiario</span>
-        <select class="datos" formControlName="beneficiario" (change)="changeBeneficiario($event)">
-            <option [value]="benef.id_benef" *ngFor="let benef of listaBenef">
+        <select class="datos" formControlName="beneficiario" (change)="changeBeneficiario($event)" >
+            <option [value]="benef.id_benef" *ngFor="let benef of listaBenef" [(ngModel)]="movimiento.id_benef">
                 {{benef.nombre_benef}}
             </option>
         </select>
 
         <span>Cuenta Bancaria</span>
-        <select class="datos" name="cuentaBancaria" formControlName="cuentaBancaria" (change)="changeCuenta($event)">
-            <option *ngFor="let account of listaCuenta" [value]="account.id_cuenta">{{account.nombre_cuenta}}</option>
+        <select class="datos" name="cuentaBancaria" formControlName="cuentaBancaria" (change)="changeCuenta($event)" >
+            <option *ngFor="let account of listaCuenta" [value]="account.id_cuenta" [(ngModel)]="movimiento.id_cuenta" >{{account.nombre_cuenta}}</option>
         </select>
         <div class="alert-danger" *ngIf="cuentaBancaria.invalid && (cuentaBancaria.dirty || cuentaBancaria.touched)">
             <div class="container-error-message" *ngIf="cuentaBancaria.errors?.required">
@@ -37,8 +39,8 @@
 
 
         <span>Método de Pago</span>
-        <select class="datos" name="metodoPago" formControlName="metodoPago" (change)="changeMetodoPago($event)">
-            <option *ngFor="let payment of listaMetodo" [value]="payment.id_pago">{{payment.nombre_pago}}</option>
+        <select class="datos" name="metodoPago" formControlName="metodoPago" (change)="changeMetodoPago($event)" >
+            <option *ngFor="let payment of listaMetodo" [value]="payment.id_pago" [(ngModel)]="movimiento.id_pago" >{{payment.nombre_pago}}</option>
         </select>
         <div class="alert-danger" *ngIf="metodoPago.invalid && (metodoPago.dirty || metodoPago.touched)">
             <div class="container-error-message" *ngIf="metodoPago.errors?.required">
@@ -46,15 +48,27 @@
             </div>
         </div>
 
+        <span formControlName='num' [hidden]='estado'>Número de Transacción</span>
+        <input class="datos" type="text" name="valor" formControlName="extra" [hidden]='estado' [(ngModel)]="movimiento.num_pago">
+        <div class="alert-danger" *ngIf="extra.invalid && (extra.dirty || extra.touched)">
+            <div class="container-error-message" *ngIf="extra.errors?.required">
+                Por favor ingrese un valor.
+            </div>
+            <div class="container-error-message"
+                *ngIf="(extra.dirty || extra.touched) && extra.invalid && extra.errors?.pattern">
+                Utilice un formato que coincida con el solicitado.
+            </div>
+        </div>
+
         <span>Notas Adicionales</span>
-        <textarea class="datos" name="notasAdicionales" id="" cols="30" rows="10"></textarea>
+        <textarea class="datos" name="notasAdicionales" id="" [(ngModel)]="movimiento.notas_info" cols="30" rows="10"></textarea>
 
 
         <h3>Cuenta Contable</h3>
 
         <span>Concepto</span>
         <select class="datos" name="Concepto" formControlName="concepto" (change)="changeConcepto($event)">
-            <option *ngFor="let concept of listaConcepto" [value]="concept.id_concepto">{{concept.nombre_concepto}}
+            <option *ngFor="let concept of listaConcepto" [value]="concept.id_concepto" [(ngModel)]="movimiento.id_concepto">{{concept.nombre_concepto}}
             </option>
         </select>
         <div class="alert-danger" *ngIf="concepto.invalid && (concepto.dirty || concepto.touched)">
@@ -64,7 +78,9 @@
         </div>
 
         <span>Valor</span>
-        <input class="datos" type="text" name="valor" formControlName="valor_concepto">
+    console.log(this.movimiento.valor_concepto)
+    console.log(this.movimiento.valor_concepto)
+        <input class="datos" type="text" name="valor" formControlName="valor_concepto" [(ngModel)]="movimiento.valor_concepto">
         <div class="alert-danger" *ngIf="valor_concepto.invalid && (valor_concepto.dirty || valor_concepto.touched)">
             <div class="container-error-message" *ngIf="valor_concepto.errors?.required">
                 Por favor ingrese un valor para el concepto.
@@ -77,7 +93,7 @@
 
         <span>Impuesto</span>
         <select class="datos" name="valor" formControlName="impuesto" (change)="changeImpuesto($event)">
-            <option *ngFor="let tax of listaImpuesto" [value]="tax.id_impuesto">{{tax.nombre_imp}}</option>
+            <option *ngFor="let tax of listaImpuesto" [value]="tax.id_impuesto" [(ngModel)]="movimiento.id_impuesto">{{tax.nombre_imp}}</option>
         </select>
         <div class="alert-danger" *ngIf="impuesto.invalid && (impuesto.dirty || impuesto.touched)">
             <div class="container-error-message" *ngIf="impuesto.errors?.required">
@@ -86,7 +102,7 @@
         </div>
 
         <span>Cantidad</span>
-        <input class="datos" type="text" name="valor" formControlName="cantidad">
+        <input class="datos" type="text" name="valor" formControlName="cantidad" [(ngModel)]="movimiento.cantidad_movim">
         <div class="alert-danger" *ngIf="cantidad.invalid && (cantidad.dirty || cantidad.touched)">
             <div class="container-error-message" *ngIf="cantidad.errors?.required">
                 Por favor ingrese una cantidad.
@@ -98,15 +114,14 @@
         </div>
 
         <span>Notas Adicionales</span>
-        <textarea class="datos" name="notasAdicionales2" id="" cols="30" rows="10"></textarea>
-
+        <textarea class="datos" name="notasAdicionales2" [(ngModel)]="movimiento.notas_concepto" id="" cols="30" rows="10"></textarea>
 
         <h3>Retencion</h3>
 
 
         <span>Tipo</span>
         <select class="datos" name="tipo" formControlName="tipoRetencion" (change)="changeRetencion($event)">
-            <option *ngFor="let retencion of listaRetencion" [value]="retencion.id_retencion">{{retencion.nombre_retr}}
+            <option *ngFor="let retencion of listaRetencion" [value]="retencion.id_retencion" [(ngModel)]="movimiento.id_retencion">{{retencion.nombre_retr}}
             </option>
         </select>
         <div class="alert-danger" *ngIf="tipoRetencion.invalid && (tipoRetencion.dirty || tipoRetencion.touched)">
@@ -115,14 +130,20 @@
             </div>
         </div>
 
+        <div>
+            <p>Subtotal $</p>
+        </div>
+        <div>
+            <p>IVA $</p>
+        </div>
+        <div>
+            <p>Total $</p>
+        </div>
 
-        <p>Subtotal $</p>
-        <p>IVA $</p>
-        <p>Total $</p>
+        <button class="boton" (click)="guardar()" type="submit" >Guardar</button>
 
-        <input class="boton" type="submit" value="Guardar">
-
-        <input class="boton" type="submit" value="Cancelar">
+        <button class="boton" (click)="Cancelar()" type="submit" >Cancelar</button>
 
     </form>
 </body>
+</html>
