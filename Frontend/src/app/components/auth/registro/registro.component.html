@@ -13,7 +13,11 @@
                 Nombre es requerido
               </div>
               <div class="container-error-message" *ngIf="nombre.errors?.minlength">
-                Nombre debe tener por lo menos 5 caracteres.
+                Nombre debe tener por lo menos un caracter.
+              </div>
+              <div class="container-error-message"
+                *ngIf="nombre.invalid && nombre.errors?.pattern">
+                Deben ser minimo dos nombres sin numeros o teclas especiales.
               </div>
             </div>
           </div>
@@ -25,7 +29,11 @@
                 Apellidos son requeridos
               </div>
               <div class="container-error-message" *ngIf="apellido.errors?.minlength">
-                Apellidos deben tener por lo menos 5 caracteres.
+                Apellidos deben tener por lo menos un caracter.
+              </div>
+              <div class="container-error-message"
+                *ngIf=" apellido.invalid && apellido.errors?.pattern">
+                Deben ser minimo dos apellidos sin numeros o teclas especiales.
               </div>
             </div>
           </div>
@@ -36,8 +44,11 @@
               <div class="container-error-message" *ngIf="telefono.errors?.required">
                 Número de telefono es requerido.
               </div>
+              <div class="container-error-message" *ngIf="telefono.errors?.minlength">
+                debe tener minimo 7 caracteres.
+              </div>
               <div class="container-error-message" *ngIf="telefono.errors?.maxlength">
-                No puede exceder los15 caracteres.
+                No puede exceder los 15 caracteres.
               </div>
               <div class="container-error-message"
                 *ngIf="(telefono.dirty || telefono.touched) && telefono.invalid && telefono.errors?.pattern">
@@ -96,8 +107,11 @@
               <div class="container-error-message" *ngIf="nDocumento.errors?.required">
                 Número de documento requerido.
               </div>
-              <div class="container-error-message" *ngIf="nDocumento.errors?.minlength || nDocumento.errors?.maxlength">
+              <div class="container-error-message" *ngIf="nDocumento.errors?.minlength">
                 Deben ser mínimo 5 caracteres.
+              </div>
+              <div class="container-error-message" *ngIf="nDocumento.errors?.maxlength">
+                Deben ser maximo 15 caracteres.
               </div>
               <div class="container-error-message"
                 *ngIf="(nDocumento.dirty || nDocumento.touched) && nDocumento.invalid && nDocumento.errors?.pattern">
@@ -123,9 +137,11 @@
             <div class="datos">
               <div class="input-box">
                 <span class="detalles">Nivel de Usuario</span>
-                <select formControlName="tUsuario" (change)="changeLVL($event)">
+                <select formControlName="tUsuario" >
                   <option value="">Tipo de usuario</option>
-                  <option *ngFor="let userlvl of userlvl" [ngValue]="userlvl">{{userlvl}}</option>
+                  <option value="1">Administrador</option>
+                  <option value="2">Empleado</option>
+                  
                 </select>
                  <div class="alert-danger" *ngIf="tUsuario.invalid && (tUsuario.dirty || tUsuario.touched)">
                    <div class="container-error-message" *ngIf="tUsuario.errors?.required">
@@ -135,9 +151,11 @@
               </div>
               <div class="input-box">
                 <span class="detalles">Funcionalidad</span>
-                <select formControlName="funcionalidad" (change)="changeFunctionality($event)">
+                <select formControlName="funcionalidad" >
                   <option value="">Funcionalidad</option>
-                  <option *ngFor="let function of function" [ngValue]="function">{{function}}</option>
+                  <option value="1">Empleado</option>
+                  <option value="2">Tesorero</option>
+                  <option value="3">Financiero</option>
                 </select>
                 <div class="alert-danger"
                   *ngIf="funcionalidad.invalid && (funcionalidad.dirty || funcionalidad.touched)">

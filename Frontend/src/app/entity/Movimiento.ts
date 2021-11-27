@@ -1,10 +1,10 @@
 export class Movimiento{
-    id_movim!: String;
+    id_movim!: number;
     fecha_movim!: Date;
-    num_pago: String;
-    valor_concepto!: Number;
-    cantidad_movim!: Number;
-    total_movim!: Number;
+    num_pago!: String;
+    valor_concepto!: String;
+    cantidad_movim!: String;
+    total_movim!: String;
     notas_info!: String;
     notas_concepto!: String;
     id_benef!: String;

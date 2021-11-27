@@ -64,9 +64,14 @@ public class UserController {
 		return usuarioDao.getUsuarios();
 	}
 
-	@RequestMapping(value = "api/users/{id_emp}", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/registro", method = RequestMethod.POST)
 	public void registrarUsuario(@RequestBody User user) {
 		usuarioDao.registrar(user);
+	}
+	
+	@RequestMapping(value = "/api/numEmp", method = RequestMethod.GET)
+	public int numId() {
+		return usuarioDao.num();
 	}
 
 	@RequestMapping(value = "api/users/{id_emp}", method = RequestMethod.DELETE)
@@ -133,9 +138,9 @@ public class UserController {
 		return movimDao.numMov();
 	}
 	
-	@RequestMapping(value = "api/movimiento", method = RequestMethod.POST)
-	public void registrarMovimientos(@RequestBody Movimientos mov) {
-		movimDao.registrar(mov);
+	@RequestMapping(value = "/api/registroMov", method = RequestMethod.POST)
+	public void registrarMovimiento(@RequestBody Movimientos movimiento) {
+		movimDao.registrar(movimiento);
 	}
-	
+
 }

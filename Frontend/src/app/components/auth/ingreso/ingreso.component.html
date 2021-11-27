@@ -47,10 +47,10 @@
         </div>
 
         <span>Notas Adicionales</span>
-        <textarea class="datos" name="notasAdicionales" id="" cols="30" rows="10"></textarea>
+        <textarea class="datos" formControlName="notasAdicionales" id="" cols="30" rows="10"></textarea>
 
-        <span>Número</span>
-        <input class="datos" type="text" name="valor" formControlName="extra">
+        <span formControlName='num' [hidden]='estado'>Número de Transacción</span>
+        <input class="datos" type="text" name="valor" formControlName="extra" [hidden]='estado'>
         <div class="alert-danger" *ngIf="extra.invalid && (extra.dirty || extra.touched)">
             <div class="container-error-message" *ngIf="extra.errors?.required">
                 Por favor ingrese un valor.
@@ -60,6 +60,7 @@
                 Utilice un formato que coincida con el solicitado.
             </div>
         </div>
+
 
         <h3>Cuenta Contable</h3>
 
@@ -109,7 +110,7 @@
         </div>
 
         <span>Notas Adicionales</span>
-        <textarea class="datos" name="notasAdicionales2" id="" cols="30" rows="10"></textarea>
+        <textarea class="datos" formControlName="notasAdicionales2" id="" cols="30" rows="10"></textarea>
 
 
         <h3>Retencion</h3>
@@ -127,13 +128,41 @@
         </div>
 
 
-        <p>Subtotal $</p>
-        <p>IVA $</p>
-        <p>Total $</p>
+        <div class="final" style="margin-top: 30px;">
 
-        <input class="boton" type="submit" value="Guardar">
+            <div class="x">
+                <input class="titulo" type="text" value="Subtotal">
+            </div>
+            <div class="x">
+                <input class="valorFinal" type="text" formControlName="subtotal">
+            </div>
+        </div>
+        <div class="final">
+            <div class="x">
+                <input class="titulo" type="text" value="Impuesto">
+            </div>
+            <div class="x">
+                <input class="valorFinal" type="text" formControlName="valorImpuesto">
+            </div>
+        </div>
+        <div class="final">
+            <div class="x">
+                <input class="titulo" type="text" value="Retención">
+            </div>
+            <div class="x">
+                <input class="valorFinal" type="text" formControlName="valorRetencion">
+            </div>
+        </div>
+        <div class="final">
+            <div class="x">
+                <input class="titulo" type="text" value="Total">
+            </div>
+            <div class="x">
+                <input class="valorFinal" type="text" formControlName="total">
+            </div>
+        </div>
 
-        <input class="boton" type="submit" value="Cancelar">
+        <input class="boton" type="submit" value="Guardar" (click)="guardar()">
 
     </form>
 </body>

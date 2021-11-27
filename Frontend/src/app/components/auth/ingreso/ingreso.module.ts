@@ -13,7 +13,7 @@ import { IngresoComponent } from './ingreso.component';
     CommonModule,
     IngresoRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ]
 })
 export class IngresoModule { }

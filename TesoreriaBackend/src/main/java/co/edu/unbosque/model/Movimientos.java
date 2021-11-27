@@ -66,8 +66,7 @@ public class Movimientos {
 
 	public Movimientos(long id_movim, Date fecha_movim, String num_pago, String valor_concepto, String cantidad_movim,
 			String total_movim, String notas_info, String notas_concepto, String id_benef, String id_pago,
-			String id_concepto, String id_emp, String id_cuenta, String id_impuesto, String id_retencion,
-			String id_tipo_mov) {
+			String id_concepto, String id_cuenta, String id_impuesto, String id_retencion, String id_tipo_mov) {
 		super();
 		this.id_movim = id_movim;
 		this.fecha_movim = fecha_movim;
@@ -211,9 +210,9 @@ public class Movimientos {
 		return "Movimientos [id_movim=" + id_movim + ", fecha_movim=" + fecha_movim + ", num_pago=" + num_pago
 				+ ", valor_concepto=" + valor_concepto + ", cantidad_movim=" + cantidad_movim + ", total_movim="
 				+ total_movim + ", notas_info=" + notas_info + ", notas_concepto=" + notas_concepto + ", id_benef="
-				+ id_benef + ", id_pago=" + id_pago + ", id_concepto=" + id_concepto 
-				+ ", id_cuenta=" + id_cuenta + ", id_impuesto=" + id_impuesto + ", id_retencion=" + id_retencion
-				+ ", id_tipo_mov=" + id_tipo_mov + "]";
+				+ id_benef + ", id_pago=" + id_pago + ", id_concepto=" + id_concepto + ", id_cuenta=" + id_cuenta
+				+ ", id_impuesto=" + id_impuesto + ", id_retencion=" + id_retencion + ", id_tipo_mov=" + id_tipo_mov
+				+ "]";
 	}
 
 }
