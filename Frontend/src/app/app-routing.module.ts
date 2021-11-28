@@ -32,6 +32,8 @@ const routes: Routes = [
         (m) => m.RegistroModule
       ),
   },
+  { path: 'gasto', loadChildren: () => import('./components/auth/gasto/gasto.module').then(m => m.GastoModule) },
+  { path: 'ingreso', loadChildren: () => import('./components/auth/ingreso/ingreso.module').then(m => m.IngresoModule) },
   //acaNOOOOOO
   { path: 'conciliacionBancaria', loadChildren: () =>
       import('./components/GestionBancaria/conciliacion-bancaria/conciliacion-bancaria.module').then
