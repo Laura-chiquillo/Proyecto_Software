@@ -58,9 +58,13 @@ public class UsuarioDaoImp implements UsuarioDao {
 
 	@Transactional
 	public void bloquear(User user) {
-
+		
 		Long id = this.getUser(user.getCorreo_emp()).getId_emp();
-
+		
+		entityManager.createQuery("UPDATE User e SET e.estado_emp=:estado_emp WHERE e.id_emp='" + String.valueOf(id) + "'")
+		.setParameter("estado_emp", user.isEstado_emp())
+		.executeUpdate();
+		
 	}
 
 	@Override
