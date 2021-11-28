@@ -6,6 +6,4 @@ public interface MovimientosDao {
 	
 	void registrar(Movimientos mov);
 
-	void registrar(Movimientos mov);
-
 }
