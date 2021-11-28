@@ -3,20 +3,20 @@
 </button>
 <mat-menu #menu="matMenu">
   <button mat-menu-item>
-      <mat-icon><img src="https://www.svgrepo.com/show/25655/bank-card.svg"></mat-icon>
-      <span> <a href="http://localhost:4200/admin/AgregarCuenta">Agregar Cuenta Bancaria</a></span>
+    <mat-icon><img src="https://www.svgrepo.com/show/25655/bank-card.svg"></mat-icon>
+    <span> <a href="http://localhost:4200/admin/AgregarCuenta">Agregar Cuenta Bancaria</a></span>
   </button>
   <button mat-menu-item>
-      <mat-icon><img src="https://www.svgrepo.com/show/11992/home-delivery-service.svg"></mat-icon>
-      <span><a href="http://localhost:4200/admin/ConciliacionBancaria">Conciliación Bancaria</a></span>
+    <mat-icon><img src="https://www.svgrepo.com/show/11992/home-delivery-service.svg"></mat-icon>
+    <span><a href="http://localhost:4200/admin/ConciliacionBancaria">Conciliación Bancaria</a></span>
   </button>
   <button mat-menu-item>
-      <mat-icon><img src="https://www.svgrepo.com/show/15171/list.svg"> </mat-icon>
-      <span>Lista Conciliaciones</span>
+    <mat-icon><img src="https://www.svgrepo.com/show/15171/list.svg"> </mat-icon>
+    <span>Lista Conciliaciones</span>
   </button>
   <button mat-menu-item>
-      <mat-icon><img src="https://www.svgrepo.com/show/31698/bank-pin.svg"> </mat-icon>
-      <span>Cuentas Bancarias</span>
+    <mat-icon><img src="https://www.svgrepo.com/show/31698/bank-pin.svg"> </mat-icon>
+    <span>Cuentas Bancarias</span>
   </button>
 </mat-menu>
 <h1>Conciliación Bancaria</h1>
@@ -24,7 +24,7 @@
 
 
 <mat-card class="card sombra">
-  <form class="form-Conciliacion">
+  <form class="form-Conciliacion" [formGroup]="ConciliacionBancaria" (ngSubmit)="onSaveForm()">
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>SRP Tecnology</mat-label>
       <input matInput disabled value="SRP Tecnology">
@@ -33,21 +33,39 @@
       <div>
         <p>
           <mat-form-field class="example-full-width" appearance="fill">
-            <input matInput>
+            <input matInput formControlName="CuentaBancaria">
             <span> Cuenta Bancaria</span>
+            <div class="alert-danger"
+              *ngIf="CuentaBancaria.invalid && (CuentaBancaria.dirty || CuentaBancaria.touched)">
+              <div class="container-error-message" *ngIf="CuentaBancaria.errors?.required">
+                Cuenta Bancaria requerida.
+              </div>
+            </div>
           </mat-form-field>
         </p>
         <p>
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Ultima Conciliación</mat-label>
-            <input matInput type="date" size="30">
+            <input matInput type="date" formControlName="fechaInicial">
+            <div class="alert-danger"
+            *ngIf="fechaInicial.invalid && (fechaInicial.dirty || fechaInicial.touched)">
+            <div class="container-error-message" *ngIf="fechaInicial.errors?.required">
+              Fecha Final es requerida.
+            </div>
+          </div>
           </mat-form-field>
         </p>
 
         <p>
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Hasta</mat-label>
-            <input matInput type="date">
+            <input matInput type="date" formControlName="fechaHasta">
+            <div class="alert-danger"
+              *ngIf="fechaHasta.invalid && (fechaHasta.dirty || fechaHasta.touched)">
+              <div class="container-error-message" *ngIf="fechaHasta.errors?.required">
+                Fecha Final es requerida.
+              </div>
+            </div>
           </mat-form-field>
 
         </p>
@@ -57,7 +75,13 @@
         <p>
           <mat-form-field class="example-full-width1" appearance="fill">
             <mat-label>Saldo En Extracto Bancario</mat-label>
-            <textarea matInput placeholder="$0"></textarea>
+            <textarea matInput placeholder="$0" formControlName="SaldoBancario"></textarea>
+            <div class="alert-danger"
+              *ngIf="SaldoBancario.invalid && (SaldoBancario.dirty || SaldoBancario.touched)">
+              <div class="container-error-message" *ngIf="SaldoBancario.errors?.required">
+                Saldo En Extracto Bancario requerida.
+              </div>
+            </div>
           </mat-form-field>
         </p>
       </div>
@@ -75,7 +99,7 @@
         <p>
           <mat-form-field class="example-full-width11" appearance="fill">
             <mat-label>Saldo Ultima Conciliación</mat-label>
-            <textarea matInput placeholder="$0"></textarea>
+            <textarea matInput placeholder="$0" disabled></textarea>
           </mat-form-field>
         </p>
       </div>
@@ -87,7 +111,7 @@
         <p>
           <mat-form-field class="example-full-width11" appearance="fill">
             <mat-label>Ingresos</mat-label>
-            <textarea matInput placeholder="$0"></textarea>
+            <textarea matInput placeholder="$0" disabled></textarea>
           </mat-form-field>
         </p>
       </div>
@@ -101,20 +125,20 @@
 
           <mat-form-field class="example-full-width11" appearance="fill">
             <mat-label>Egresos</mat-label>
-            <textarea matInput placeholder="$0"></textarea>
+            <textarea matInput placeholder="$0" disabled></textarea>
           </mat-form-field>
         </p>
       </div>
 
     </div>
     <div class="container22">
-      
+
       <div>
         <h3>Saldo Final</h3>
         <p>
           <mat-form-field class="example-full-width11" appearance="fill">
             <mat-label>Saldo Final</mat-label>
-            <textarea matInput placeholder="$0"></textarea>
+            <textarea matInput placeholder="$0" disabled></textarea>
           </mat-form-field>
         </p>
       </div>
@@ -123,7 +147,7 @@
         <p>
           <mat-form-field class="example-full-width11" appearance="fill">
             <mat-label>Diferencia Con Extracto</mat-label>
-            <textarea matInput placeholder="$0"></textarea>
+            <textarea matInput placeholder="$0" disabled></textarea>
           </mat-form-field>
         </p>
       </div>
@@ -139,30 +163,30 @@
       <mat-header-cell *matHeaderCellDef> Número </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.numero}} </mat-cell>
     </ng-container>
-  
+
     <!-- Name Column -->
     <ng-container matColumnDef="beneficiario">
       <mat-header-cell *matHeaderCellDef> Beneficiario </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.beneficiario}} </mat-cell>
     </ng-container>
-  
+
     <!-- Weight Column -->
     <ng-container matColumnDef="fecha">
       <mat-header-cell *matHeaderCellDef> Fecha Creación </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.fecha}} </mat-cell>
     </ng-container>
-  
+
     <!-- Symbol Column -->
     <ng-container matColumnDef="tipo">
       <mat-header-cell *matHeaderCellDef> Tipo </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.tipo}} </mat-cell>
     </ng-container>
-  
+
     <ng-container matColumnDef="monto">
       <mat-header-cell *matHeaderCellDef> Monto </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.monto}}</mat-cell>
     </ng-container>
- 
+
     <ng-container matColumnDef="acciones">
       <th mat-header-cell *matHeaderCellDef style="text-align: center;">Conciliar</th>
       <td mat-cell *matCellDef="let element" style="text-align: center;">

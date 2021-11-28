@@ -21,6 +21,7 @@ td {
   border: 1px solid black;
   padding-top: 2rem;
   margin: 4rem 4rem;
+  justify-content: center;
 }
 h1 {
   text-align: center;
@@ -142,4 +143,14 @@ h3 {
 }
 .boton1:hover{
   cursor: pointer;
+}
+.alert-danger {
+  color: #721c24;
+  background: #f8d7da;
+  border-color: #f5c6cb;
+  margin-bottom: 5px;
+}
+
+.container-error-message {
+  padding: 3px;
 }
