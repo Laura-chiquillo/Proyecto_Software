@@ -32,6 +32,18 @@ const routes: Routes = [
         (m) => m.RegistroModule
       ),
   },
+  //acaNOOOOOO
+  { path: 'conciliacionBancaria', loadChildren: () =>
+      import('./components/GestionBancaria/conciliacion-bancaria/conciliacion-bancaria.module').then
+        (m => m.ConciliacionBancariaModule
+        ) 
+  },
+  { path: 'listaConciliacion', loadChildren: () =>
+   import('./components/registroBancario/lista-conciliacion/lista-conciliacion.module').then
+   (m => m.ListaConciliacionModule) },
+  { path: 'cuentasBancariasDOS', loadChildren: () =>
+   import('./components/registroBancario/cuentas-bancarias-dos/cuentas-bancarias-dos.module').then
+   (m => m.CuentasBancariasDOSModule) }
 ];
 
 @NgModule({
