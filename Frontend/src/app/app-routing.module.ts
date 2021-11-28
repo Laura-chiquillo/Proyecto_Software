@@ -32,6 +32,7 @@ const routes: Routes = [
         (m) => m.RegistroModule
       ),
   },
+
   { path: 'gasto', loadChildren: () => import('./components/auth/gasto/gasto.module').then(m => m.GastoModule) },
   { path: 'ingreso', loadChildren: () => import('./components/auth/ingreso/ingreso.module').then(m => m.IngresoModule) },
   //acaNOOOOOO
@@ -45,7 +46,22 @@ const routes: Routes = [
    (m => m.ListaConciliacionModule) },
   { path: 'cuentasBancariasDOS', loadChildren: () =>
    import('./components/registroBancario/cuentas-bancarias-dos/cuentas-bancarias-dos.module').then
-   (m => m.CuentasBancariasDOSModule) }
+   (m => m.CuentasBancariasDOSModule) },
+
+  {
+    path: 'ConciliacionBancaria',
+    loadChildren: () =>
+      import(
+        './components/registroBancario/conciliacion-bancaria/conciliacion-bancaria.module'
+      ).then((m) => m.ConciliacionBancariaModule),
+  },
+  {
+    path: 'AgregarCuenta',
+    loadChildren: () =>
+      import(
+        './components/registroBancario/agregar-cuenta/agregar-cuenta.module'
+      ).then((m) => m.AgregarCuentaModule),
+  },
 ];
 
 @NgModule({

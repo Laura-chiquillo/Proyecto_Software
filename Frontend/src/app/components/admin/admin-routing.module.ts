@@ -5,6 +5,8 @@ import { RegistroComponent } from '../auth/registro/registro.component';
 import { LoginComponent } from '../auth/login/login.component';
 import { IngresoComponent } from '../auth/ingreso/ingreso.component';
 import { GastoComponent } from '../auth/gasto/gasto.component';
+import { ConciliacionBancariaComponent} from '../registroBancario/conciliacion-bancaria/conciliacion-bancaria.component';
+import { AgregarCuentaComponent } from '../registroBancario/agregar-cuenta/agregar-cuenta.component';
 
 const routes: Routes = [{
   path: '', component: AdminComponent,
@@ -12,7 +14,9 @@ const routes: Routes = [{
     { path: '', component: RegistroComponent, },
     { path: 'gasto', component: GastoComponent },
     { path: 'ingreso', component: IngresoComponent },
-    { path: 'login', component: LoginComponent }
+    { path: 'login', component: LoginComponent },
+    { path: 'ConciliacionBancaria', component: ConciliacionBancariaComponent },
+    { path: 'AgregarCuenta', component: AgregarCuentaComponent }
   ]
 }
 ];
