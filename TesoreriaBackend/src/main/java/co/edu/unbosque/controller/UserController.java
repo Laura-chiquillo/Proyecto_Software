@@ -20,7 +20,11 @@ import co.edu.unbosque.model.MetodoPagoDao;
 import co.edu.unbosque.model.Movimientos;
 import co.edu.unbosque.model.MovimientosDao;
 import co.edu.unbosque.model.RetencionDao;
+import co.edu.unbosque.model.TipoCuenta;
+import co.edu.unbosque.model.TipoCuentaDao;
 import co.edu.unbosque.model.UsuarioDao;
+import co.edu.unbosque.model.Banco;
+import co.edu.unbosque.model.BancoDao;
 import co.edu.unbosque.model.Beneficiario;
 import co.edu.unbosque.model.Concepto;
 import co.edu.unbosque.model.CuentaBancaria;
@@ -59,6 +63,12 @@ public class UserController {
 	@Autowired
 	private MovimientosDao movimDao;
 
+	@Autowired
+	private TipoCuentaDao tipoCuentaDao;
+
+	@Autowired
+	private BancoDao bancoDao;
+
 	@RequestMapping(value = "api/users", method = RequestMethod.GET)
 	public List<User> getUsers() {
 		return usuarioDao.getUsuarios();
@@ -68,7 +78,7 @@ public class UserController {
 	public void registrarUsuario(@RequestBody User user) {
 		usuarioDao.registrar(user);
 	}
-	
+
 	@RequestMapping(value = "/api/numEmp", method = RequestMethod.GET)
 	public int numId() {
 		return usuarioDao.num();
@@ -92,12 +102,12 @@ public class UserController {
 	public void actualizar(@RequestBody User user) {
 		usuarioDao.actualizar(user);
 	}
-	
+
 	@RequestMapping(value = "api/bloquear", method = RequestMethod.PUT)
 	public void bloquear(@RequestBody User user) {
 		usuarioDao.bloquear(user);
 	}
-	
+
 	@RequestMapping(value = "api/impuesto", method = RequestMethod.GET)
 	public List<Impuesto> getImpuesto() {
 		return impuestoDao.getImpuesto();
@@ -112,7 +122,7 @@ public class UserController {
 	public List<Concepto> getConceptoGasto() {
 		return conceptoDao.getConceptoGasto();
 	}
-	
+
 	@RequestMapping(value = "api/conceptoIngreso", method = RequestMethod.GET)
 	public List<Concepto> getConceptoIngreso() {
 		return conceptoDao.getConceptoIngreso();
@@ -137,10 +147,30 @@ public class UserController {
 	public int numGasto() {
 		return movimDao.numMov();
 	}
-	
+
+	@RequestMapping(value = "api/numCuenta", method = RequestMethod.GET)
+	public int numCuenta() {
+		return cuentaDao.numCuenta();
+	}
+
 	@RequestMapping(value = "/api/registroMov", method = RequestMethod.POST)
 	public void registrarMovimiento(@RequestBody Movimientos movimiento) {
 		movimDao.registrar(movimiento);
+	}
+
+	@RequestMapping(value = "/api/tipoCuenta", method = RequestMethod.GET)
+	public List<TipoCuenta> getTipoCuenta() {
+		return tipoCuentaDao.getTipo();
+	}
+
+	@RequestMapping(value = "/api/banco", method = RequestMethod.GET)
+	public List<Banco> getBanco() {
+		return bancoDao.getBanco();
+	}
+
+	@RequestMapping(value = "/api/registroCuenta", method = RequestMethod.POST)
+	public void registrarCuentaBancaria(@RequestBody CuentaBancaria cuenta) {
+		cuentaDao.registrar(cuenta);
 	}
 
 }

@@ -8,4 +8,8 @@ public interface CuentaDao {
 
 	List<CuentaBancaria> getCuenta();
 
+	int numCuenta();
+
+	void registrar(CuentaBancaria cuenta);
+
 }

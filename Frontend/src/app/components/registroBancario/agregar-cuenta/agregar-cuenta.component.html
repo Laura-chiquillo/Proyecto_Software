@@ -33,11 +33,9 @@
                 <p>
                     <mat-form-field class="example-full-width" appearance="fill">
                         <mat-label>Tipo De Cuenta</mat-label>
-                        <mat-select formControlName="TipoCuenta">
-                            <mat-option>Elige el Tipo De Cuenta</mat-option>
-                            <mat-option (change)="changeFunctionality($event)" *ngFor="let TipoDeCuenta of TipoDeCuenta"
-                                [value]="TipoDeCuenta">
-                                {{TipoDeCuenta}}</mat-option>
+                        <mat-select formControlName="TipoCuenta" (change)="changeTipoCuenta($event)">
+                            <mat-option *ngFor="let cuenta of tipoCuenta" [value]="cuenta.id_tipo_cuenta">
+                                {{cuenta.nombre_tipo_cuenta}}</mat-option>
                         </mat-select>
                         <div class="alert-danger"
                             *ngIf="TipoCuenta.invalid && (TipoCuenta.dirty || TipoCuenta.touched)">
@@ -52,11 +50,9 @@
                 <p>
                     <mat-form-field class="example-full-width" appearance="fill">
                         <mat-label>Nombre del Banco</mat-label>
-                        <mat-select formControlName="TipoBanco">
-                            <mat-option>Elige el Tipo De Bancos</mat-option>
-                            <mat-option (change)="changeFunctionality($event)" *ngFor="let Bancos of Bancos"
-                                [value]="Bancos">
-                                {{Bancos}}</mat-option>
+                        <mat-select formControlName="TipoBanco" (change)="changeTipoBanco($event)">
+                            <mat-option *ngFor="let bancos of listaBancos" [value]="bancos.id_banco">
+                                {{bancos.nombre_banco}}</mat-option>
                         </mat-select>
                         <div class="alert-danger" *ngIf="TipoBanco.invalid && (TipoBanco.dirty || TipoBanco.touched)">
                             <div class="container-error-message" *ngIf="TipoBanco.errors?.required">
@@ -104,9 +100,8 @@
                 <p>
                     <mat-form-field class="example-full-width" appearance="fill">
                         <mat-label>Países</mat-label>
-                        <mat-select formControlName="TipoPais">
-                            <mat-option>Elige el País</mat-option>
-                            <mat-option (change)="changeFunctionality($event)" *ngFor="let Pais of Pais" [value]="Pais">
+                        <mat-select formControlName="TipoPais" (change)="changeTipoPais($event)">
+                            <mat-option *ngFor="let Pais of Pais" [value]="Pais">
                                 {{Pais}}</mat-option>
                         </mat-select>
                         <div class="alert-danger" *ngIf="TipoPais.invalid && (TipoPais.dirty || TipoPais.touched)">
@@ -122,14 +117,14 @@
                 <p>
                     <mat-form-field class="example-full-width1" appearance="fill">
                         <mat-label>Notas Adicionales</mat-label>
-                        <textarea matInput placeholder=""></textarea>
+                        <textarea matInput placeholder=""  formControlName="notas"></textarea>
                     </mat-form-field>
                 </p>
             </div>
 
         </div>
         <div>
-            <input class="boton1" type="submit" value="Agregar Cuenta">
+            <input class="boton1" type="submit" value="Agregar Cuenta" (click)="guardar()">
         </div>
     </form>
 </mat-card>

@@ -5,6 +5,7 @@ export class CuentaBancaria{
     notas_adicionales!: String;
     pais_cuenta!: String;
     id_tipo_cuenta!: String;
+    id_banco!: String;
     nombre_cuenta!: String;
     
     constructor(){}
