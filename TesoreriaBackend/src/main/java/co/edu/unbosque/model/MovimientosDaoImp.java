@@ -18,8 +18,10 @@ public class MovimientosDaoImp implements MovimientosDao {
 	@Override
 	public int numMov() {
 
-		return Integer.parseInt(entityManager.createQuery("SELECT id_movim FROM Movimientos ORDER BY id_movim DESC")
-				.getResultList().get(0).toString()) + 1;
+		return Integer
+				.parseInt(entityManager.createQuery("SELECT MAX(CAST(id_movim AS int)) AS id_movim FROM Movimientos")
+						.getResultList().get(0).toString())
+				+ 1;
 
 	}
 
