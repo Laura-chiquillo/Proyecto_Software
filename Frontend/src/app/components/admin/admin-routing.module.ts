@@ -11,7 +11,7 @@ import { AgregarCuentaComponent } from '../registroBancario/agregar-cuenta/agreg
 const routes: Routes = [{
   path: '', component: AdminComponent,
   children: [
-    { path: '', component: RegistroComponent, },
+    { path: 'registro', component: RegistroComponent, },
     { path: 'gasto', component: GastoComponent },
     { path: 'ingreso', component: IngresoComponent },
     { path: 'login', component: LoginComponent },
