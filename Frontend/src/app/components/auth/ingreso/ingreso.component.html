@@ -57,9 +57,6 @@
                 <span formControlName='num' [hidden]='estado'>Número de Transacción</span>
                 <input class="datos" type="text" name="valor" formControlName="extra" [hidden]='estado'>
                 <div class="alert-danger" *ngIf="extra.invalid && (extra.dirty || extra.touched)">
-                    <div class="container-error-message" *ngIf="extra.errors?.required">
-                        Por favor ingrese un valor.
-                    </div>
                     <div class="container-error-message"
                         *ngIf="(extra.dirty || extra.touched) && extra.invalid && extra.errors?.pattern">
                         Utilice un formato que coincida con el solicitado.

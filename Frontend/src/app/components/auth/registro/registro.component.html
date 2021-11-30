@@ -15,9 +15,6 @@
               <div class="container-error-message" *ngIf="nombre.errors?.minlength">
                 Nombre debe tener por lo menos un caracter.
               </div>
-              <div class="container-error-message" *ngIf="nombre.invalid && nombre.errors?.pattern">
-                Deben ser minimo dos nombres sin numeros o teclas especiales.
-              </div>
             </div>
           </div>
           <div class="input-box">
@@ -165,7 +162,7 @@
             </div>
             <div class="botones">
               <div class="boton">
-                <input type="submit" value="Guardar">
+                <input type="submit" value="Guardar" (click)="guardar()">
               </div>
             </div>
             <div class="botones">

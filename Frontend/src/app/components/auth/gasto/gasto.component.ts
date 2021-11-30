@@ -53,7 +53,7 @@ export class GastoComponent implements OnInit {
       this.listaBenef = benef;
     })
 
-    this.service.getConceptoIngreso().subscribe(concepto => {
+    this.service.getConceptoGasto().subscribe(concepto => {
       this.listaConcepto = concepto;
     })
 
@@ -205,38 +205,47 @@ export class GastoComponent implements OnInit {
     console.log(this.gastoForm.value);
   }
 
-  guardar(){
+  guardar() {
 
-    this.ingreso = {
-      id_movim: this.numMovim,
-      fecha_movim: this.fecha.value,
-      num_pago: this.extra.value,
-      valor_concepto: this.valor_concepto.value,
-      cantidad_movim: this.cantidad.value,
-      total_movim: this.valorTotal.toString(),
-      notas_info: this.notasAdicionales.value,
-      notas_concepto: this.notasAdicionales2.value,
-      id_benef: this.beneficiario.value,
-      id_pago: this.metodoPago.value,
-      id_concepto: this.concepto.value,
-      id_cuenta: this.cuentaBancaria.value,
-      id_impuesto: this.impuesto.value,
-      id_retencion: this.tipoRetencion.value,
-      id_tipo_mov: '2'
-    };
+    if (this.fecha.status == 'INVALID' || this.extra.status == 'INVALID' || this.valor_concepto.status == 'INVALID'
+      || this.cantidad.status == 'INVALID' || this.valorTotal == null || this.valorTotal == 0 || this.notasAdicionales.status == 'INVALID'
+      || this.notasAdicionales2.status == 'INVALID' || this.beneficiario.status == 'INVALID' ||
+      this.metodoPago.status == 'INVALID' || this.concepto.status == 'INVALID' || this.cuentaBancaria.status == 'INVALID'
+      || this.impuesto.status == 'INVALID' || this.tipoRetencion.status == 'INVALID') {
+      alert("Datos inválidos.")
+    } else {
 
-    this.serviceMov.registro(this.ingreso).subscribe(data => {
-      alert("Nuevo gasto guardado exitosamente.")
-      window.location.reload()
-    })
+      this.ingreso = {
+        id_movim: this.numMovim,
+        fecha_movim: this.fecha.value,
+        num_pago: this.extra.value,
+        valor_concepto: this.valor_concepto.value,
+        cantidad_movim: this.cantidad.value,
+        total_movim: this.valorTotal.toString(),
+        notas_info: this.notasAdicionales.value,
+        notas_concepto: this.notasAdicionales2.value,
+        id_benef: this.beneficiario.value,
+        id_pago: this.metodoPago.value,
+        id_concepto: this.concepto.value,
+        id_cuenta: this.cuentaBancaria.value,
+        id_impuesto: this.impuesto.value,
+        id_retencion: this.tipoRetencion.value,
+        id_tipo_mov: '2'
+      };
 
+      this.serviceMov.registro(this.ingreso).subscribe(data => {
+        alert("Nuevo gasto guardado exitosamente.")
+        window.location.reload()
+      })
+
+    }
   }
 
   numMov() {
     return this.numMovim;
   }
 
-  setImpuesto(imp: any){
+  setImpuesto(imp: any) {
 
     if (imp == '1' || imp == '13') {
       this.impto = 0;
@@ -284,115 +293,115 @@ export class GastoComponent implements OnInit {
       this.valorImpuesto.statusChanges
 
     } else if (imp == '11') {
-      this.impto = this.gastoForm.get('valor_concepto').value *  0.31
+      this.impto = this.gastoForm.get('valor_concepto').value * 0.31
       this.valorImpuesto.setValue(new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.impto))
       this.valorImpuesto.statusChanges
 
     }
   }
 
-    setRetencion(ret: any){
+  setRetencion(ret: any) {
 
-      if (ret == '1' || ret == '21') {
-        this.retencio = this.gastoForm.get('valor_concepto').value * 0.15;
-        this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
-        this.valorRetencion.statusChanges
-  
-      } else if (ret == '2') {
-        this.retencio = this.gastoForm.get('valor_concepto').value * 1;
-        this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
-        this.valorRetencion.statusChanges
-  
-      } else if (ret == '3' || ret == '22') {
-        this.retencio = 0
-        this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
-        this.valorRetencion.statusChanges
-  
-      } else if (ret == '4') {
-        this.retencio = this.gastoForm.get('valor_concepto').value * 0.0001
-        this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
-        this.valorRetencion.statusChanges
-  
-      } else if (ret == '5') {
-        this.retencio = this.gastoForm.get('valor_concepto').value * 0.0005
-        this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
-        this.valorRetencion.statusChanges
-  
-      } else if (ret == '6') {
-        this.retencio = this.gastoForm.get('valor_concepto').value * 0.01
-        this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
-        this.valorRetencion.statusChanges
-  
-      } else if (ret == '7') {
-        this.retencio = this.gastoForm.get('valor_concepto').value * 0.015
-        this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
-        this.valorRetencion.statusChanges
-  
-      } else if (ret == '8' || ret == '20') {
-        this.retencio = this.gastoForm.get('valor_concepto').value * 0.1
-        this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
-        this.valorRetencion.statusChanges
-  
-      } else if (ret == '9') {
-        this.retencio = this.gastoForm.get('valor_concepto').value * 0.11
-        this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
-        this.valorRetencion.statusChanges
-  
-      } else if (ret == '10') {
-        this.retencio = this.gastoForm.get('valor_concepto').value * 0.02
-        this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
-        this.valorRetencion.statusChanges
-  
-      } else if (ret == '11') {
-        this.retencio = this.gastoForm.get('valor_concepto').value * 0.025
-        this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
-        this.valorRetencion.statusChanges
-  
-      } else if (ret == '12') {
-        this.retencio = this.gastoForm.get('valor_concepto').value * 0.2
-        this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
-        this.valorRetencion.statusChanges
-  
-      } else if (ret == '13') {
-        this.retencio = this.gastoForm.get('valor_concepto').value * 0.03
-        this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
-        this.valorRetencion.statusChanges
-  
-      } else if (ret == '14') {
-        this.retencio = this.gastoForm.get('valor_concepto').value * 0.035
-        this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
-        this.valorRetencion.statusChanges
-  
-      } else if (ret == '15') {
-        this.retencio = this.gastoForm.get('valor_concepto').value * 0.04
-        this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
-        this.valorRetencion.statusChanges
-  
-      } else if (ret == '16') {
-        this.retencio = this.gastoForm.get('valor_concepto').value * 0.06
-        this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
-        this.valorRetencion.statusChanges
-  
-      } else if (ret == '17') {
-        this.retencio = this.gastoForm.get('valor_concepto').value * 0.07
-        this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
-        this.valorRetencion.statusChanges
-  
-      } else if (ret == '18') {
-        this.retencio = this.gastoForm.get('valor_concepto').value * 0.05
-        this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
-        this.valorRetencion.statusChanges
-  
-      } else if (ret == '19') {
-        this.retencio = this.gastoForm.get('valor_concepto').value * 0.08
-        this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
-        this.valorRetencion.statusChanges
-  
-      }
+    if (ret == '1' || ret == '21') {
+      this.retencio = this.gastoForm.get('valor_concepto').value * 0.15;
+      this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
+      this.valorRetencion.statusChanges
+
+    } else if (ret == '2') {
+      this.retencio = this.gastoForm.get('valor_concepto').value * 1;
+      this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
+      this.valorRetencion.statusChanges
+
+    } else if (ret == '3' || ret == '22') {
+      this.retencio = 0
+      this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
+      this.valorRetencion.statusChanges
+
+    } else if (ret == '4') {
+      this.retencio = this.gastoForm.get('valor_concepto').value * 0.0001
+      this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
+      this.valorRetencion.statusChanges
+
+    } else if (ret == '5') {
+      this.retencio = this.gastoForm.get('valor_concepto').value * 0.0005
+      this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
+      this.valorRetencion.statusChanges
+
+    } else if (ret == '6') {
+      this.retencio = this.gastoForm.get('valor_concepto').value * 0.01
+      this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
+      this.valorRetencion.statusChanges
+
+    } else if (ret == '7') {
+      this.retencio = this.gastoForm.get('valor_concepto').value * 0.015
+      this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
+      this.valorRetencion.statusChanges
+
+    } else if (ret == '8' || ret == '20') {
+      this.retencio = this.gastoForm.get('valor_concepto').value * 0.1
+      this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
+      this.valorRetencion.statusChanges
+
+    } else if (ret == '9') {
+      this.retencio = this.gastoForm.get('valor_concepto').value * 0.11
+      this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
+      this.valorRetencion.statusChanges
+
+    } else if (ret == '10') {
+      this.retencio = this.gastoForm.get('valor_concepto').value * 0.02
+      this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
+      this.valorRetencion.statusChanges
+
+    } else if (ret == '11') {
+      this.retencio = this.gastoForm.get('valor_concepto').value * 0.025
+      this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
+      this.valorRetencion.statusChanges
+
+    } else if (ret == '12') {
+      this.retencio = this.gastoForm.get('valor_concepto').value * 0.2
+      this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
+      this.valorRetencion.statusChanges
+
+    } else if (ret == '13') {
+      this.retencio = this.gastoForm.get('valor_concepto').value * 0.03
+      this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
+      this.valorRetencion.statusChanges
+
+    } else if (ret == '14') {
+      this.retencio = this.gastoForm.get('valor_concepto').value * 0.035
+      this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
+      this.valorRetencion.statusChanges
+
+    } else if (ret == '15') {
+      this.retencio = this.gastoForm.get('valor_concepto').value * 0.04
+      this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
+      this.valorRetencion.statusChanges
+
+    } else if (ret == '16') {
+      this.retencio = this.gastoForm.get('valor_concepto').value * 0.06
+      this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
+      this.valorRetencion.statusChanges
+
+    } else if (ret == '17') {
+      this.retencio = this.gastoForm.get('valor_concepto').value * 0.07
+      this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
+      this.valorRetencion.statusChanges
+
+    } else if (ret == '18') {
+      this.retencio = this.gastoForm.get('valor_concepto').value * 0.05
+      this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
+      this.valorRetencion.statusChanges
+
+    } else if (ret == '19') {
+      this.retencio = this.gastoForm.get('valor_concepto').value * 0.08
+      this.valorRetencion.setValue('-' + new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.retencio))
+      this.valorRetencion.statusChanges
+
+    }
   }
 
 
-  Cancelar(){
+  Cancelar() {
     window.location.reload();
   }
 }
