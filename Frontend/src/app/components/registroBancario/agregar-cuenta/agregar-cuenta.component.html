@@ -14,8 +14,8 @@
                         <mat-label>Tipo De Cuenta</mat-label>
                         <mat-select formControlName="TipoCuenta">
                             <mat-option>Elige el Tipo De Cuenta</mat-option>
-                            <mat-option (change)="changeFunctionality($event)" *ngFor="let TipoDeCuenta of TipoDeCuenta"
-                                [value]="TipoDeCuenta">
+                            <mat-option (change)="changeFunctionality($event)" *ngFor="let TipoCuenta of TipoCuenta"
+                                [value]="TipoCuenta">
                                 {{TipoDeCuenta}}</mat-option>
                         </mat-select>
                         <div class="alert-danger"
@@ -33,8 +33,8 @@
                         <mat-label>Nombre del Banco</mat-label>
                         <mat-select formControlName="TipoBanco">
                             <mat-option>Elige el Tipo De Bancos</mat-option>
-                            <mat-option (change)="changeFunctionality($event)" *ngFor="let Bancos of Bancos"
-                                [value]="Bancos">
+                            <mat-option (change)="changeFunctionality($event)" *ngFor="let TipoBanco of TipoBanco"
+                                [value]="TipoBanco">
                                 {{Bancos}}</mat-option>
                         </mat-select>
                         <div class="alert-danger" *ngIf="TipoBanco.invalid && (TipoBanco.dirty || TipoBanco.touched)">
