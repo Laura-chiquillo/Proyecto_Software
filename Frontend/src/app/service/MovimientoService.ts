@@ -14,5 +14,9 @@ export class MovimientoService {
     registro(mov: Movimiento){
         return this.http.post(this.Url+'/api/registroMov', mov);
     }
+    getlistMovimientos(){
+        return this.http.get<Movimiento[]>(this.Url+'/api/listamovimiento');
+    }
+
 
 }

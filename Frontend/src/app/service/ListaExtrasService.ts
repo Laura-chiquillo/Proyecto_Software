@@ -6,6 +6,11 @@ import { Concepto } from 'src/app/entity/Concepto';
 import { Impuesto } from "../entity/Impuesto";
 import { MetodoPago } from 'src/app/entity/MetodoPago';
 import { Retencion } from 'src/app/entity/Retencion';
+import { Banco } from 'src/app/entity/Banco';
+import { TipoCuenta } from 'src/app/entity/TipoCuenta';
+
+import { Conciliacion } from "../entity/Conciliacion";
+
 
 @Injectable({
     providedIn: 'root'
@@ -47,5 +52,20 @@ export class ListaExtrasService {
     getNumMov(){
         return this.http.get<number>(this.Url+"/api/numMov");
     }
-    
+
+    getBanco(){
+        return this.http.get<Banco[]>(this.Url+"/api/banco");
+    }
+
+    getTipoCuenta(){
+        return this.http.get<TipoCuenta[]>(this.Url+"/api/tipoCuenta");
+    }
+
+    getNumCuenta(){
+        return this.http.get<number>(this.Url+"/api/numCuenta");
+    }
+
+    getConciliacion(){
+        return this.http.get<Conciliacion[]>(this.Url+'/api/conciliacion');
+    }
 }

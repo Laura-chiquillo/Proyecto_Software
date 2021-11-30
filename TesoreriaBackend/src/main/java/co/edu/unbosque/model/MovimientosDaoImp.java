@@ -1,5 +1,7 @@
 package co.edu.unbosque.model;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -18,8 +20,10 @@ public class MovimientosDaoImp implements MovimientosDao {
 	@Override
 	public int numMov() {
 
-		return Integer.parseInt(entityManager.createQuery("SELECT id_movim FROM Movimientos ORDER BY id_movim DESC")
-				.getResultList().get(0).toString()) + 1;
+		return Integer
+				.parseInt(entityManager.createQuery("SELECT MAX(CAST(id_movim AS int)) AS id_movim FROM Movimientos")
+						.getResultList().get(0).toString())
+				+ 1;
 
 	}
 
@@ -38,6 +42,11 @@ public class MovimientosDaoImp implements MovimientosDao {
 				.setParameter("id_concepto", mov.getId_concepto()).setParameter("id_cuenta", mov.getId_cuenta())
 				.setParameter("id_impuesto", mov.getId_impuesto()).setParameter("id_retencion", mov.getId_retencion())
 				.setParameter("id_tipo_mov", mov.getId_tipo_mov()).executeUpdate();
+	}
+	@Override
+	public List<Movimientos> getListMovimientos() {
+		return entityManager.createQuery("FROM Movimientos").getResultList();
+
 	}
 
 }

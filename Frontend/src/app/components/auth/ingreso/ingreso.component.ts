@@ -67,8 +67,8 @@ export class IngresoComponent implements OnInit {
       this.listaCuenta = cuenta;
     })
 
-    this.service.getNumMov().subscribe(num => {
-      this.numMovim = num;
+    this.service.getNumMov().subscribe(numero => {
+      this.numMovim = numero;
     })
 
     this.estado = true
@@ -79,7 +79,6 @@ export class IngresoComponent implements OnInit {
         this.num.statusChanges
       } else if (value == '3' || value == '4' || value == '5' || value == '6') {
         this.estado = false
-        this.num.setValue('Número Consignación')
         this.num.statusChanges
       } else if (value == '1') {
         this.estado = true
@@ -227,6 +226,8 @@ export class IngresoComponent implements OnInit {
       alert("Nuevo ingreso guardado exitosamente.")
       window.location.reload()
     })
+
+    this.onResetForm()
 
   }
 

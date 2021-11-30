@@ -11,15 +11,19 @@ export class ListaUsiarioService {
 
     
     constructor(private http:HttpClient){}
-    Url = 'http://localhost:8080/api/v1/api/users';
+    Url = 'http://localhost:8080/api/v1';
  
     loginAut(): Observable<ListaUsuario[]>{
-        return this.http.get<ListaUsuario[]>(this.Url);
+        return this.http.get<ListaUsuario[]>(this.Url+"/api/users");
     }
     actualizar(usuario: Usuario): Observable<any> {
-        return this.http.put(`${this.Url}/${usuario.id_emp}`, usuario)
+        return this.http.put(this.Url+"/api/desbloquear", usuario)
     }
     bloquear(usuario: Usuario): Observable<any> {
-        return this.http.put(`${'http://localhost:8080/api/v1/api/bloquear'}`, usuario)
+        return this.http.put(this.Url+"/api/bloquear", usuario)
+    }
+
+    eliminar(id: number){
+        return this.http.delete(this.Url+"/api/eliminar/"+id)
     }
 }

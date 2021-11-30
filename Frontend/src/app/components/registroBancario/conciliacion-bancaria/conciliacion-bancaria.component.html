@@ -138,32 +138,26 @@
 <mat-card class="card sombra">
   <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <!-- Position Column -->
-    <ng-container matColumnDef="numero">
+    <ng-container matColumnDef="id_movim">
       <mat-header-cell *matHeaderCellDef> Número </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.numero}} </mat-cell>
-    </ng-container>
-
-    <!-- Name Column -->
-    <ng-container matColumnDef="beneficiario">
-      <mat-header-cell *matHeaderCellDef> Beneficiario </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.beneficiario}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.id_movim}} </mat-cell>
     </ng-container>
 
     <!-- Weight Column -->
-    <ng-container matColumnDef="fecha">
+    <ng-container matColumnDef="fecha_movim">
       <mat-header-cell *matHeaderCellDef> Fecha Creación </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.fecha}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.fecha_movim}} </mat-cell>
     </ng-container>
 
     <!-- Symbol Column -->
-    <ng-container matColumnDef="tipo">
+    <ng-container matColumnDef="id_tipo_mov">
       <mat-header-cell *matHeaderCellDef> Tipo </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.tipo}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{tipo(element.id_tipo_mov)}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="monto">
+    <ng-container matColumnDef="total_movim">
       <mat-header-cell *matHeaderCellDef> Monto </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.monto}}</mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.total_movim | currency: ' COP '}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="acciones">
