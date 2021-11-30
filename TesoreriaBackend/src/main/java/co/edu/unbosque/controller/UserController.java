@@ -89,7 +89,7 @@ public class UserController {
 		return usuarioDao.num();
 	}
 
-	@RequestMapping(value = "api/eliminar/{id_emp}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "api/users/{id_emp}", method = RequestMethod.DELETE)
 	public void eliminar(@PathVariable Long id_emp) {
 		usuarioDao.eliminar(id_emp);
 	}
@@ -103,12 +103,12 @@ public class UserController {
 		return ResponseEntity.status(401).body(user);
 	}
 
-	@RequestMapping(value = "/api/desbloquear", method = RequestMethod.PUT)
+	@RequestMapping(value = "api/users/{id_emp}", method = RequestMethod.PUT)
 	public void actualizar(@RequestBody User user) {
 		usuarioDao.actualizar(user);
 	}
 
-	@RequestMapping(value = "/api/bloquear", method = RequestMethod.PUT)
+	@RequestMapping(value = "api/bloquear", method = RequestMethod.PUT)
 	public void bloquear(@RequestBody User user) {
 		usuarioDao.bloquear(user);
 	}
@@ -181,6 +181,11 @@ public class UserController {
 	@RequestMapping(value = "/api/registroCuenta", method = RequestMethod.POST)
 	public void registrarCuentaBancaria(@RequestBody CuentaBancaria cuenta) {
 		cuentaDao.registrar(cuenta);
+	}
+	
+	@RequestMapping(value = "/api/listamovimiento", method = RequestMethod.GET)
+	public List<Movimientos> getListMovimientos() {
+		return movimDao.getListMovimientos();
 	}
 
 }
