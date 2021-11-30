@@ -8,33 +8,38 @@
   
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <!-- Position Column -->
-    <ng-container matColumnDef="numero">
-      <th mat-header-cell *matHeaderCellDef style="text-align: center">Numero</th>
-      <td mat-cell *matCellDef="let element">{{ element.id_nivel }}</td>
+    <ng-container matColumnDef="id_conciliacion">
+      <th mat-header-cell *matHeaderCellDef style="text-align: center">id</th>
+      <td mat-cell *matCellDef="let element">{{ element.id_conciliacion }}</td>
     </ng-container>
   
-    <ng-container matColumnDef="fecha">
-      <th mat-header-cell *matHeaderCellDef style="text-align: center">Fecha</th>
-      <td mat-cell *matCellDef="let element">{{ element.id_fun }}</td>
+    <ng-container matColumnDef="fecha_final">
+      <th mat-header-cell *matHeaderCellDef style="text-align: center">FechaFIN</th>
+      <td mat-cell *matCellDef="let element">{{ element.fecha_final | date: 'shortDate'}}</td>
     </ng-container>
   
-    <ng-container matColumnDef="Saldo final">
+    <ng-container matColumnDef="saldo_extracto">
       <th mat-header-cell *matHeaderCellDef style="text-align: center">
-        Saldo final
+        Saldo extracto
       </th>
-      <td mat-cell *matCellDef="let element">{{ element.estado_emp }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.saldo_extracto | currency: 'COP ' }}</td>
     </ng-container>
   
-    <ng-container matColumnDef="Ingresos Bancatios">
+    <ng-container matColumnDef="total_ingresos">
       <th mat-header-cell *matHeaderCellDef style="text-align: center">Ingresos Bancatios</th>
-      <td mat-cell *matCellDef="let element">{{ element.contrasena_emp }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.total_ingresos | currency: 'COP ' }}</td>
     </ng-container>
   
-    <ng-container matColumnDef="Gastos bancarios">
-      <th mat-header-cell *matHeaderCellDef style="text-align: center">Gastos bancarios</th>
+    <ng-container matColumnDef="saldo_final">
+      <th mat-header-cell *matHeaderCellDef style="text-align: center">Saldo fin</th>
       <td mat-cell *matCellDef="let element">
-        {{ element.tipo_documento_emp }}
+        {{ element.saldo_final | currency: 'COP ' }}
       </td>
+    </ng-container>
+
+    <ng-container matColumnDef="id_cuenta">
+      <th mat-header-cell *matHeaderCellDef style="text-align: center">IDcuenrta</th>
+      <td mat-cell *matCellDef="let element">{{ element.id_cuenta }}</td>
     </ng-container>
   
     <ng-container matColumnDef="acciones">
@@ -45,7 +50,7 @@
           type="submit"
           [disabled]="element.estado_emp"
         >
-          Desbloquear
+          Eliminar
         </button>
       </td>
     </ng-container>

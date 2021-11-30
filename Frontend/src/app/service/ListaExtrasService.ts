@@ -6,6 +6,7 @@ import { Concepto } from 'src/app/entity/Concepto';
 import { Impuesto } from "../entity/Impuesto";
 import { MetodoPago } from 'src/app/entity/MetodoPago';
 import { Retencion } from 'src/app/entity/Retencion';
+import { Conciliacion } from "../entity/Conciliacion";
 
 @Injectable({
     providedIn: 'root'
@@ -46,6 +47,10 @@ export class ListaExtrasService {
 
     getNumMov(){
         return this.http.get<number>(this.Url+"/api/numMov");
+    }
+
+    getConciliacion(){
+        return this.http.get<Conciliacion[]>(this.Url+'/api/conciliacion');
     }
 
 }
