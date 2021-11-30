@@ -10,6 +10,6 @@ export class Usuario{
     id_fun! : String;
     estado_emp! : boolean;
     contrasena_emp! : String;
-    
+    tipo_documento_emp! : String;
     constructor(){}
 }

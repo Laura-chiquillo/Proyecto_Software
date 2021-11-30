@@ -1,0 +1,106 @@
+<h1>Agregar Cuenta Bancaria</h1>
+
+
+<mat-card class="card sombra">
+    <form class="form-Agregar" [formGroup]="registroBancario" (ngSubmit)="onSaveForm()">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>SRP Tecnology</mat-label>
+            <input matInput disabled value="SRP Tecnology">
+        </mat-form-field>
+        <div class="flexbox-container">
+            <div>
+                <p>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Tipo De Cuenta</mat-label>
+                        <mat-select formControlName="TipoCuenta">
+                            <mat-option>Elige el Tipo De Cuenta</mat-option>
+                            <mat-option (change)="changeFunctionality($event)" *ngFor="let TipoCuenta of TipoCuenta"
+                                [value]="TipoCuenta">
+                                {{TipoDeCuenta}}</mat-option>
+                        </mat-select>
+                        <div class="alert-danger"
+                            *ngIf="TipoCuenta.invalid && (TipoCuenta.dirty || TipoCuenta.touched)">
+                            <div class="container-error-message" *ngIf="TipoCuenta.errors?.required">
+                                Seleccion De Cuenta requerida.
+                            </div>
+                        </div>
+                    </mat-form-field>
+
+                </p>
+
+                <p>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Nombre del Banco</mat-label>
+                        <mat-select formControlName="TipoBanco">
+                            <mat-option>Elige el Tipo De Bancos</mat-option>
+                            <mat-option (change)="changeFunctionality($event)" *ngFor="let TipoBanco of TipoBanco"
+                                [value]="TipoBanco">
+                                {{Bancos}}</mat-option>
+                        </mat-select>
+                        <div class="alert-danger" *ngIf="TipoBanco.invalid && (TipoBanco.dirty || TipoBanco.touched)">
+                            <div class="container-error-message" *ngIf="TipoBanco.errors?.required">
+                                Seleccion De Banco requerido.
+                            </div>
+                        </div>
+                    </mat-form-field>
+
+                </p>
+                <p>
+                    <mat-form-field class="example-full-width11" appearance="fill">
+                        <mat-label>Número Cuenta Bancaria</mat-label>
+                        <input matInput formControlName="CuentaBancaria">
+                        <div class="alert-danger" *ngIf="CuentaBancaria.invalid && (CuentaBancaria.dirty || CuentaBancaria.touched)">
+                            <div class="container-error-message" *ngIf="CuentaBancaria.errors?.required">
+                              Número de Cuenta es requerido.
+                            </div>
+                        </div>
+                        <div class="container-error-message" *ngIf="CuentaBancaria.errors?.minlength ">
+                            Debe ser de minimo 7 caracteres.
+                          </div>
+                    </mat-form-field>
+                    
+                <p>
+                    <mat-form-field class="example-full-width11" appearance="fill">
+                        <mat-label>Saldo</mat-label>
+                        <input matInput formControlName="saldo">
+                        <div class="alert-danger" *ngIf="saldo.invalid && (saldo.dirty || saldo.touched)">
+                            <div class="container-error-message" *ngIf="saldo.errors?.required">
+                              Saldo de Cuenta es requerido.
+                            </div>
+                        </div>
+                    </mat-form-field>
+
+                </p>
+                <p>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Países</mat-label>
+                        <mat-select formControlName="TipoPais">
+                            <mat-option>Elige el País</mat-option>
+                            <mat-option (change)="changeFunctionality($event)" *ngFor="let Pais of Pais" [value]="Pais">
+                                {{Pais}}</mat-option>
+                        </mat-select>
+                        <div class="alert-danger" *ngIf="TipoPais.invalid && (TipoPais.dirty || TipoPais.touched)">
+                            <div class="container-error-message" *ngIf="TipoPais.errors?.required">
+                                Seleccion De Banco requerido.
+                            </div>
+                        </div>
+                    </mat-form-field>
+                </p>
+            </div>
+            <div>
+                <h2>Notas Adicionales</h2>
+                <p>
+                    <mat-form-field class="example-full-width1" appearance="fill">
+                        <mat-label>Notas Adicionales</mat-label>
+                        <textarea matInput placeholder=""></textarea>
+                    </mat-form-field>
+                </p>
+            </div>
+
+        </div>
+        <div>
+            <input class="boton1" type="submit" value="Agregar Cuenta">
+            <a href="http://localhost:4200/admin"><input class="boton1" type="button" value="Volver al menú"></a>
+        </div>
+    </form>
+</mat-card>
