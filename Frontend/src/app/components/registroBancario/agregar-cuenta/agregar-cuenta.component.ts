@@ -44,39 +44,39 @@ export class AgregarCuentaComponent implements OnInit {
     })
 
     this.registroBancario.get('TipoCuenta').valueChanges.subscribe(valor => {
-      if(valor == '1'){
+      if (valor == '1') {
         this.nombreCuenta = "Corriente"
-      } else if (valor == '2'){
+      } else if (valor == '2') {
         this.nombreCuenta = "Ahorros"
-      } else if (valor == '3'){
+      } else if (valor == '3') {
         this.nombreCuenta = "Con Chequera"
-      } else if (valor == '4'){
+      } else if (valor == '4') {
         this.nombreCuenta = "Nómina"
-      } else if (valor == '5'){
+      } else if (valor == '5') {
         this.nombreCuenta = "En Dólares"
       }
     })
 
     this.registroBancario.get('TipoBanco').valueChanges.subscribe(valor => {
-      if(valor == '1'){
+      if (valor == '1') {
         this.nombreBanco = "Bancolombia"
-      } else if (valor == '2'){
+      } else if (valor == '2') {
         this.nombreBanco = "Banco Av Villas"
-      } else if (valor == '3'){
+      } else if (valor == '3') {
         this.nombreBanco = "Banco Caja Social"
-      } else if (valor == '4'){
+      } else if (valor == '4') {
         this.nombreBanco = "Banco de Bogotá"
-      } else if (valor == '5'){
+      } else if (valor == '5') {
         this.nombreBanco = "Banco de Occidente"
-      } else if (valor == '6'){
+      } else if (valor == '6') {
         this.nombreBanco = "Banco Itaú"
-      } else if (valor == '7'){
+      } else if (valor == '7') {
         this.nombreBanco = "Banco Popular"
-      } else if (valor == '8'){
+      } else if (valor == '8') {
         this.nombreBanco = "BBVA Colombia"
-      } else if (valor == '9'){
+      } else if (valor == '9') {
         this.nombreBanco = "Davivienda"
-      } else if (valor == '10'){
+      } else if (valor == '10') {
         this.nombreBanco = "Scotiabank Copatria"
       }
     })
@@ -126,26 +126,31 @@ export class AgregarCuentaComponent implements OnInit {
     this.registroBancario.reset();
   }
 
-  guardar(){
+  guardar() {
 
-    this.cuentaBancaria = {
-      id_cuenta: this.numCuenta,
-      num_cuenta: this.CuentaBancaria.value,
-      saldo_cuenta: this.saldo.value,
-      notas_adicionales: this.notas.value,
-      pais_cuenta: this.TipoPais.value,
-      id_tipo_cuenta: this.TipoCuenta.value,
-      id_banco: this.TipoBanco.value,
-      nombre_cuenta: "Cuenta " + this.nombreCuenta + " " + this.nombreBanco
-    };
+    if (this.CuentaBancaria.status == 'INVALID' || this.saldo.status == 'INVALID' || this.notas.status == 'INVALID'
+      || this.TipoPais.status == 'INVALID' || this.TipoCuenta.status == 'INVALID' || this.TipoBanco.status == 'INVALID') {
+      alert("Datos inválidos.")
+    } else {
 
-    this.serviceCuenta.registro(this.cuentaBancaria).subscribe(data => {
-      alert("Nueva cuenta bancaria guardada exitosamente.")
-      window.location.reload()
-    })
+      this.cuentaBancaria = {
+        id_cuenta: this.numCuenta,
+        num_cuenta: this.CuentaBancaria.value,
+        saldo_cuenta: this.saldo.value,
+        notas_adicionales: this.notas.value,
+        pais_cuenta: this.TipoPais.value,
+        id_tipo_cuenta: this.TipoCuenta.value,
+        id_banco: this.TipoBanco.value,
+        nombre_cuenta: "Cuenta " + this.nombreCuenta + " " + this.nombreBanco
+      };
 
-    this.onResetForm()
+      this.serviceCuenta.registro(this.cuentaBancaria).subscribe(data => {
+        alert("Nueva cuenta bancaria guardada exitosamente.")
+        window.location.reload()
+      })
 
+      this.onResetForm()
+    }
   }
 }
 
