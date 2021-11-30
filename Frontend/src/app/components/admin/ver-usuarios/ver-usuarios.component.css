@@ -7,6 +7,15 @@ body{
     height: 100vh;
     z-index: -1;
   }
+
+  .nameTable {
+    color: black;
+    font-family: "Krub", sans-serif;
+    font-size: medium;
+    font-weight: bold;
+    background-color:snow;
+  }
+  
   table {
     width: 100%;
     

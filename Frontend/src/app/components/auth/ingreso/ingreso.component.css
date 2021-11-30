@@ -2,21 +2,32 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background: linear-gradient(135deg, #71b7e6, #9b59b6);;
   font-family: 'Poppins', sans-serif;
 }
 
-.body h1{
-  font-size: 70px;
-  background: #fff;
+body{
+  display: flex;
+  height: 370vh;
+  justify-content: center;
+  align-items: center;
+  background:  linear-gradient(135deg, #71b7e6, #9b59b6);
 }
 
+.container{
+  max-width: 1200px;
+  width: 100%;
+  background: #f1f1f1;
+  padding: 25px 30px;
+  border-radius: 5px;
+}
+
+
+
 .ingresoForm{
-  width: 1000px;
+  width: 1110px;
   background: #fff;
-  padding: 30px;
+  padding: 20px 30px;
   margin: auto;
-  margin-top: 100px;
   border-radius: 'calibri';
 }
 
@@ -48,11 +59,9 @@
 .final .titulo {
   flex: 1;
   outline: none;
-  width: 100%;
   background: #fff;
-  padding: 10px;
+  margin: 22px;
   border: 0;
-  margin-bottom: 16px;
   font-family: 'Poppins', sans-serif;
   font-size: 18px;
   text-align: right;
@@ -61,11 +70,9 @@
 .final .valorFinal {
   flex: 1;
   outline: none;
-  width: 100%;
   background: #fff;
-  padding: 10px;
   border: 0;
-  margin-bottom: 16px;
+  margin: 22px;
   font-family: 'Poppins', sans-serif;
   font-size: 18px;
 }
@@ -73,7 +80,6 @@
 .final .x {
   background: #fff;
 }
-
 
 .ingresoForm .boton{
   margin: 20px 0 12px 0;
@@ -121,4 +127,17 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+
+.boton{
+  height: 45px;
+  width: 100%;
+  outline: none;
+  color: #fff;
+  border: none;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  background:  linear-gradient(135deg, #71b7e6, #9b59b6);;
 }
