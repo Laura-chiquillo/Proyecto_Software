@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.unbosque.model.BeneficiarioDao;
 import co.edu.unbosque.model.ConceptoDao;
+import co.edu.unbosque.model.Conciliacion;
+import co.edu.unbosque.model.ConciliacionDao;
 import co.edu.unbosque.model.CuentaDao;
 import co.edu.unbosque.model.ImpuestoDao;
 import co.edu.unbosque.model.MetodoPagoDao;
@@ -62,6 +64,9 @@ public class UserController {
 
 	@Autowired
 	private MovimientosDao movimDao;
+	
+	@Autowired
+	private ConciliacionDao conciliacionDao;
 
 	@Autowired
 	private TipoCuentaDao tipoCuentaDao;
@@ -156,6 +161,11 @@ public class UserController {
 	@RequestMapping(value = "/api/registroMov", method = RequestMethod.POST)
 	public void registrarMovimiento(@RequestBody Movimientos movimiento) {
 		movimDao.registrar(movimiento);
+	}
+	
+	@RequestMapping(value = "api/conciliacion", method = RequestMethod.GET)
+	public List<Conciliacion> geList() {
+		return conciliacionDao.getList();
 	}
 
 	@RequestMapping(value = "/api/tipoCuenta", method = RequestMethod.GET)

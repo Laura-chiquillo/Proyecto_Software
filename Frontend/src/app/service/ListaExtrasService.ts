@@ -9,6 +9,9 @@ import { Retencion } from 'src/app/entity/Retencion';
 import { Banco } from 'src/app/entity/Banco';
 import { TipoCuenta } from 'src/app/entity/TipoCuenta';
 
+import { Conciliacion } from "../entity/Conciliacion";
+
+
 @Injectable({
     providedIn: 'root'
 })
@@ -61,5 +64,8 @@ export class ListaExtrasService {
     getNumCuenta(){
         return this.http.get<number>(this.Url+"/api/numCuenta");
     }
-    
+
+    getConciliacion(){
+        return this.http.get<Conciliacion[]>(this.Url+'/api/conciliacion');
+    }
 }
