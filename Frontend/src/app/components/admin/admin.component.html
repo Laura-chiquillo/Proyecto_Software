@@ -15,73 +15,76 @@
 
       <!-- Position Column -->
       <ng-container matColumnDef="id_emp">
-        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> ID </th>
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;" class="nameTable"> N° </th>
         <td mat-cell *matCellDef="let element"> {{element.id_emp}} </td>
       </ng-container>
 
       <!-- Name Column -->
       <ng-container matColumnDef="nombres_emp">
-        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Nombres </th>
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;" class="nameTable"> Nombres </th>
         <td mat-cell *matCellDef="let element"> {{element.nombres_emp}} </td>
       </ng-container>
 
       <!-- Weight Column -->
       <ng-container matColumnDef="apellidos_emp">
-        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Apellidos </th>
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;" class="nameTable"> Apellidos </th>
         <td mat-cell *matCellDef="let element"> {{element.apellidos_emp}} </td>
       </ng-container>
 
       <!-- Symbol Column -->
       <ng-container matColumnDef="num_id_emp">
-        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Num </th>
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;" class="nameTable"> Número de Identificación </th>
         <td mat-cell *matCellDef="let element"> {{element.num_id_emp}} </td>
       </ng-container>
 
       <ng-container matColumnDef="correo_emp">
-        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Correo </th>
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;" class="nameTable"> Correo </th>
         <td mat-cell *matCellDef="let element"> {{element.correo_emp}} </td>
       </ng-container>
 
       <ng-container matColumnDef="sexo_emp">
-        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Sexo </th>
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;" class="nameTable"> Sexo </th>
         <td mat-cell *matCellDef="let element"> {{element.sexo_emp}} </td>
       </ng-container>
 
       <ng-container matColumnDef="telefono_emp">
-        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Teléfono </th>
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;" class="nameTable"> Teléfono </th>
         <td mat-cell *matCellDef="let element"> {{element.telefono_emp}} </td>
       </ng-container>
 
       <ng-container matColumnDef="id_nivel">
-        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> ID Nivel </th>
-        <td mat-cell *matCellDef="let element"> {{element.id_nivel}} </td>
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;" class="nameTable"> Nivel </th>
+        <td mat-cell *matCellDef="let element"> {{nivel(element.id_nivel)}} </td>
       </ng-container>
 
       <ng-container matColumnDef="id_fun">
-        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> ID Funcionalidad </th>
-        <td mat-cell *matCellDef="let element"> {{element.id_fun}} </td>
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;" class="nameTable"> Funcionalidad </th>
+        <td mat-cell *matCellDef="let element"> {{funcionalidad(element.id_fun)}} </td>
       </ng-container>
 
       <ng-container matColumnDef="estado_emp">
-        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Estado Emp </th>
-        <td mat-cell *matCellDef="let element"> {{element.estado_emp}} </td>
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;" class="nameTable"> Estado </th>
+        <td mat-cell *matCellDef="let element"> {{estado(element.estado_emp)}} </td>
       </ng-container>
 
       <ng-container matColumnDef="contrasena_emp">
-        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Contraseña </th>
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;" class="nameTable"> Contraseña </th>
         <td mat-cell *matCellDef="let element"> {{element.contrasena_emp}} </td>
       </ng-container>
 
       <ng-container matColumnDef="tipo_documento_emp">
-        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Tipo Documento </th>
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;" class="nameTable"> Tipo Documento </th>
         <td mat-cell *matCellDef="let element"> {{element.tipo_documento_emp}} </td>
       </ng-container>
 
 
       <ng-container matColumnDef="acciones">
-        <th mat-header-cell *matHeaderCellDef style="text-align: center;">Acción</th>
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;" class="nameTable"> Acción </th>
         <td mat-cell *matCellDef="let element" style="text-align: center;">
-          <button (click)="actualizar(element)" type="submit" [disabled]="element.estado_emp">Desbloquear</button>
+          <button (click)="actualizar(element)" type="submit" [disabled]="element.estado_emp"
+            style="margin-top: 10px">Desbloquear</button>
+          <button (click)="eliminar(element)" type="submit"
+            style="margin-top: 10px; margin-bottom: 10px;">Eliminar</button>
         </td>
       </ng-container>
 

@@ -26,6 +26,14 @@ td {
   justify-content: space-between;
 }
 
+.nameTable {
+  color: black;
+  font-family: "Krub", sans-serif;
+  font-size: medium;
+  font-weight: bold;
+  background-color:snow;
+}
+
 .example-tab-icon {
   margin-right: 10px;
 }

@@ -84,7 +84,7 @@ public class UserController {
 		return usuarioDao.num();
 	}
 
-	@RequestMapping(value = "api/users/{id_emp}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "api/eliminar/{id_emp}", method = RequestMethod.DELETE)
 	public void eliminar(@PathVariable Long id_emp) {
 		usuarioDao.eliminar(id_emp);
 	}
@@ -98,12 +98,12 @@ public class UserController {
 		return ResponseEntity.status(401).body(user);
 	}
 
-	@RequestMapping(value = "api/users/{id_emp}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/api/desbloquear", method = RequestMethod.PUT)
 	public void actualizar(@RequestBody User user) {
 		usuarioDao.actualizar(user);
 	}
 
-	@RequestMapping(value = "api/bloquear", method = RequestMethod.PUT)
+	@RequestMapping(value = "/api/bloquear", method = RequestMethod.PUT)
 	public void bloquear(@RequestBody User user) {
 		usuarioDao.bloquear(user);
 	}
