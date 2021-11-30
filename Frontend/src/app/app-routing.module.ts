@@ -62,6 +62,14 @@ const routes: Routes = [
         './components/registroBancario/agregar-cuenta/agregar-cuenta.module'
       ).then((m) => m.AgregarCuentaModule),
   },
+
+  {
+    path: 'verUsuario',
+    loadChildren: () =>
+      import(
+        './components/admin/ver-usuarios/ver-usuario.module'
+      ).then((m) => m.VerUsuarioModule),
+  },
 ];
 
 @NgModule({

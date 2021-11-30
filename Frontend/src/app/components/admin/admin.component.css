@@ -6,52 +6,10 @@
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 1;
-}
-.example-sidenav-container{
-  z-index: 2;
-}
-.contenedor-tabla{
-  z-index: -1;
-}
-body{
-  margin: 0;
-  padding: 0;
-  background: url(../admin/img/bg.jpeg) no-repeat center top;
-  background-size: cover;
-  font-family: sans-serif;
-  height: 100vh;
-}
-table {
-  width: 100%;
-  z-index: -3;
   
 }
 
-th {
-  width: 10px;
-  text-align: right;
-}
-table,
-th,
-td {
 
-  border: 2px solid black;
-  border-collapse: collapse;
-  text-align: center;
-}
-
-.pointer {
-  cursor: pointer;
-}
-.navcolor {
-  color: black;
-  font-family: "Krub", sans-serif;
-  font-size: medium;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
 
 .example-tab-icon {
   margin-right: 10px;
@@ -81,7 +39,7 @@ td {
 .example-is-mobile .example-toolbar {
   position: fixed;
   /* Make sure the toolbar will stay on top of the content as it scrolls past. */
-  z-index: 2;
+ 
 }
 h1.example-app-name {
   margin-left: 8px;
@@ -89,4 +47,13 @@ h1.example-app-name {
 a{
   color: #ffff;
   text-decoration: none;
+}
+body{
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  background: url(../admin/img/bg.jpeg) no-repeat center top;
+  background-size: cover;
+  font-family: sans-serif;
+  height: 100vh;
 }

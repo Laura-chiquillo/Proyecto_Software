@@ -7,10 +7,11 @@ import { IngresoComponent } from '../auth/ingreso/ingreso.component';
 import { GastoComponent } from '../auth/gasto/gasto.component';
 import { ConciliacionBancariaComponent} from '../registroBancario/conciliacion-bancaria/conciliacion-bancaria.component';
 import { AgregarCuentaComponent } from '../registroBancario/agregar-cuenta/agregar-cuenta.component';
-
+import { VerUsuariosComponent } from './ver-usuarios/ver-usuarios.component';
 const routes: Routes = [{
   path: '', component: AdminComponent,
   children: [
+    { path: 'verUsuario', component: VerUsuariosComponent},
     { path: 'registro', component: RegistroComponent, },
     { path: 'gasto', component: GastoComponent },
     { path: 'ingreso', component: IngresoComponent },

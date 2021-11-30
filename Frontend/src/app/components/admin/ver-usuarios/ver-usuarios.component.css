@@ -1,0 +1,84 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: url(../img/bg.jpeg) no-repeat center top;
+    background-size: cover;
+    font-family: sans-serif;
+    height: 100vh;
+    z-index: -1;
+  }
+  table {
+    width: 100%;
+    
+  }
+  .example-tab-icon {
+    margin-right: 10px;
+    z-index: 1;
+  }
+  
+  th {
+    width: 10px;
+    text-align: right;
+  }
+  table,
+  th,
+  td {
+  
+    border: 2px solid black;
+    border-collapse: collapse;
+    text-align: center;
+  }
+  
+  .pointer {
+    cursor: pointer;
+  }
+  .navcolor {
+    color: black;
+    font-family: "Krub", sans-serif;
+    font-size: medium;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+ .boton{
+    margin: 20px 0 12px 0;
+    width: 100%;
+    outline: none;
+    color: rgb(19, 18, 18);
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    padding: 12px;
+  }
+  
+  .botones{
+    height: 45px;
+    margin: 45px 0;
+  }
+  
+  .botones input{
+    height: 45px;
+    width: 100%;
+    outline: none;
+    color: rgb(221, 211, 221);
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    background:  linear-gradient(135deg, #71b7e6, #9b59b6);;
+  }
+  
+  .botones input:hover{
+    background:  linear-gradient(-135deg, #71b7e6, #9b59b6);
+  }
+  
+  .botones{
+    margin: 20px 0 12px 0;
+    width: 100%;
+  }
+  
+  
+  

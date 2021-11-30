@@ -15,8 +15,7 @@
               <div class="container-error-message" *ngIf="nombre.errors?.minlength">
                 Nombre debe tener por lo menos un caracter.
               </div>
-              <div class="container-error-message"
-                *ngIf="nombre.invalid && nombre.errors?.pattern">
+              <div class="container-error-message" *ngIf="nombre.invalid && nombre.errors?.pattern">
                 Deben ser minimo dos nombres sin numeros o teclas especiales.
               </div>
             </div>
@@ -31,8 +30,7 @@
               <div class="container-error-message" *ngIf="apellido.errors?.minlength">
                 Apellidos deben tener por lo menos un caracter.
               </div>
-              <div class="container-error-message"
-                *ngIf=" apellido.invalid && apellido.errors?.pattern">
+              <div class="container-error-message" *ngIf=" apellido.invalid && apellido.errors?.pattern">
                 Deben ser minimo dos apellidos sin numeros o teclas especiales.
               </div>
             </div>
@@ -137,21 +135,21 @@
             <div class="datos">
               <div class="input-box">
                 <span class="detalles">Nivel de Usuario</span>
-                <select formControlName="tUsuario" >
+                <select formControlName="tUsuario">
                   <option value="">Tipo de usuario</option>
                   <option value="1">Administrador</option>
                   <option value="2">Empleado</option>
-                  
+
                 </select>
-                 <div class="alert-danger" *ngIf="tUsuario.invalid && (tUsuario.dirty || tUsuario.touched)">
-                   <div class="container-error-message" *ngIf="tUsuario.errors?.required">
-                     Nivel de usuario requerido.
-                   </div>
-                 </div>
+                <div class="alert-danger" *ngIf="tUsuario.invalid && (tUsuario.dirty || tUsuario.touched)">
+                  <div class="container-error-message" *ngIf="tUsuario.errors?.required">
+                    Nivel de usuario requerido.
+                  </div>
+                </div>
               </div>
               <div class="input-box">
                 <span class="detalles">Funcionalidad</span>
-                <select formControlName="funcionalidad" >
+                <select formControlName="funcionalidad">
                   <option value="">Funcionalidad</option>
                   <option value="1">Empleado</option>
                   <option value="2">Tesorero</option>
@@ -168,7 +166,12 @@
             <div class="botones">
               <div class="boton">
                 <input type="submit" value="Guardar">
+              </div>
             </div>
+            <div class="botones">
+              <div class="boton">
+                <a href="http://localhost:4200/admin"><input type="button" value="Volver al Menu"></a>
+              </div>
             </div>
           </div>
         </form>
@@ -176,3 +179,4 @@
     </div>
   </div>
 </body>
+<div>

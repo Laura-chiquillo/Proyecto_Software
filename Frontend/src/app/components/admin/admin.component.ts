@@ -23,24 +23,12 @@ export class AdminComponent implements OnInit {
   }
   
 
-  displayedColumns: string[] = ['id_emp', 'nombres_emp',
-  'apellidos_emp', 'num_id_emp', 'correo_emp',
-  'sexo_emp', 'telefono_emp', 'id_nivel', 'id_fun', 'estado_emp',
-  'contrasena_emp', 'tipo_documento_emp', 'acciones'];
-  dataSource = new MatTableDataSource<any>();
+  
 
   ngOnInit(): void {
-    this.service.loginAut().subscribe(data => {
-      console.log(data)
-      this.dataSource = new MatTableDataSource(data);
-      
-    })  
+    
   }
-  ngAfterViewInit() {
-    console.log(this.dataSource)
-    this.dataSource.paginator = this.paginator;
-  }
-
+  
   actualizar(empleado: any){
    this.usuario = empleado;
    this.service.actualizar(this.usuario).subscribe(
