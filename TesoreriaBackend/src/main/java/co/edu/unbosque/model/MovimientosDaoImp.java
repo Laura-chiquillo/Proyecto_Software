@@ -45,7 +45,7 @@ public class MovimientosDaoImp implements MovimientosDao {
 	}
 	@Override
 	public List<Movimientos> getListMovimientos() {
-		return entityManager.createQuery("FROM Movimientos").getResultList();
+		return entityManager.createQuery("FROM Movimientos order by (CAST(id_movim AS int))").getResultList();
 
 	}
 
