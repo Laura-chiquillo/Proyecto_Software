@@ -18,10 +18,11 @@ import { ListaExtrasService } from 'src/app/service/ListaExtrasService';
   styleUrls: ['./conciliacion-bancaria.component.css'],
 })
 export class ConciliacionBancariaComponent implements OnInit {
-
+  contador: number = 0;
   public ConciliacionBancaria: FormGroup;
   public panel2: FormGroup;
-  public saldo_total: number;
+  public panel3: FormGroup;
+  public saldo_total: number = 0;
   public valorDiferencia: number = 0;
   public valorIngreso: number = 0;
   public valorGasto: number = 0;
@@ -41,6 +42,7 @@ export class ConciliacionBancariaComponent implements OnInit {
   constructor(private router: Router, private serviceMov: MovimientoService, private service: ListaExtrasService) {
     this.ConciliacionBancaria = this.createForm();
     this.panel2 = this.createForm2();
+    this.panel3 = this.createForm3();
   }
 
   ngOnInit(): void {
@@ -128,6 +130,11 @@ export class ConciliacionBancariaComponent implements OnInit {
       saldoFinal: new FormControl('')
     });
   }
+  createForm3() {
+    return new FormGroup({
+      botonConci: new FormControl('')
+    })
+  }
 
   onSaveForm(): void { }
 
@@ -151,8 +158,9 @@ export class ConciliacionBancariaComponent implements OnInit {
     }
   }
 
-  conciliarMov(movimiento: Movimiento){
-    if(movimiento.id_tipo_mov == '1'){
+  conciliarMov(movimiento: Movimiento, event: MouseEvent) {
+    (event.target as HTMLButtonElement).disabled = true;
+    if (movimiento.id_tipo_mov == '1') {
       this.valorIngreso += Number.parseInt(movimiento.total_movim.toString());
       this.panel2.get('ingreso').setValue(new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.valorIngreso))
       this.panel2.get('ingreso').statusChanges

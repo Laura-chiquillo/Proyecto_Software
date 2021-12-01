@@ -134,7 +134,7 @@
   </form>
 </mat-card>
 
-
+<form [formGroup]="panel3">
 <mat-card class="card sombra">
   <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <!-- Position Column -->
@@ -163,7 +163,7 @@
     <ng-container matColumnDef="acciones">
       <mat-header-cell *matHeaderCellDef style="text-align: center;">Conciliar</mat-header-cell>
       <mat-cell *matCellDef="let element" style="text-align: center;">
-        <button (click)="conciliarMov(element)">Conciliar</button>
+        <button  (click)="conciliarMov(element, $event)">Conciliar</button>
       </mat-cell>
     </ng-container>
 
@@ -171,7 +171,7 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
 </mat-card>
-
+</form>
 <mat-card class="enviar sombra">
 
   <input class="boton1" type="submit" value="Actualizar">
