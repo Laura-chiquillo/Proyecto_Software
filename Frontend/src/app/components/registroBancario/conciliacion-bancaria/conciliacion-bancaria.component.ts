@@ -10,6 +10,7 @@ import { MovimientoService } from 'src/app/service/MovimientoService';
 import { MatTableDataSource } from '@angular/material/table';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CuentaBancaria } from 'src/app/entity/CuentaBancaria';
+import { Conciliacion } from 'src/app/entity/Conciliacion';
 import { ListaExtrasService } from 'src/app/service/ListaExtrasService';
 
 @Component({
@@ -29,6 +30,7 @@ export class ConciliacionBancariaComponent implements OnInit {
   public valorExtracto: number = 0;
   public valorSaldoFinal: number = 0;
   public listaCuenta: CuentaBancaria[] = [];
+  public listaConciliacion: Conciliacion[] = [];
 
   displayedColumns: string[] = [
     'id_movim',
@@ -57,7 +59,17 @@ export class ConciliacionBancariaComponent implements OnInit {
 
     this.serviceMov.getlistMovimientos().subscribe((movimientos) => {
       this.dataSource = new MatTableDataSource(movimientos);
-    });
+    })
+
+    this.service.getConciliacion().subscribe(con => {
+      this.listaConciliacion = con;
+    })
+
+    alert(this.listaConciliacion)
+
+    this.ConciliacionBancaria.get('fechaInicial').disable()
+    
+    this.ConciliacionBancaria.get('fechaInicial').setValue(this.listaConciliacion[1].fecha_final)
 
     this.panel2.get('ingreso').valueChanges.subscribe(data => {
       this.valorSaldoFinal = this.valorIngreso - this.valorGasto;
@@ -80,7 +92,7 @@ export class ConciliacionBancariaComponent implements OnInit {
     this.ConciliacionBancaria.get('SaldoBancario').valueChanges.subscribe(data => {
       this.valorExtracto = data;
       this.valorDiferencia = this.valorSaldoFinal - this.valorExtracto;
-      this.panel2.get('diferencia').setValue(new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.valorDiferencia))
+      this.panel2.get('diferencia').setValue(new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.valorDiferencia).toString())
     })
 
   }
@@ -127,7 +139,8 @@ export class ConciliacionBancariaComponent implements OnInit {
     return new FormGroup({
       ingreso: new FormControl(''),
       gasto: new FormControl(''),
-      saldoFinal: new FormControl('')
+      saldoFinal: new FormControl(''),
+      diferencia: new FormControl('')
     });
   }
   createForm3() {

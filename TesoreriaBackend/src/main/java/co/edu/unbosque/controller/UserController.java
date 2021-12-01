@@ -163,7 +163,7 @@ public class UserController {
 		movimDao.registrar(movimiento);
 	}
 	
-	@RequestMapping(value = "api/conciliacion", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/conciliacion", method = RequestMethod.GET)
 	public List<Conciliacion> geList() {
 		return conciliacionDao.getList();
 	}
