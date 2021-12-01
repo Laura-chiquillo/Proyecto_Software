@@ -16,6 +16,9 @@ import { Conciliacion } from "../entity/Conciliacion";
     providedIn: 'root'
 })
 export class ListaExtrasService {
+    eliminar(id_movim: any) {
+      throw new Error('Method not implemented.');
+    }
 
 
     constructor(private http: HttpClient) { }
@@ -28,6 +31,10 @@ export class ListaExtrasService {
     getBeneficiario() {
         return this.http.get<Beneficiario[]>(this.Url+'/api/beneficiario');
     }
+
+    getConcepto(){
+      return this.http.get<Concepto[]>(this.Url+'/api/concepto');
+  }
 
     getConceptoIngreso(){
         return this.http.get<Concepto[]>(this.Url+'/api/conceptoIngreso');

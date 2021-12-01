@@ -8,10 +8,12 @@ import { GastoComponent } from '../auth/gasto/gasto.component';
 import { ConciliacionBancariaComponent} from '../registroBancario/conciliacion-bancaria/conciliacion-bancaria.component';
 import { AgregarCuentaComponent } from '../registroBancario/agregar-cuenta/agregar-cuenta.component';
 import { VerUsuariosComponent } from './ver-usuarios/ver-usuarios.component';
+import { VerMovimientosComponent } from './ver-movimientos/ver-movimientos.component';
 const routes: Routes = [{
   path: '', component: AdminComponent,
   children: [
     { path: 'verUsuario', component: VerUsuariosComponent},
+    { path: 'verMovimientos', component: VerMovimientosComponent},
     { path: 'registro', component: RegistroComponent, },
     { path: 'gasto', component: GastoComponent },
     { path: 'ingreso', component: IngresoComponent },

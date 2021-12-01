@@ -83,7 +83,7 @@ public class UsuarioDaoImp implements UsuarioDao {
 	@Override
 	public int num() {
 
-		return Integer.parseInt(entityManager.createQuery("SELECT id_emp FROM User ORDER BY id_emp DESC")
+		return Integer.parseInt(entityManager.createQuery("SELECT id_emp FROM User ORDER BY CAST(id_emp AS int) DESC")
 				.getResultList().get(0).toString()) + 1;
 
 	}

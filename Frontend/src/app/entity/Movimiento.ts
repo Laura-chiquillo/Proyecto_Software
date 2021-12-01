@@ -1,19 +1,19 @@
 export class Movimiento{
     id_movim!: number;
     fecha_movim!: Date;
-    num_pago!: String;
-    valor_concepto!: String;
-    cantidad_movim!: String;
-    total_movim!: String;
-    notas_info!: String;
-    notas_concepto!: String;
-    id_benef!: String;
-    id_pago!: String;
-    id_concepto!: String;
-    id_cuenta!: String;
-    id_impuesto!: String;
-    id_retencion!: String;
-    id_tipo_mov!: String;
+    num_pago!: string;
+    valor_concepto!: string;
+    cantidad_movim!: string;
+    total_movim!: string;
+    notas_info!: string;
+    notas_concepto!: string;
+    id_benef!: string;
+    id_pago!: string;
+    id_concepto!: string;
+    id_cuenta!: string;
+    id_impuesto!: string;
+    id_retencion!: string;
+    id_tipo_mov!: string;
     
     constructor(){}
 }

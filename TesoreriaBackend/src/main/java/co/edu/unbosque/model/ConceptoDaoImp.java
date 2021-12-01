@@ -32,5 +32,12 @@ public class ConceptoDaoImp implements ConceptoDao {
 		return entityManager.createQuery("FROM Concepto WHERE id_tipo_concepto='2'").getResultList();
 
 	}
+	
+	@Override
+	public List<Concepto> getConcepto() {
+
+		return entityManager.createQuery("FROM Concepto").getResultList();
+
+	}
 
 }
