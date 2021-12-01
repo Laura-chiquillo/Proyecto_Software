@@ -1,13 +1,7 @@
 <header class="header">
     <h1>Cuentas Bancarias</h1>
   </header>
-  
-  <button class="boton1" mat-raised-button color="primary">Nueva cuenta</button>
-  
-  
-  
-  
-  
+
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <!-- Position Column -->
     <ng-container matColumnDef="id_cuenta">
@@ -55,6 +49,15 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
-  
+  <button class="botones">
+    <mat-icon><img src="https://www.svgrepo.com/show/15171/list.svg"> </mat-icon>
+    <span><a class="boton" href="http://localhost:4200/AgregarCuenta">Nueva cuenta</a></span>
+  </button>
+  <div>
+    <button class="botones">
+      <mat-icon><img src="https://www.svgrepo.com/show/15171/list.svg"> </mat-icon>
+      <span><a class="boton" href="http://localhost:4200/admin">Volver al Menu</a></span>
+    </button>
+  </div>
   
   

@@ -53,4 +53,44 @@ table {
     border: 4px solid black;
     max-width: 100%;
   }
+
+  .boton btn-circle{
+    margin: 20px 0 12px 0;
+    width: 100%;
+    outline: none;
+    color: rgb(19, 18, 18);
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    padding: 12px;
+  }
+  
+  .botones{
+    height: 45px;
+    margin: 45px 0;
+  }
+  
+  .botones input{
+    height: 45px;
+    width: 100%;
+    outline: none;
+    color: rgb(221, 211, 221);
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    background:  linear-gradient(135deg, #71b7e6, #9b59b6);;
+  }
+  
+  .botones input:hover{
+    background:  linear-gradient(-135deg, #71b7e6, #9b59b6);
+  }
+  
+  .botones{
+    margin: 20px 0 12px 0;
+    width: 100%;
+  }
     

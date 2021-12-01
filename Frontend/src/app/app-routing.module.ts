@@ -40,7 +40,7 @@ const routes: Routes = [
       import('./components/GestionBancaria/conciliacion-bancaria/conciliacion-bancaria.module').then
         (m => m.ConciliacionBancariaModule
         ) 
-  },
+  }, 
   { path: 'listaConciliacion', loadChildren: () =>
    import('./components/registroBancario/lista-conciliacion/lista-conciliacion.module').then
    (m => m.ListaConciliacionModule) },
