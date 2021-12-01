@@ -34,9 +34,9 @@ public class MovimientosDaoImp implements MovimientosDao {
 				+ "VALUES (:id_movim,:fecha_movim,:num_pago,:valor_concepto,:cantidad_movim,:total_movim,:notas_info,:notas_concepto,:id_benef,:id_pago,:id_concepto,:id_cuenta,:id_impuesto,:id_retencion,:id_tipo_mov)";
 		entityManager.createNativeQuery(query).setParameter("id_movim", mov.getId_movim())
 				.setParameter("fecha_movim", mov.getFecha_movim()).setParameter("num_pago", mov.getNum_pago())
-				.setParameter("valor_concepto", Integer.parseInt(mov.getValor_concepto()))
+				.setParameter("valor_concepto", Double.parseDouble(mov.getValor_concepto()))
 				.setParameter("cantidad_movim", Double.parseDouble(mov.getCantidad_movim()))
-				.setParameter("total_movim", Integer.parseInt(mov.getTotal_movim()))
+				.setParameter("total_movim", Double.parseDouble(mov.getTotal_movim()))
 				.setParameter("notas_info", mov.getNotas_info()).setParameter("notas_concepto", mov.getNotas_concepto())
 				.setParameter("id_benef", mov.getId_benef()).setParameter("id_pago", mov.getId_pago())
 				.setParameter("id_concepto", mov.getId_concepto()).setParameter("id_cuenta", mov.getId_cuenta())

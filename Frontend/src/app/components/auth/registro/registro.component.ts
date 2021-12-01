@@ -17,7 +17,7 @@ export class RegistroComponent {
 
   private emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-  number: number;
+  number: number = 0;
   gender: any = ['M', 'F', 'O'];
   typedocument: any = ['Cédula de Ciudadania', 'Cédula de Extranjería', 'Registro Civil', 'NIT']
 
@@ -40,7 +40,7 @@ export class RegistroComponent {
 
   createForm() {
     return new FormGroup({
-      nombre: new FormControl('', [Validators.required, Validators.minLength(1), Validators.pattern('[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{2,} [a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{2,}')]),
+      nombre: new FormControl('', [Validators.required, Validators.minLength(1)]),
       email: new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern(this.emailPattern)]),
       apellido: new FormControl('', [Validators.required, Validators.minLength(1), Validators.pattern('[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{2,} [a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{2,}')]),
       telefono: new FormControl('', [Validators.required, Validators.minLength(7), Validators.maxLength(15), Validators.pattern('[- +()0-9]+')]),
@@ -75,7 +75,7 @@ export class RegistroComponent {
 
     if (this.nombre.status == 'INVALID' || this.apellido.status == 'INVALID' || this.nDocumento.status == 'INVALID'
       || this.email.status == 'INVALID' || this.genero.status == 'INVALID' || this.telefono.status == 'INVALID' ||
-      this.tUsuario.status == null || this.funcionalidad.status == 'INVALID' || this.contrasena.status == 'INVALID'
+      this.tUsuario.status == 'INVALID' || this.funcionalidad.status == 'INVALID' || this.contrasena.status == 'INVALID'
       || this.tDocumento.status == 'INVALID') {
       alert('Datos inválidos.')
 
@@ -88,7 +88,7 @@ export class RegistroComponent {
           num_id_emp: this.nDocumento.value,
           correo_emp: this.email.value,
           sexo_emp: this.genero.value,
-          telefono_emp: this.telefono.value,
+          telefono_emp: this.telefono.value.toString(),
           id_nivel: this.tUsuario.value,
           id_fun: this.funcionalidad.value,
           estado_emp: true,
