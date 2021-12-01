@@ -122,6 +122,11 @@ public class UserController {
 	public List<Beneficiario> getBeneficiario() {
 		return beneficiarioDao.getBeneficiaro();
 	}
+	
+	@RequestMapping(value = "api/concepto", method = RequestMethod.GET)
+	public List<Concepto> getConcepto() {
+		return conceptoDao.getConcepto();
+	}
 
 	@RequestMapping(value = "api/conceptoGasto", method = RequestMethod.GET)
 	public List<Concepto> getConceptoGasto() {

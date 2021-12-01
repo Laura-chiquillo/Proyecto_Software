@@ -9,5 +9,7 @@ public interface ConceptoDao {
 	List<Concepto> getConceptoIngreso();
 	
 	List<Concepto> getConceptoGasto();
+	
+	List<Concepto> getConcepto();
 
 }
