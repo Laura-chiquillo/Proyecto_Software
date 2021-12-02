@@ -70,6 +70,7 @@ const routes: Routes = [
         './components/admin/ver-usuarios/ver-usuario.module'
       ).then((m) => m.VerUsuarioModule),
   },
+  { path: 'grafico1', loadChildren: () => import('./components/grafico/grafico1/grafico1.module').then(m => m.Grafico1Module) },
 ];
 
 @NgModule({
