@@ -5,6 +5,7 @@ export class Conciliacion {
     total_ingresos!: String;
     saldo_final!: String;
     id_cuenta!: String;
+    total_gastos!: String;
 
     constructor() {}
 }

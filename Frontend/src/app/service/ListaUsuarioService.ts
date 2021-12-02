@@ -22,8 +22,4 @@ export class ListaUsiarioService {
     bloquear(usuario: Usuario): Observable<any> {
         return this.http.put(this.Url+"/api/bloquear", usuario)
     }
-
-    eliminar(id: number){
-        return this.http.delete(this.Url+"/api/eliminar/"+id)
-    }
 }

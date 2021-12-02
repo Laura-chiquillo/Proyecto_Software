@@ -45,10 +45,12 @@ export class VerUsuariosComponent implements OnInit {
     }
   }
 
-  eliminar(empleado: any) {
-    if (window.confirm("¿Está seguro que desea eliminar el usuario seleccionado?")) {
-      this.service.eliminar(empleado.id_emp).subscribe(data => {
-        alert("Usuario eliminado.")
+  bloquear(empleado: any) {
+    this.usuario = empleado;
+    this.usuario.estado_emp = false;
+    if (window.confirm("¿Está seguro que desea bloquear el usuario seleccionado?")) {
+      this.service.bloquear(this.usuario).subscribe(data => {
+        alert("Usuario bloqueado.")
         window.location.reload()
       })
     }

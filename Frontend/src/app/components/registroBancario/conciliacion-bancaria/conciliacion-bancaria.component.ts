@@ -32,6 +32,7 @@ export class ConciliacionBancariaComponent implements OnInit {
   public valorSaldoFinal: number = 0;
   public listaCuenta: CuentaBancaria[] = [];
   public listaConciliacion: Conciliacion[] = [];
+  public listaMovimientos: Movimiento[] = [];
 
   displayedColumns: string[] = [
     'id_movim',
@@ -59,8 +60,9 @@ export class ConciliacionBancariaComponent implements OnInit {
       this.listaCuenta = cuenta;
     })
 
-    this.serviceMov.getlistMovimientos().subscribe((movimientos) => {
+    this.serviceMov.getlistEstado().subscribe((movimientos) => {
       this.dataSource = new MatTableDataSource(movimientos);
+      this.listaMovimientos = movimientos;
     })
     
 
@@ -86,6 +88,10 @@ export class ConciliacionBancariaComponent implements OnInit {
       this.valorExtracto = data;
       this.valorDiferencia = this.valorSaldoFinal - this.valorExtracto;
       this.panel2.get('diferencia').setValue(new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.valorDiferencia).toString())
+    })
+
+    this.service.getConciliacion().subscribe(con => {
+      alert(con[0].fecha_final)
     })
 
   }

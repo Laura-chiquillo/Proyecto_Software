@@ -51,4 +51,16 @@ public class CuentaDaoImp implements CuentaDao {
 				.executeUpdate();
 	}
 
+	@Transactional
+	public void actualizarSaldo(CuentaBancaria cuenta) {
+
+		Long id = cuenta.getId_cuenta();
+
+		entityManager
+				.createQuery("UPDATE CuentaBancaria e SET e.saldo_cuenta=:saldo_cuenta WHERE e.id_cuenta='"
+						+ String.valueOf(id) + "'")
+				.setParameter("saldo_cuenta", cuenta.getSaldo_cuenta()).executeUpdate();
+
+	}
+
 }

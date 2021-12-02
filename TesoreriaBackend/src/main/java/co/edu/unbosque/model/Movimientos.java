@@ -60,13 +60,17 @@ public class Movimientos {
 	@Column(name = "id_tipo_mov")
 	private String id_tipo_mov;
 
+	@Column(name = "estado_conciliacion")
+	private boolean estado_conciliacion;
+
 	public Movimientos() {
 
 	}
 
 	public Movimientos(long id_movim, Date fecha_movim, String num_pago, String valor_concepto, String cantidad_movim,
 			String total_movim, String notas_info, String notas_concepto, String id_benef, String id_pago,
-			String id_concepto, String id_cuenta, String id_impuesto, String id_retencion, String id_tipo_mov) {
+			String id_concepto, String id_cuenta, String id_impuesto, String id_retencion, String id_tipo_mov,
+			boolean estado_conciliacion) {
 		super();
 		this.id_movim = id_movim;
 		this.fecha_movim = fecha_movim;
@@ -83,6 +87,7 @@ public class Movimientos {
 		this.id_impuesto = id_impuesto;
 		this.id_retencion = id_retencion;
 		this.id_tipo_mov = id_tipo_mov;
+		this.estado_conciliacion = estado_conciliacion;
 	}
 
 	public long getId_movim() {
@@ -205,6 +210,14 @@ public class Movimientos {
 		this.id_tipo_mov = id_tipo_mov;
 	}
 
+	public boolean isEstado_conciliacion() {
+		return estado_conciliacion;
+	}
+
+	public void setEstado_conciliacion(boolean estado_conciliacion) {
+		this.estado_conciliacion = estado_conciliacion;
+	}
+
 	@Override
 	public String toString() {
 		return "Movimientos [id_movim=" + id_movim + ", fecha_movim=" + fecha_movim + ", num_pago=" + num_pago
@@ -212,7 +225,7 @@ public class Movimientos {
 				+ total_movim + ", notas_info=" + notas_info + ", notas_concepto=" + notas_concepto + ", id_benef="
 				+ id_benef + ", id_pago=" + id_pago + ", id_concepto=" + id_concepto + ", id_cuenta=" + id_cuenta
 				+ ", id_impuesto=" + id_impuesto + ", id_retencion=" + id_retencion + ", id_tipo_mov=" + id_tipo_mov
-				+ "]";
+				+ ", estado_conciliacion=" + estado_conciliacion + "]";
 	}
 
 }

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Transactional
 @EntityScan(basePackages = "co.edu.unbosque.model")
-public class ConciliacionDaoImp implements ConciliacionDao{
+public class ConciliacionDaoImp implements ConciliacionDao {
 
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -20,7 +20,7 @@ public class ConciliacionDaoImp implements ConciliacionDao{
 	@Override
 	public List<Conciliacion> getList() {
 
-		return entityManager.createQuery("FROM Conciliacion ORDER BY id_conciliacion ASC").getResultList();
+		return entityManager.createQuery("FROM Conciliacion ORDER BY CAST(id_conciliacion AS int)").getResultList();
 
 	}
 }

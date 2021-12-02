@@ -14,6 +14,7 @@ export class Movimiento{
     id_impuesto!: string;
     id_retencion!: string;
     id_tipo_mov!: string;
+    estado_conciliacion!: boolean;
     
     constructor(){}
 }
