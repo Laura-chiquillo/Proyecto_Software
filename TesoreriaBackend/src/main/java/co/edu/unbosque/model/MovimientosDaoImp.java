@@ -27,11 +27,10 @@ public class MovimientosDaoImp implements MovimientosDao {
 
 	}
 
-	@Override
 	public void registrar(Movimientos mov) {
 
-		String query = "INSERT INTO Movimientos (id_movim,fecha_movim,num_pago,valor_concepto,cantidad_movim,total_movim,notas_info,notas_concepto,id_benef,id_pago,id_concepto,id_cuenta,id_impuesto,id_retencion,id_tipo_mov) "
-				+ "VALUES (:id_movim,:fecha_movim,:num_pago,:valor_concepto,:cantidad_movim,:total_movim,:notas_info,:notas_concepto,:id_benef,:id_pago,:id_concepto,:id_cuenta,:id_impuesto,:id_retencion,:id_tipo_mov)";
+		String query = "INSERT INTO Movimientos (id_movim,fecha_movim,num_pago,valor_concepto,cantidad_movim,total_movim,notas_info,notas_concepto,id_benef,id_pago,id_concepto,id_cuenta,id_impuesto,id_retencion,id_tipo_mov,estado_conciliacion) "
+				+ "VALUES (:id_movim,:fecha_movim,:num_pago,:valor_concepto,:cantidad_movim,:total_movim,:notas_info,:notas_concepto,:id_benef,:id_pago,:id_concepto,:id_cuenta,:id_impuesto,:id_retencion,:id_tipo_mov,:estado_conciliacion)";
 		entityManager.createNativeQuery(query).setParameter("id_movim", mov.getId_movim())
 				.setParameter("fecha_movim", mov.getFecha_movim()).setParameter("num_pago", mov.getNum_pago())
 				.setParameter("valor_concepto", Double.parseDouble(mov.getValor_concepto()))
@@ -41,11 +40,19 @@ public class MovimientosDaoImp implements MovimientosDao {
 				.setParameter("id_benef", mov.getId_benef()).setParameter("id_pago", mov.getId_pago())
 				.setParameter("id_concepto", mov.getId_concepto()).setParameter("id_cuenta", mov.getId_cuenta())
 				.setParameter("id_impuesto", mov.getId_impuesto()).setParameter("id_retencion", mov.getId_retencion())
-				.setParameter("id_tipo_mov", mov.getId_tipo_mov()).executeUpdate();
+				.setParameter("id_tipo_mov", mov.getId_tipo_mov())
+				.setParameter("estado_conciliacion", mov.isEstado_conciliacion()).executeUpdate();
 	}
+
 	@Override
 	public List<Movimientos> getListMovimientos() {
 		return entityManager.createQuery("FROM Movimientos order by (CAST(id_movim AS int))").getResultList();
+
+	}
+	
+	@Override
+	public List<Movimientos> getListEstado() {
+		return entityManager.createQuery("FROM Movimientos WHERE estado_conciliacion='false' ORDER BY (CAST(id_movim AS int))").getResultList();
 
 	}
 

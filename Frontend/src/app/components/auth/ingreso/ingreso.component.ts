@@ -228,11 +228,17 @@ export class IngresoComponent implements OnInit {
         id_cuenta: this.cuentaBancaria.value,
         id_impuesto: this.impuesto.value,
         id_retencion: this.tipoRetencion.value,
-        id_tipo_mov: '1'
+        id_tipo_mov: '1',
+        estado_conciliacion: false
       };
 
       this.serviceMov.registro(this.ingreso).subscribe(data => {
         alert("Nuevo ingreso guardado exitosamente.")
+      })
+
+      this.listaCuenta[this.cuentaBancaria.value - 1].saldo_cuenta = this.listaCuenta[this.cuentaBancaria.value - 1].saldo_cuenta + this.valorTotal;
+
+      this.service.actualizarSaldo(this.listaCuenta[this.cuentaBancaria.value - 1]).subscribe(data => {
         window.location.reload()
       })
 
