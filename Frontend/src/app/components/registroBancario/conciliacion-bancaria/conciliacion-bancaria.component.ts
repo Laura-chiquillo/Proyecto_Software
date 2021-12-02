@@ -12,6 +12,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CuentaBancaria } from 'src/app/entity/CuentaBancaria';
 import { Conciliacion } from 'src/app/entity/Conciliacion';
 import { ListaExtrasService } from 'src/app/service/ListaExtrasService';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-conciliacion-bancaria',
@@ -52,6 +53,7 @@ export class ConciliacionBancariaComponent implements OnInit {
     this.panel2.get('ingreso').disable()
     this.panel2.get('gasto').disable()
     this.panel2.get('saldoFinal').disable()
+    this.panel2.get('diferencia').disable() 
 
     this.service.getCuenta().subscribe(cuenta => {
       this.listaCuenta = cuenta;
@@ -60,16 +62,7 @@ export class ConciliacionBancariaComponent implements OnInit {
     this.serviceMov.getlistMovimientos().subscribe((movimientos) => {
       this.dataSource = new MatTableDataSource(movimientos);
     })
-
-    this.service.getConciliacion().subscribe(con => {
-      this.listaConciliacion = con;
-    })
-
-    alert(this.listaConciliacion)
-
-    this.ConciliacionBancaria.get('fechaInicial').disable()
     
-    this.ConciliacionBancaria.get('fechaInicial').setValue(this.listaConciliacion[1].fecha_final)
 
     this.panel2.get('ingreso').valueChanges.subscribe(data => {
       this.valorSaldoFinal = this.valorIngreso - this.valorGasto;
@@ -89,7 +82,7 @@ export class ConciliacionBancariaComponent implements OnInit {
 
     })
 
-    this.ConciliacionBancaria.get('SaldoBancario').valueChanges.subscribe(data => {
+    this.ConciliacionBancaria.get('extrato').valueChanges.subscribe(data => {
       this.valorExtracto = data;
       this.valorDiferencia = this.valorSaldoFinal - this.valorExtracto;
       this.panel2.get('diferencia').setValue(new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.valorDiferencia).toString())
@@ -100,8 +93,8 @@ export class ConciliacionBancariaComponent implements OnInit {
   get CuentaBancaria() {
     return this.ConciliacionBancaria.get('CuentaBancaria');
   }
-  get SaldoBancario() {
-    return this.ConciliacionBancaria.get('SaldoBancario');
+  get extrato() {
+    return this.ConciliacionBancaria.get('extrato');
   }
   get fechaHasta() {
     return this.ConciliacionBancaria.get('fechaHasta');
@@ -129,7 +122,7 @@ export class ConciliacionBancariaComponent implements OnInit {
   createForm() {
     return new FormGroup({
       CuentaBancaria: new FormControl('', [Validators.required]),
-      SaldoBancario: new FormControl('', [Validators.required]),
+      extrato: new FormControl('', [Validators.required, Validators.pattern('[- +()0-9]+')]),
       fechaHasta: new FormControl('', [Validators.required]),
       fechaInicial: new FormControl('', [Validators.required]),
     });

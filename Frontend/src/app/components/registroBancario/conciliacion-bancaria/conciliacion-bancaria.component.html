@@ -22,6 +22,7 @@
               <div class="container-error-message" *ngIf="CuentaBancaria.errors?.required">
                 Cuenta Bancaria requerida.
               </div>
+              
             </div>
           </mat-form-field>
         </p>
@@ -55,11 +56,15 @@
         <p>
           <mat-form-field class="example-full-width1" appearance="fill">
             <mat-label>Saldo En Extracto Bancario</mat-label>
-            <textarea matInput formControlName="SaldoBancario"></textarea>
-            <div class="alert-danger" *ngIf="SaldoBancario.invalid && (SaldoBancario.dirty || SaldoBancario.touched)">
-              <div class="container-error-message" *ngIf="SaldoBancario.errors?.required">
+            <textarea matInput formControlName="extrato"></textarea>
+            <div class="alert-danger" *ngIf="extrato.invalid && (extrato.dirty || extrato.touched)">
+              <div class="container-error-message" *ngIf="extrato.errors?.required">
                 Saldo En Extracto Bancario requerida.
               </div>
+              <div class="container-error-message"
+              *ngIf="(cuentaBancaria.dirty || cuentaBancaria.touched) && cuentaBancaria.invalid && cuentaBancaria.errors?.pattern">
+              Número de documento tiene que tener un formato válido.
+            </div>
             </div>
           </mat-form-field>
         </p>
@@ -174,7 +179,6 @@
 </form>
 <mat-card class="enviar sombra">
 
-  <input class="boton1" type="submit" value="Actualizar">
   <a href="http://localhost:4200/admin"><input class="boton1" type="button" value="Volver al Menú"> </a>
   <input class="boton1" type="submit" value="Conciliar" [disabled]="comprobar()" (click)="conciliar()">
 
