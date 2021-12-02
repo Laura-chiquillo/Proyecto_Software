@@ -3,6 +3,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ListaUsiarioService } from 'src/app/service/ListaUsuarioService';
 import { Usuario } from 'src/app/entity/Usuario';
+import {PdfMakeWrapper, Table, Txt } from 'pdfmake-wrapper';
+import * as pdfFonts from "pdfmake/build/vfs_fonts";
+PdfMakeWrapper.setFonts(pdfFonts);
+const pdf = new PdfMakeWrapper;
 
 @Component({
   selector: 'app-ver-usuarios',
@@ -13,7 +17,31 @@ export class VerUsuariosComponent implements OnInit {
   usuario: Usuario = new Usuario();
   category: string;
   title: string;
+  datos: any;
+  generarPDF(): void {
 
+    pdf.info({
+      title: 'Reporte de Usuarios registrados',
+      subject: 'Se mostrara la cantida de usuarios que existen en la base de datos'
+    });
+
+    pdf.styles({
+      centrado: {
+        alignment: 'center'
+      }
+    });
+    pdf.footer(new Txt('SRP technology').color('blue').fontSize(18).alignment('right').end)
+    //No agarra la informacion dentro de la tabla quien sea que lea esto se lo encargo :'v//
+    new Table([
+      this.displayedColumns, this.datos
+    ]).end
+    pdf.add(Table)
+    pdf.add(new Txt('Reportes de Usuarios').alignment('center').bold().fontSize(24).end)
+    pdf.add(pdf.ln(3))
+    pdf.create().open();
+
+
+  }
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(public service: ListaUsiarioService) {
 
@@ -28,7 +56,7 @@ export class VerUsuariosComponent implements OnInit {
     this.service.loginAut().subscribe(data => {
       console.log(data)
       this.dataSource = new MatTableDataSource(data);
-
+      this.datos = data;
     })
   }
   actualizar(empleado: any) {

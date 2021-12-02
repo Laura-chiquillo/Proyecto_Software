@@ -106,10 +106,14 @@
 
 
         </mat-tab-group>
+        <div class="botones">
+            <div class="boton">
+                <input type="button" value="Generar un PDF" (click)="generarPDF()">
+            </div>
+        </div>
         <div>
-            <button class="botones">
-                <mat-icon><img src="https://www.svgrepo.com/show/15171/list.svg"> </mat-icon>
-                <span><a class="boton" href="http://localhost:4200/admin">Volver al Menu</a></span>
-            </button>
+            <a class="boton" href="http://localhost:4200/admin"><button class="botones">Volver al Menu
+                    <mat-icon><img src="https://www.svgrepo.com/show/15171/list.svg"> </mat-icon>
+                 </button></a>
         </div>
     </body>
