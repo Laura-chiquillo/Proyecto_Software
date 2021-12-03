@@ -12,7 +12,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CuentaBancaria } from 'src/app/entity/CuentaBancaria';
 import { Conciliacion } from 'src/app/entity/Conciliacion';
 import { ListaExtrasService } from 'src/app/service/ListaExtrasService';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { formatDate } from "@angular/common";
 
 @Component({
   selector: 'app-conciliacion-bancaria',
@@ -30,9 +30,16 @@ export class ConciliacionBancariaComponent implements OnInit {
   public valorGasto: number = 0;
   public valorExtracto: number = 0;
   public valorSaldoFinal: number = 0;
+  public valorUltimaConc: number = 0;
   public listaCuenta: CuentaBancaria[] = [];
   public listaConciliacion: Conciliacion[] = [];
   public listaMovimientos: Movimiento[] = [];
+  public listaMovimientos2: Movimiento[] = [];
+  public nuevoMovimiento: Movimiento;
+
+  public MovimientosConciliados: Movimiento[] = [];
+  public conciliacion: Conciliacion;
+  public numConciliacion: number;
 
   displayedColumns: string[] = [
     'id_movim',
@@ -54,20 +61,31 @@ export class ConciliacionBancariaComponent implements OnInit {
     this.panel2.get('ingreso').disable()
     this.panel2.get('gasto').disable()
     this.panel2.get('saldoFinal').disable()
-    this.panel2.get('diferencia').disable() 
+    this.panel2.get('diferencia').disable()
+    this.panel2.get('ultimaConciliacion').disable()
 
+    this.ConciliacionBancaria.get('fechaActual').disable()
+    this.ConciliacionBancaria.get('fechaActual').setValue(formatDate(Date(), 'dd/MM/yyyy', 'en-US'))
     this.service.getCuenta().subscribe(cuenta => {
       this.listaCuenta = cuenta;
     })
 
+    this.service.getNumConciliacion().subscribe(num => {
+      this.numConciliacion = num;
+    })
+
     this.serviceMov.getlistEstado().subscribe((movimientos) => {
-      this.dataSource = new MatTableDataSource(movimientos);
       this.listaMovimientos = movimientos;
     })
-    
+
+    this.service.valorSaldoFinal().subscribe(data => {
+      this.valorUltimaConc = data;
+      this.panel2.get('ultimaConciliacion').setValue(new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.valorUltimaConc))
+    })
+
 
     this.panel2.get('ingreso').valueChanges.subscribe(data => {
-      this.valorSaldoFinal = this.valorIngreso - this.valorGasto;
+      this.valorSaldoFinal = this.valorUltimaConc + this.valorIngreso - this.valorGasto;
       this.panel2.get('saldoFinal').setValue(new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.valorSaldoFinal).toString())
 
       this.valorDiferencia = this.valorSaldoFinal - this.valorExtracto;
@@ -76,7 +94,7 @@ export class ConciliacionBancariaComponent implements OnInit {
     })
 
     this.panel2.get('gasto').valueChanges.subscribe(data => {
-      this.valorSaldoFinal = this.valorIngreso - this.valorGasto;
+      this.valorSaldoFinal = this.valorUltimaConc + this.valorIngreso - this.valorGasto;
       this.panel2.get('saldoFinal').setValue(new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.valorSaldoFinal).toString())
 
       this.valorDiferencia = this.valorSaldoFinal - this.valorExtracto;
@@ -91,7 +109,35 @@ export class ConciliacionBancariaComponent implements OnInit {
     })
 
     this.service.getConciliacion().subscribe(con => {
-      alert(con[0].fecha_final)
+    })
+
+    this.ConciliacionBancaria.get('CuentaBancaria').valueChanges.subscribe(data => {
+
+      this.valorGasto = 0;
+      this.panel2.get('gasto').setValue(new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.valorGasto))
+      this.panel2.get('gasto').statusChanges
+
+      this.valorIngreso = 0;
+      this.panel2.get('ingreso').setValue(new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.valorIngreso))
+      this.panel2.get('ingreso').statusChanges
+
+      this.valorSaldoFinal = this.valorUltimaConc + this.valorIngreso - this.valorGasto;
+      this.panel2.get('saldoFinal').setValue(new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.valorSaldoFinal).toString())
+
+      this.valorDiferencia = this.valorSaldoFinal - this.valorExtracto;
+      this.panel2.get('diferencia').setValue(new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.valorDiferencia).toString())
+
+      this.listaMovimientos2.splice(0, this.listaMovimientos2.length)
+
+      for (let index = 0; index < this.listaMovimientos.length; index++) {
+        if (this.listaMovimientos[index].id_cuenta == data) {
+          this.listaMovimientos2.push(this.listaMovimientos[index])
+        }
+
+      }
+
+      this.dataSource = new MatTableDataSource(this.listaMovimientos2);
+
     })
 
   }
@@ -102,11 +148,8 @@ export class ConciliacionBancariaComponent implements OnInit {
   get extrato() {
     return this.ConciliacionBancaria.get('extrato');
   }
-  get fechaHasta() {
-    return this.ConciliacionBancaria.get('fechaHasta');
-  }
-  get fechaInicial() {
-    return this.ConciliacionBancaria.get('fechaInicial');
+  get fechaActual() {
+    return this.ConciliacionBancaria.get('fechaActual');
   }
 
   get ingreso() {
@@ -125,12 +168,15 @@ export class ConciliacionBancariaComponent implements OnInit {
     return this.panel2.get('diferencia');
   }
 
+  get ultimaConciliacion() {
+    return this.panel2.get('ultimaConciliacion');
+  }
+
   createForm() {
     return new FormGroup({
       CuentaBancaria: new FormControl('', [Validators.required]),
       extrato: new FormControl('', [Validators.required, Validators.pattern('[- +()0-9]+')]),
-      fechaHasta: new FormControl('', [Validators.required]),
-      fechaInicial: new FormControl('', [Validators.required]),
+      fechaActual: new FormControl('')
     });
   }
 
@@ -139,7 +185,8 @@ export class ConciliacionBancariaComponent implements OnInit {
       ingreso: new FormControl(''),
       gasto: new FormControl(''),
       saldoFinal: new FormControl(''),
-      diferencia: new FormControl('')
+      diferencia: new FormControl(''),
+      ultimaConciliacion: new FormControl('')
     });
   }
   createForm3() {
@@ -159,14 +206,29 @@ export class ConciliacionBancariaComponent implements OnInit {
   }
 
   conciliar() {
-    alert("bbbbb")
-  }
 
-  comprobar(): Boolean {
-    if (this.valorDiferencia == 0) {
-      return false;
+    if (this.extrato.value == 'INVALID' || this.CuentaBancaria.value == 'INVALID'
+      || this.valorDiferencia != 0 || this.diferencia.value == '' || this.diferencia.value == null) {
+      alert("Datos inválidos")
     } else {
-      return true;
+
+      this.conciliacion = {
+        id_conciliacion: this.numConciliacion,
+        fecha_final: this.fechaActual.value,
+        saldo_extracto: this.valorExtracto,
+        total_ingresos: this.valorIngreso,
+        saldo_final: this.valorSaldoFinal,
+        id_cuenta: this.CuentaBancaria.value,
+        total_gastos: this.valorGasto
+      };
+
+      this.service.registroConciliacion(this.conciliacion).subscribe(data => {
+        alert("Conciliación registrada correctamente.")
+      })
+
+      this.service.estadoConciliacion(this.MovimientosConciliados).subscribe(data => {
+        window.location.reload()
+      })
     }
   }
 
@@ -181,5 +243,11 @@ export class ConciliacionBancariaComponent implements OnInit {
       this.panel2.get('gasto').setValue(new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.valorGasto))
       this.panel2.get('gasto').statusChanges
     }
+
+    this.nuevoMovimiento = movimiento;
+    this.nuevoMovimiento.estado_conciliacion = true;
+
+    this.MovimientosConciliados.push(this.nuevoMovimiento)
+
   }
 }

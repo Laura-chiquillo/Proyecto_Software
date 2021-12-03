@@ -49,10 +49,30 @@ public class MovimientosDaoImp implements MovimientosDao {
 		return entityManager.createQuery("FROM Movimientos order by (CAST(id_movim AS int))").getResultList();
 
 	}
-	
+
 	@Override
 	public List<Movimientos> getListEstado() {
-		return entityManager.createQuery("FROM Movimientos WHERE estado_conciliacion='false' ORDER BY (CAST(id_movim AS int))").getResultList();
+		return entityManager
+				.createQuery("FROM Movimientos WHERE estado_conciliacion='false' ORDER BY (CAST(id_movim AS int))")
+				.getResultList();
+
+	}
+
+	@Transactional
+	public void estadoConciliacion(List<Movimientos> mov) {
+
+		Long id = (long) 0;
+
+		for (int i = 0; i < mov.size(); i++) {
+			id = mov.get(i).getId_movim();
+
+			entityManager
+					.createQuery(
+							"UPDATE Movimientos e SET e.estado_conciliacion=:estado_conciliacion WHERE e.id_movim='"
+									+ String.valueOf(id) + "'")
+					.setParameter("estado_conciliacion", mov.get(i).isEstado_conciliacion()).executeUpdate();
+
+		}
 
 	}
 

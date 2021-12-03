@@ -19,7 +19,7 @@ public class Conciliacion {
 	private long id_conciliacion;
 
 	@Column(name = "fecha_final")
-	private Date fecha_final;
+	private String fecha_final;
 
 	@Column(name = "saldo_extracto")
 	private long saldo_extracto;
@@ -40,7 +40,7 @@ public class Conciliacion {
 
 	}
 
-	public Conciliacion(long id_conciliacion, Date fecha_final, long saldo_extracto, String total_ingresos,
+	public Conciliacion(long id_conciliacion, String fecha_final, long saldo_extracto, String total_ingresos,
 			String saldo_final, String id_cuenta, String total_gastos) {
 		super();
 		this.id_conciliacion = id_conciliacion;
@@ -60,11 +60,11 @@ public class Conciliacion {
 		this.id_conciliacion = id_conciliacion;
 	}
 
-	public Date getFecha_final() {
+	public String getFecha_final() {
 		return fecha_final;
 	}
 
-	public void setFecha_final(Date fecha_final) {
+	public void setFecha_final(String fecha_final) {
 		this.fecha_final = fecha_final;
 	}
 
