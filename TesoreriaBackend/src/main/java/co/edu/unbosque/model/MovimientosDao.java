@@ -11,4 +11,6 @@ public interface MovimientosDao {
 	List<Movimientos> getListMovimientos();
 
 	List<Movimientos> getListEstado();
+	
+	void estadoConciliacion(List<Movimientos> mov);
 }

@@ -203,4 +203,24 @@ public class UserController {
 		return movimDao.getListEstado();
 	}
 
+	@RequestMapping(value = "api/numConciliacion", method = RequestMethod.GET)
+	public int numConciliacion() {
+		return conciliacionDao.numConciliacion();
+	}
+
+	@RequestMapping(value = "/api/registroConciliacion", method = RequestMethod.POST)
+	public void registrarConciliacion(@RequestBody Conciliacion conciliacion) {
+		conciliacionDao.registrar(conciliacion);
+	}
+
+	@RequestMapping(value = "api/estadoConciliacion", method = RequestMethod.PUT)
+	public void estadoConciliacion(@RequestBody List<Movimientos> mov) {
+		movimDao.estadoConciliacion(mov);
+	}
+
+	@RequestMapping(value = "api/valorSaldoFinal", method = RequestMethod.GET)
+	public double valorSaldoFinal() {
+		return conciliacionDao.valorSaldoFinal();
+	}
+
 }
