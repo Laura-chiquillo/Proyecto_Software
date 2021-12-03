@@ -34,6 +34,7 @@ const myModule = [MatCardModule,
   MatInputModule,
   MatGridListModule,
   MatSelectModule,
+  
 ];
 
 @NgModule({
