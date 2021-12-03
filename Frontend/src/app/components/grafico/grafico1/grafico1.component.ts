@@ -32,8 +32,8 @@ export class Grafico1Component {
     })
     
   }
-  doughnutChartType: ChartType = 'doughnut';
   doughnutChartLabels: Label[] = ['Femenino', 'Masculino', 'Otros'];
+  doughnutChartType: ChartType = 'doughnut';
   doughnutChartData = [  ];
 
 }
