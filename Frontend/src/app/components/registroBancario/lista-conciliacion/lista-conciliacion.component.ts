@@ -31,10 +31,10 @@ export class ListaConciliacionComponent implements OnInit {
     if (!this.PDFexistente) {
       // PDF
       pdf.info({
-        title: 'Reporte de Usuarios registrados',
-        subject: 'Se mostrara la cantida de usuarios que existen en la base de datos'
+        title: 'Lista de conciliaciones bancarias',
+        subject: 'Se mostrara la cantida de Lista de conciliaciones bancarias que existen en la base de datos'
       });
-      pdf.add(new Txt('Reportes de Movimientos').alignment('center').bold().fontSize(24).end)
+      pdf.add(new Txt('Reportes Lista de conciliaciones bancarias').alignment('center').bold().fontSize(24).end)
       const tabla = [this.TablaPDF]
 
       this.datos.forEach(i => {
@@ -45,7 +45,7 @@ export class ListaConciliacionComponent implements OnInit {
         }
         tabla.push(fila)
       })
-      pdf.add(new Table(tabla).widths(['auto', 'auto', 'auto', 'auto', 'auto', 'auto','auto']).alignment('center').fontSize(15)
+      pdf.add(new Table(tabla).widths(['auto', 'auto', 'auto', 'auto', 'auto', 'auto','auto']).alignment('center').fontSize(20)
         .margin(5).end)
       pdf.pageOrientation("landscape")
       pdf.footer(new Txt('SRP technology').color('blue').fontSize(18).alignment('center').end)

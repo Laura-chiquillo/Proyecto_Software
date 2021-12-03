@@ -26,11 +26,11 @@ export class CuentasBancariasDOSComponent implements OnInit {
     if (!this.PDFexistente) {
       // PDF
       pdf.info({
-        title: 'Reporte de Usuarios registrados',
-        subject: 'Se mostrara la cantida de usuarios que existen en la base de datos'
+        title: 'Reporte de Cuentas Bancarias',
+        subject: 'Se mostrara la cantida de Cuentas Bancarias que existen en la base de datos'
       });
 
-      pdf.add(new Txt('Reportes de Usuarios').alignment('center').bold().fontSize(24).end)
+      pdf.add(new Txt('Reportes de Cuentas Bancarias').alignment('center').bold().fontSize(24).end)
       const tabla = [this.TablaPdf]
 
       this.datos.forEach(i => {
