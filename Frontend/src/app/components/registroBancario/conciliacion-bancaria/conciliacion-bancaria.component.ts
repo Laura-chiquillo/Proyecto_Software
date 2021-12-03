@@ -74,7 +74,7 @@ export class ConciliacionBancariaComponent implements OnInit {
       this.numConciliacion = num;
     })
     
-    this.serviceMov.getlistMovimientos().subscribe((movimientos) => {
+    this.serviceMov.getlistEstado().subscribe((movimientos) => {
       this.listaMovimientos = movimientos;
     })
 

@@ -192,6 +192,11 @@ public class UserController {
 	public List<Movimientos> getListMovimientos() {
 		return movimDao.getListMovimientos();
 	}
+	
+	@RequestMapping(value = "/api/listaEstado", method = RequestMethod.GET)
+	public List<Movimientos> getListEstado() {
+		return movimDao.getListEstado();
+	}
 
 	@RequestMapping(value = "/api/genOtro", method = RequestMethod.GET)
 	public int generoOtro() {
