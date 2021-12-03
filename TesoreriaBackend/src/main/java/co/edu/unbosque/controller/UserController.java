@@ -232,4 +232,8 @@ public class UserController {
 	public double valorSaldoFinal() {
 		return conciliacionDao.valorSaldoFinal();
 	}
+	@RequestMapping(value = "api/actualizarSaldo", method = RequestMethod.PUT)
+	public void actualizarSaldo(@RequestBody CuentaBancaria cuenta) {
+		cuentaDao.actualizarSaldo(cuenta);
+	}
 }

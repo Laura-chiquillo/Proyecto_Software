@@ -73,7 +73,6 @@ public class MovimientosDaoImp implements MovimientosDao {
 					.setParameter("estado_conciliacion", mov.get(i).isEstado_conciliacion()).executeUpdate();
 
 		}
-
 	}
 
 }
