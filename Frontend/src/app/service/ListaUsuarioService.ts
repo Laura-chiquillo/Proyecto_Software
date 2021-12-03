@@ -12,7 +12,8 @@ export class ListaUsiarioService {
     
     constructor(private http:HttpClient){}
     Url = 'http://localhost:8080/api/v1';
- 
+    
+
     loginAut(): Observable<ListaUsuario[]>{
         return this.http.get<ListaUsuario[]>(this.Url+"/api/users");
     }
@@ -30,6 +31,7 @@ export class ListaUsiarioService {
         return this.http.get<number>(this.Url+"/api/genMas");
     }
     generoF(){
+        
         return this.http.get<number>(this.Url+"/api/genFem");
     }
     generoOtro(){

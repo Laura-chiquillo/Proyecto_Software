@@ -1,9 +1,6 @@
-import { DataSource } from '@angular/cdk/collections';
-import { Component, ɵɵclassMapInterpolate5} from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component} from '@angular/core';
 import { ChartType } from 'chart.js';
-import { MultiDataSet, Label } from 'ng2-charts';
-import { ListaUsuario } from 'src/app/entity/ListaUsuario';
+import { MultiDataSet, Label, Color } from 'ng2-charts';
 import { Usuario } from 'src/app/entity/Usuario';
 import { ListaUsiarioService } from 'src/app/service/ListaUsuarioService';
 @Component({
@@ -12,36 +9,32 @@ import { ListaUsiarioService } from 'src/app/service/ListaUsuarioService';
   styleUrls: ['./grafico1.component.css']
 })
 export class Grafico1Component {
-  datos: any;
+
   usuario: Usuario = new Usuario();
   masculino: number;
   femenino: number;
   otros: number;
   
-  constructor(public service: ListaUsiarioService) {
-    this.service.generoM().subscribe(impuesto => {
-      this.masculino = impuesto;
-    })
-    this.service.generoF().subscribe(impuesto => {
-      this.femenino = impuesto;
-    })
-    this.service.generoOtro().subscribe(impuesto => {
-      this.otros = impuesto;
-    })
-  }
-  genero: string[] = ['genero'];
-  dataSource = new MatTableDataSource<any>();
+  constructor(public service: ListaUsiarioService) {}
 
   ngOnInit(): void {
-
+    this.service.generoM().subscribe(impuesto => {
+      this.masculino = impuesto;
+     
+      this.service.generoF().subscribe(impuesto => {
+        this.femenino = impuesto;
+        
+        this.service.generoOtro().subscribe(impuesto => {
+          this.otros = impuesto;
+          this.doughnutChartData= [ [this.femenino, this.masculino, this.otros] ];
+        })
+      })
+    })
+    
   }
   doughnutChartType: ChartType = 'doughnut';
   doughnutChartLabels: Label[] = ['Femenino', 'Masculino', 'Otros'];
-  doughnutChartData: MultiDataSet = [
-    [Number(this.service.generoF.length),
-     Number(this.service.generoM.length),
-     Number(this.service.generoOtro.length)]
-  ];
+  doughnutChartData = [  ];
 
 }
 
