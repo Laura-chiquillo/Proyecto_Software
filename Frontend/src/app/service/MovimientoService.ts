@@ -11,12 +11,13 @@ export class MovimientoService {
     constructor(private http: HttpClient) { }
     Url = 'http://localhost:8080/api/v1';
 
-    registro(mov: Movimiento){
-        return this.http.post(this.Url+'/api/registroMov', mov);
+    registro(mov: Movimiento) {
+        return this.http.post(this.Url + '/api/registroMov', mov);
     }
-    getlistMovimientos(){
-        return this.http.get<Movimiento[]>(this.Url+'/api/listamovimiento');
+    getlistMovimientos() {
+        return this.http.get<Movimiento[]>(this.Url + '/api/listamovimiento');
     }
-
-
+    getlistEstado() {
+        return this.http.get<Movimiento[]>(this.Url + '/api/listaEstado');
+    }
 }

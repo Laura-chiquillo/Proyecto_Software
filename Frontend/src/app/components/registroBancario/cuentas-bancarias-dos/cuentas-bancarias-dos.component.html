@@ -49,15 +49,20 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
-  <button class="botones">
-    <mat-icon><img src="https://www.svgrepo.com/show/15171/list.svg"> </mat-icon>
-    <span><a class="boton" href="http://localhost:4200/AgregarCuenta">Nueva cuenta</a></span>
-  </button>
   <div>
-    <button class="botones">
-      <mat-icon><img src="https://www.svgrepo.com/show/15171/list.svg"> </mat-icon>
-      <span><a class="boton" href="http://localhost:4200/admin">Volver al Menu</a></span>
-    </button>
+    <a class="boton" href="http://localhost:4200/AgregarCuenta"><button class="botones">Crear nueva cuenta
+        <mat-icon><img src="https://www.svgrepo.com/show/15171/list.svg"> </mat-icon>
+     </button></a>
+  </div>
+  <div class="botones">
+    <div class="boton">
+      <input type="button" value="Generar un PDF" (click)="generarPDF()">
+    </div>
+  </div>
+  <div>
+    <a class="boton" href="http://localhost:4200/admin"><button class="botones">Volver al Menu
+        <mat-icon><img src="https://www.svgrepo.com/show/15171/list.svg"> </mat-icon>
+     </button></a>
   </div>
   
   

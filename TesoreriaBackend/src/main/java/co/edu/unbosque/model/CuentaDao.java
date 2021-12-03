@@ -11,5 +11,7 @@ public interface CuentaDao {
 	int numCuenta();
 
 	void registrar(CuentaBancaria cuenta);
+	
+	void actualizarSaldo(CuentaBancaria cuenta);
 
 }

@@ -12,41 +12,30 @@
       <div>
         <p>
           <mat-form-field class="example-full-width" appearance="fill">
-            <input matInput formControlName="CuentaBancaria">
-            <span> Cuenta Bancaria</span>
+            <mat-label>Cuenta Bancaria</mat-label>
+            <mat-select matInput class="datos" name="cuentaBancaria" formControlName="CuentaBancaria">
+              <mat-option *ngFor="let account of listaCuenta" [value]="account.id_cuenta">{{account.nombre_cuenta}}
+              </mat-option>
+            </mat-select>
             <div class="alert-danger"
               *ngIf="CuentaBancaria.invalid && (CuentaBancaria.dirty || CuentaBancaria.touched)">
               <div class="container-error-message" *ngIf="CuentaBancaria.errors?.required">
                 Cuenta Bancaria requerida.
               </div>
+              
             </div>
           </mat-form-field>
         </p>
         <p>
           <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Ultima Conciliación</mat-label>
+            <mat-label>Última Conciliación</mat-label>
             <input matInput type="date" formControlName="fechaInicial">
-            <div class="alert-danger"
-            *ngIf="fechaInicial.invalid && (fechaInicial.dirty || fechaInicial.touched)">
-            <div class="container-error-message" *ngIf="fechaInicial.errors?.required">
-              Fecha Final es requerida.
-            </div>
-          </div>
-          </mat-form-field>
-        </p>
-
-        <p>
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Hasta</mat-label>
-            <input matInput type="date" formControlName="fechaHasta">
-            <div class="alert-danger"
-              *ngIf="fechaHasta.invalid && (fechaHasta.dirty || fechaHasta.touched)">
-              <div class="container-error-message" *ngIf="fechaHasta.errors?.required">
+            <div class="alert-danger" *ngIf="fechaInicial.invalid && (fechaInicial.dirty || fechaInicial.touched)">
+              <div class="container-error-message" *ngIf="fechaInicial.errors?.required">
                 Fecha Final es requerida.
               </div>
             </div>
           </mat-form-field>
-
         </p>
       </div>
       <div>
@@ -54,12 +43,15 @@
         <p>
           <mat-form-field class="example-full-width1" appearance="fill">
             <mat-label>Saldo En Extracto Bancario</mat-label>
-            <textarea matInput placeholder="$0" formControlName="SaldoBancario"></textarea>
-            <div class="alert-danger"
-              *ngIf="SaldoBancario.invalid && (SaldoBancario.dirty || SaldoBancario.touched)">
-              <div class="container-error-message" *ngIf="SaldoBancario.errors?.required">
+            <textarea matInput formControlName="extrato"></textarea>
+            <div class="alert-danger" *ngIf="extrato.invalid && (extrato.dirty || extrato.touched)">
+              <div class="container-error-message" *ngIf="extrato.errors?.required">
                 Saldo En Extracto Bancario requerida.
               </div>
+              <div class="container-error-message"
+              *ngIf="(cuentaBancaria.dirty || cuentaBancaria.touched) && cuentaBancaria.invalid && cuentaBancaria.errors?.pattern">
+              Número de documento tiene que tener un formato válido.
+            </div>
             </div>
           </mat-form-field>
         </p>
@@ -71,10 +63,10 @@
 
 <mat-card class="card sombra">
 
-  <form class="example-form-Ecuacion">
+  <form class="example-form-Ecuacion" [formGroup]="panel2">
     <div class="container">
       <div>
-        <h3>Saldo Ultima Conciliación</h3>
+        <h3>Saldo Última Conciliación</h3>
         <p>
           <mat-form-field class="example-full-width11" appearance="fill">
             <mat-label>Saldo Ultima Conciliación</mat-label>
@@ -89,8 +81,8 @@
         <h3>Ingresos</h3>
         <p>
           <mat-form-field class="example-full-width11" appearance="fill">
-            <mat-label>Ingresos</mat-label>
-            <textarea matInput placeholder="$0" disabled></textarea>
+            <mat-label>Ingreso</mat-label>
+            <textarea matInput type="text" [disabled]="true" formControlName="ingreso"></textarea>
           </mat-form-field>
         </p>
       </div>
@@ -104,7 +96,7 @@
 
           <mat-form-field class="example-full-width11" appearance="fill">
             <mat-label>Egresos</mat-label>
-            <textarea matInput placeholder="$0" disabled></textarea>
+            <textarea matInput disabled formControlName="gasto"></textarea>
           </mat-form-field>
         </p>
       </div>
@@ -117,7 +109,7 @@
         <p>
           <mat-form-field class="example-full-width11" appearance="fill">
             <mat-label>Saldo Final</mat-label>
-            <textarea matInput placeholder="$0" disabled></textarea>
+            <textarea matInput disabled formControlName="saldoFinal"></textarea>
           </mat-form-field>
         </p>
       </div>
@@ -126,7 +118,7 @@
         <p>
           <mat-form-field class="example-full-width11" appearance="fill">
             <mat-label>Diferencia Con Extracto</mat-label>
-            <textarea matInput placeholder="$0" disabled></textarea>
+            <textarea matInput disabled formControlName="diferencia"></textarea>
           </mat-form-field>
         </p>
       </div>
@@ -134,7 +126,7 @@
   </form>
 </mat-card>
 
-
+<form [formGroup]="panel3">
 <mat-card class="card sombra">
   <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <!-- Position Column -->
@@ -161,21 +153,20 @@
     </ng-container>
 
     <ng-container matColumnDef="acciones">
-      <th mat-header-cell *matHeaderCellDef style="text-align: center;">Conciliar</th>
-      <td mat-cell *matCellDef="let element" style="text-align: center;">
-        <button (click)="actualizar(element)" type="submit" [disabled]="element.estado_emp">Conciliar</button>
-      </td>
+      <mat-header-cell *matHeaderCellDef style="text-align: center;">Conciliar</mat-header-cell>
+      <mat-cell *matCellDef="let element" style="text-align: center;">
+        <button  (click)="conciliarMov(element, $event)">Conciliar</button>
+      </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
 </mat-card>
-
+</form>
 <mat-card class="enviar sombra">
- 
-  <input class="boton1" type="submit" value="Actualizar">
+
   <a href="http://localhost:4200/admin"><input class="boton1" type="button" value="Volver al Menú"> </a>
-  <input class="boton1" type="submit" value="Conciliar">
+  <input class="boton1" type="submit" value="Conciliar" [disabled]="comprobar()" (click)="conciliar()">
 
 </mat-card>

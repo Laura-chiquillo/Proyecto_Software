@@ -73,6 +73,9 @@ export class ListaExtrasService {
     }
 
     getConciliacion(){
-        return this.http.get<Conciliacion[]>(this.Url+'/api/conciliacion');
+        return this.http.get<Conciliacion[]>(this.Url+"/api/conciliacion");
+    }
+    actualizarSaldo(cuenta: CuentaBancaria) {
+        return this.http.put(this.Url+"/api/actualizarSaldo", cuenta)
     }
 }

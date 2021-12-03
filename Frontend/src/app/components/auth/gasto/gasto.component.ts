@@ -152,7 +152,7 @@ export class GastoComponent implements OnInit {
       cantidad: new FormControl('', [Validators.required, Validators.pattern('[- +()0-9]+')]),
       notasAdicionales2: new FormControl(''),
       tipoRetencion: new FormControl('', [Validators.required]),
-      extra: new FormControl('', [Validators.required, Validators.pattern('[- +()0-9]+')]),
+      extra: new FormControl('', [Validators.pattern('[- +()0-9]+')]),
       subtotal: new FormControl(''),
       valorImpuesto: new FormControl(''),
       valorRetencion: new FormControl(''),
@@ -230,11 +230,17 @@ export class GastoComponent implements OnInit {
         id_cuenta: this.cuentaBancaria.value,
         id_impuesto: this.impuesto.value,
         id_retencion: this.tipoRetencion.value,
-        id_tipo_mov: '2'
+        id_tipo_mov: '2',
+        estado_conciliacion: false
       };
 
       this.serviceMov.registro(this.ingreso).subscribe(data => {
         alert("Nuevo gasto guardado exitosamente.")
+      })
+
+      this.listaCuenta[this.cuentaBancaria.value - 1].saldo_cuenta = this.listaCuenta[this.cuentaBancaria.value - 1].saldo_cuenta - this.valorTotal;
+
+      this.service.actualizarSaldo(this.listaCuenta[this.cuentaBancaria.value - 1]).subscribe(data => {
         window.location.reload()
       })
 

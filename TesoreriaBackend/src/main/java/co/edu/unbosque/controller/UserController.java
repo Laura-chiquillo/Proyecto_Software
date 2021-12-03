@@ -64,7 +64,7 @@ public class UserController {
 
 	@Autowired
 	private MovimientosDao movimDao;
-	
+
 	@Autowired
 	private ConciliacionDao conciliacionDao;
 
@@ -122,7 +122,7 @@ public class UserController {
 	public List<Beneficiario> getBeneficiario() {
 		return beneficiarioDao.getBeneficiaro();
 	}
-	
+
 	@RequestMapping(value = "api/concepto", method = RequestMethod.GET)
 	public List<Concepto> getConcepto() {
 		return conceptoDao.getConcepto();
@@ -167,8 +167,8 @@ public class UserController {
 	public void registrarMovimiento(@RequestBody Movimientos movimiento) {
 		movimDao.registrar(movimiento);
 	}
-	
-	@RequestMapping(value = "api/conciliacion", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/api/conciliacion", method = RequestMethod.GET)
 	public List<Conciliacion> geList() {
 		return conciliacionDao.getList();
 	}
@@ -187,10 +187,20 @@ public class UserController {
 	public void registrarCuentaBancaria(@RequestBody CuentaBancaria cuenta) {
 		cuentaDao.registrar(cuenta);
 	}
-	
+
 	@RequestMapping(value = "/api/listamovimiento", method = RequestMethod.GET)
 	public List<Movimientos> getListMovimientos() {
 		return movimDao.getListMovimientos();
+	}
+
+	@RequestMapping(value = "api/actualizarSaldo", method = RequestMethod.PUT)
+	public void actualizarSaldo(@RequestBody CuentaBancaria cuenta) {
+		cuentaDao.actualizarSaldo(cuenta);
+	}
+
+	@RequestMapping(value = "/api/listaEstado", method = RequestMethod.GET)
+	public List<Movimientos> getListaEstado() {
+		return movimDao.getListEstado();
 	}
 
 }

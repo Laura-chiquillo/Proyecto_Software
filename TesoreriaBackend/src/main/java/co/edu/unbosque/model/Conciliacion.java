@@ -33,13 +33,15 @@ public class Conciliacion {
 	@Column(name = "id_cuenta")
 	private String id_cuenta;
 
-	
+	@Column(name = "total_gastos")
+	private String total_gastos;
+
 	public Conciliacion() {
 
 	}
 
 	public Conciliacion(long id_conciliacion, Date fecha_final, long saldo_extracto, String total_ingresos,
-			String saldo_final, String id_cuenta) {
+			String saldo_final, String id_cuenta, String total_gastos) {
 		super();
 		this.id_conciliacion = id_conciliacion;
 		this.fecha_final = fecha_final;
@@ -47,6 +49,7 @@ public class Conciliacion {
 		this.total_ingresos = total_ingresos;
 		this.saldo_final = saldo_final;
 		this.id_cuenta = id_cuenta;
+		this.total_gastos = total_gastos;
 	}
 
 	public long getId_conciliacion() {
@@ -97,12 +100,19 @@ public class Conciliacion {
 		this.id_cuenta = id_cuenta;
 	}
 
+	public String getTotal_gastos() {
+		return total_gastos;
+	}
+
+	public void setTotal_gastos(String total_gastos) {
+		this.total_gastos = total_gastos;
+	}
+
 	@Override
 	public String toString() {
-		return "ListaConciliacion [id_conciliacion=" + id_conciliacion + ", fecha_final=" + fecha_final
-				+ ", saldo_extracto=" + saldo_extracto + ", total_ingresos=" + total_ingresos + ", saldo_final="
-				+ saldo_final + ", id_cuenta=" + id_cuenta + "]";
+		return "Conciliacion [id_conciliacion=" + id_conciliacion + ", fecha_final=" + fecha_final + ", saldo_extracto="
+				+ saldo_extracto + ", total_ingresos=" + total_ingresos + ", saldo_final=" + saldo_final
+				+ ", id_cuenta=" + id_cuenta + ", total_gastos=" + total_gastos + "]";
 	}
-	
 
 }
