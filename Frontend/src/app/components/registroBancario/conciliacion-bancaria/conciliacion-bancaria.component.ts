@@ -79,6 +79,7 @@ export class ConciliacionBancariaComponent implements OnInit {
     })
 
     this.service.valorSaldoFinal().subscribe(data => {
+      alert(data)
       this.valorUltimaConc = data;
       this.panel2.get('ultimaConciliacion').setValue(new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(this.valorUltimaConc))
     })

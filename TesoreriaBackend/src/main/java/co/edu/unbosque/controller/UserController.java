@@ -192,19 +192,39 @@ public class UserController {
 	public List<Movimientos> getListMovimientos() {
 		return movimDao.getListMovimientos();
 	}
-	
+
 	@RequestMapping(value = "/api/genOtro", method = RequestMethod.GET)
 	public int generoOtro() {
 		return usuarioDao.generoOtro();
 	}
-	
+
 	@RequestMapping(value = "/api/genFem", method = RequestMethod.GET)
 	public int generoFem() {
 		return usuarioDao.generoFem();
 	}
-	
+
 	@RequestMapping(value = "/api/genMas", method = RequestMethod.GET)
 	public int generoMas() {
 		return usuarioDao.generoMas();
+	}
+
+	@RequestMapping(value = "api/numConciliacion", method = RequestMethod.GET)
+	public int numConciliacion() {
+		return conciliacionDao.numConciliacion();
+	}
+
+	@RequestMapping(value = "/api/registroConciliacion", method = RequestMethod.POST)
+	public void registrarConciliacion(@RequestBody Conciliacion conciliacion) {
+		conciliacionDao.registrar(conciliacion);
+	}
+
+	@RequestMapping(value = "api/estadoConciliacion", method = RequestMethod.PUT)
+	public void estadoConciliacion(@RequestBody List<Movimientos> mov) {
+		movimDao.estadoConciliacion(mov);
+	}
+
+	@RequestMapping(value = "api/valorSaldoFinal", method = RequestMethod.GET)
+	public double valorSaldoFinal() {
+		return conciliacionDao.valorSaldoFinal();
 	}
 }
