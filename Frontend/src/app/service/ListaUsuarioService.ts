@@ -26,4 +26,13 @@ export class ListaUsiarioService {
     eliminar(id: number){
         return this.http.delete(this.Url+"/api/eliminar/"+id)
     }
+    generoM(){
+        return this.http.get<number>(this.Url+"/api/genMas");
+    }
+    generoF(){
+        return this.http.get<number>(this.Url+"/api/genFem");
+    }
+    generoOtro(){
+        return this.http.get<number>(this.Url+"/api/genOtro");
+    }
 }
