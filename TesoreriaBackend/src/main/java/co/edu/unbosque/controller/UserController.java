@@ -187,5 +187,19 @@ public class UserController {
 	public List<Movimientos> getListMovimientos() {
 		return movimDao.getListMovimientos();
 	}
-
+	
+	@RequestMapping(value = "/api/genOtro", method = RequestMethod.GET)
+	public int generoOtro() {
+		return usuarioDao.generoOtro();
+	}
+	
+	@RequestMapping(value = "/api/genFem", method = RequestMethod.GET)
+	public int generoFem() {
+		return usuarioDao.generoFem();
+	}
+	
+	@RequestMapping(value = "/api/genMas", method = RequestMethod.GET)
+	public int generoMas() {
+		return usuarioDao.generoMas();
+	}
 }

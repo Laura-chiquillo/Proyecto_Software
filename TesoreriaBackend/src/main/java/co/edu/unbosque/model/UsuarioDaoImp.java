@@ -87,5 +87,22 @@ public class UsuarioDaoImp implements UsuarioDao {
 				.getResultList().get(0).toString()) + 1;
 
 	}
-
+	
+	@Override
+	public int generoOtro() {
+		return Integer.parseInt(entityManager.createQuery("SELECT count(sexo_emp) FROM User WHERE sexo_emp='O'")
+				.getResultList().get(0).toString());
+	}
+	
+	@Override
+	public int generoFem() {
+		return Integer.parseInt(entityManager.createQuery("SELECT count(sexo_emp) FROM User WHERE sexo_emp='F'")
+				.getResultList().get(0).toString());
+	}
+	
+	@Override
+	public int generoMas() {
+		return Integer.parseInt(entityManager.createQuery("SELECT count(sexo_emp) FROM User WHERE sexo_emp='F'")
+				.getResultList().get(0).toString());
+	}
 }
