@@ -76,6 +76,7 @@ const routes: Routes = [
       import(
         './components/admin/ver-movimientos/ver-movimientos.module'
         ).then(m => m.VerMovimientosModule) },
+  { path: 'grafico1', loadChildren: () => import('./components/grafico/grafico1/grafico1.module').then(m => m.Grafico1Module) },
 ];
 
 @NgModule({

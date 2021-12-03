@@ -4,7 +4,7 @@ export class ListaUsuario{
     apellidos_emp?: String;
     num_id_emp?: String;
     correo_emp?: String;
-    sexo_emp?: CharacterData;
+    sexo_emp?: String;
     telefono_emp?: String;
     id_nivel?: String;
     id_fun?: String;

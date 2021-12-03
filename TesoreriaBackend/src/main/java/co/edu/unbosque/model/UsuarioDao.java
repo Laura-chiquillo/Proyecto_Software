@@ -19,4 +19,10 @@ public interface UsuarioDao {
 	void registrar(User user);
 	
 	int num();
+
+	int generoOtro();
+
+	int generoFem();
+
+	int generoMas();
 }
