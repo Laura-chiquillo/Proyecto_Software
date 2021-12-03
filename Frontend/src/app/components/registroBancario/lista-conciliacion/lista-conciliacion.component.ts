@@ -22,38 +22,48 @@ export class ListaConciliacionComponent implements OnInit {
   }
   
   displayedColumns: string[] = ['id_conciliacion', 'fecha_final', 'saldo_extracto',
-  'total_ingresos', 'saldo_final', 'id_cuenta'];
+  'total_ingresos', 'saldo_final', 'id_cuenta','total_gastos'];
   dataSource = new MatTableDataSource<any>();
   data:any;
+  PDFexistente: boolean = false;
+  datos:any;
   generarPDF(): void {
+    if (!this.PDFexistente) {
+      // PDF
+      pdf.info({
+        title: 'Reporte de Usuarios registrados',
+        subject: 'Se mostrara la cantida de usuarios que existen en la base de datos'
+      });
+      pdf.add(new Txt('Reportes de Movimientos').alignment('center').bold().fontSize(24).end)
+      const tabla = [this.TablaPDF]
 
-    pdf.info({
-      title: 'Reporte de Conciliaciones Bancarias',
-      subject: 'Se mostrara la cantida de conciliaciones bancarias que existen en la base de datos'
-    });
+      this.datos.forEach(i => {
+        let fila = []
+        for (let key in i) {
+            fila.push(i[key])
 
-    pdf.styles({
-      centrado: {
-        alignment: 'center'
-      }
-    });
-    pdf.footer(new Txt('SRP technology').color('blue').fontSize(18).alignment('right').end)
-    //No agarra la informacion dentro de la tabla quien sea que lea esto se lo encargo :'v//
-    new Table([
-      this.displayedColumns, this.data
-    ]).end
-    pdf.add(Table)
-    pdf.add(new Txt('Reportes de Conciliaciones Bancarias').alignment('center').bold().fontSize(24).end)
-    pdf.add(pdf.ln(3))
-    pdf.create().open();
-
-
+        }
+        tabla.push(fila)
+      })
+      pdf.add(new Table(tabla).widths(['auto', 'auto', 'auto', 'auto', 'auto', 'auto','auto']).alignment('center').fontSize(15)
+        .margin(5).end)
+      pdf.pageOrientation("landscape")
+      pdf.footer(new Txt('SRP technology').color('blue').fontSize(18).alignment('center').end)
+      pdf.create().open();
+      this.PDFexistente = true;
+    }else {
+      alert("Porfavor recargue la pagina si desea intentar descargar el documento de nuevo.")
+    }
   }
+   
+  TablaPDF: string[] = ['id coinciliación', 'Fecha final',
+    'Saldo extracto', 'Ingresos totales', 'Saldo final',
+    'ID cuenta', 'Total Gastos'];
 
   ngOnInit(): void {
     this.service.getConciliacion().subscribe(Conciliacion => {
       this.dataSource = new MatTableDataSource(Conciliacion);
-      this.data = Conciliacion;
+      this.datos = Conciliacion;
     })
   }
   ngAfterViewInit() {

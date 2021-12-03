@@ -20,40 +20,39 @@ export class VerUsuariosComponent implements OnInit {
   category: string;
   title: string;
   datos: any;
+  PDFexistente: boolean = false;
   generarPDF(): void {
+    if (!this.PDFexistente) {
+      // PDF
+      pdf.info({
+        title: 'Reporte de Usuarios registrados',
+        subject: 'Se mostrara la cantida de usuarios que existen en la base de datos'
+      });
 
-    // PDF
-    pdf.info({
-      title: 'Reporte de Usuarios registrados',
-      subject: 'Se mostrara la cantida de usuarios que existen en la base de datos'
-    });
+      pdf.add(new Txt('Reportes de Usuarios').alignment('center').bold().fontSize(24).end)
+      const tabla = [this.TablaPdf]
 
-    pdf.styles({
-      centrado: {
-        alignment: 'center'
-      },
+      this.datos.forEach(i => {
+        let fila = []
+        for (let key in i) {
+          // se ignora para que no aparezca en la tabla
+          if (key != "contrasena_emp")
+            fila.push(i[key])
 
-    });
+        }
+        tabla.push(fila)
+      })
+      // witdths funciona con la cantidad de columnas
+      pdf.add(new Table(tabla).widths(['auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto']).fontSize(10).alignment('center')
+        .margin(5).end)
+      pdf.pageOrientation("landscape")
+      pdf.footer(new Txt('SRP technology').color('blue').fontSize(18).alignment('center').end)
+      pdf.create().open();
+      this.PDFexistente = true;
+    }else {
+      alert("Porfavor recargue la pagina si desea intentar descargar el documento de nuevo.")
+    }
 
-    pdf.add(new Txt('Reportes de Usuarios').alignment('center').bold().fontSize(24).end)
-    const tabla = [this.TablaPdf]
-
-    this.datos.forEach(i => {
-      let fila = []
-      for (let key in i) {
-        // se ignora para que no aparezca en la tabla
-        if (key != "contrasena_emp")
-          fila.push(i[key])
-
-      }
-      tabla.push(fila)
-    })
-    // witdths funciona con la cantidad de columnas
-    pdf.add(new Table(tabla).widths(['auto','auto','auto','auto','auto','auto','auto','auto','auto','auto','auto']).fontSize(10).alignment('center')
-    .margin(5).end)
-    pdf.pageOrientation("landscape")
-    pdf.footer(new Txt('SRP technology').color('blue').fontSize(18).alignment('center').end)
-    pdf.create().open();
 
   }
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -68,16 +67,15 @@ export class VerUsuariosComponent implements OnInit {
     'contrasena_emp', 'tipo_documento_emp', 'acciones'];
   dataSource = new MatTableDataSource<any>();
 
-  // se crea para mostrar en el pdf los titulos
   TablaPdf: string[] = ['id', 'nombres',
     'apellidos', 'numero:', 'correo',
     'género', 'telefono', 'nivel', 'función', 'estado', 'documento'];
 
   ngOnInit(): void {
     this.service.loginAut().subscribe(data => {
-      console.log(data)
       this.dataSource = new MatTableDataSource(data);
       this.datos = data;
+     
     })
   }
   actualizar(empleado: any) {
@@ -85,7 +83,6 @@ export class VerUsuariosComponent implements OnInit {
       this.usuario = empleado;
       this.service.actualizar(this.usuario).subscribe(
         data => {
-          console.log(data)
           alert("Usuario desbloqueado.")
           window.location.reload();
         }
@@ -114,7 +111,6 @@ export class VerUsuariosComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    console.log(this.dataSource)
     this.dataSource.paginator = this.paginator;
   }
 
@@ -136,12 +132,7 @@ export class VerUsuariosComponent implements OnInit {
     }
   }
 
-}
-function createTable(data: any, displayedColumns: string[]) {
-  throw new Error('Function not implemented.');
+
 }
 
-function data(data: any, displayedColumns: string[]) {
-  throw new Error('Function not implemented.');
-}
 
