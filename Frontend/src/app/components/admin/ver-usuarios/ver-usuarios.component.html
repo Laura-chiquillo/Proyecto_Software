@@ -6,7 +6,7 @@
                 <ng-template mat-tab-label>
                     <mat-icon class="example-tab-icon"><img src="https://www.svgrepo.com/show/17679/user.svg" />
                     </mat-icon>
-                    <span>Ver Usuarios</span>
+                    <span class="ver">Ver Usuarios</span>
                 </ng-template>
                 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -106,14 +106,17 @@
 
 
         </mat-tab-group>
-        <div class="botones">
-            <div class="boton">
-                <input type="button" value="Generar un PDF" (click)="generarPDF()">
-            </div>
+        <div>
+            <button class="botones boton">
+                <span> <a class="volver">
+                        <input type="button" value="Generar un PDF" (click)="generarPDF()">
+                    </a> </span>
+            </button>
         </div>
         <div>
-            <a class="boton" href="http://localhost:4200/admin"><button class="botones">Volver al Menu
-                    <mat-icon><img src="https://www.svgrepo.com/show/15171/list.svg"> </mat-icon>
-                 </button></a>
+            <button class="botones boton">
+                <mat-icon><img src="https://www.svgrepo.com/show/33860/list.svg"> </mat-icon>
+                <span><a class="volver" href="http://localhost:4200/admin">Volver al Menu</a></span>
+            </button>
         </div>
     </body>
