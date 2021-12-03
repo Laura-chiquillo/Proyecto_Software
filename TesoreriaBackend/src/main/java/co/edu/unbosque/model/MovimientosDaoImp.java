@@ -60,7 +60,7 @@ public class MovimientosDaoImp implements MovimientosDao {
 
 	@Transactional
 	public void estadoConciliacion(List<Movimientos> mov) {
-
+		
 		Long id = (long) 0;
 
 		for (int i = 0; i < mov.size(); i++) {
