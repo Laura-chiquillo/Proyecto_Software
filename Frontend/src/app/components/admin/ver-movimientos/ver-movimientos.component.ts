@@ -33,31 +33,51 @@ export class VerMovimientosComponent implements OnInit {
   public listaMetodo: MetodoPago[] = [];
   public listaRetencion: Retencion[] = [];
   public VerMovform: FormGroup;
+  PDFexistente: boolean = false;
+  datosMov: any;
+  datosBenef: any;
+  datosPago: any;
+  datosImp: any;
+  datosReten: any;
+  datosCuenta: any;
+  datosConcepto: any;
+
   generarPDF(): void {
+    if (!this.PDFexistente) {
+      // PDF
+      pdf.info({
+        title: 'Reporte de Movimientos registrados',
+        subject: 'Se mostrara la cantida de usuarios que existen en la base de datos'
+      });
 
-    pdf.info({
-      title: 'Reporte de Movimiento registrados',
-      subject: 'Se mostrara la cantida de usuarios que existen en la base de datos'
-    });
+      pdf.add(new Txt('Reportes de Movimientos').alignment('center').bold().fontSize(24).end)
+      const tabla = [this.TablaMov]
 
-    pdf.styles({
-      centrado: {
-        alignment: 'center'
-      }
-    });
-    pdf.footer(new Txt('SRP technology').color('blue').fontSize(18).alignment('right').end)
-    //No agarra la informacion dentro de la tabla quien sea que lea esto se lo encargo :'v//
-    new Table([
-      this.displayedColumns, this.data
-    ]).end
-    pdf.add(Table)
-    pdf.add(new Txt('Reportes de Movimientos').alignment('center').bold().fontSize(24).end)
-    pdf.add(pdf.ln(3))
-    pdf.create().open();
+      this.datosMov.forEach(i => {
+        let fila = []
+        for (let key in i) {
+            if (key != "estado_conciliacion" && key != "valor_concepto")
+              fila.push(i[key])
+        }
+        tabla.push(fila)
+        
+      })
+      // witdths funciona con la cantidad de columnas
+      pdf.add(new Table(tabla).widths(['auto', 'auto', 'auto', 'auto', 'auto', 'auto',
+       'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto']).fontSize(10).alignment('center')
+        .margin(5).end)
+      pdf.pageOrientation("landscape")
+      pdf.footer(new Txt('SRP technology').color('blue').fontSize(18).alignment('center').end)
+      pdf.create().open();
+      this.PDFexistente = true;
+    }else {
+      alert("Porfavor recargue la pagina si desea intentar descargar el documento de nuevo.")
+    }
 
 
   }
-  constructor(private router: Router, private serviceMov: MovimientoService, private service: ListaExtrasService) {
+   
+   constructor(private router: Router, private serviceMov: MovimientoService, private service: ListaExtrasService) {
 
   }
 
@@ -68,46 +88,50 @@ export class VerMovimientosComponent implements OnInit {
     'id_concepto', 'id_cuenta', 'id_impuesto', 'id_retencion', 'id_tipo_mov'];
 
   dataSource = new MatTableDataSource<any>();
-  data: any;
+
+  TablaMov: string[] = ['id', 'Fecha',
+    'Número de pago', 'Cantidad', 'Total',
+    'Notas información', 'Notas Concepto','id beneficiario','id pago','id concepto'
+    ,'id cuenta','id impuesto', 'id retencion', 'id tipo mov'];
 
   ngOnInit(): void {
 
-
-
-
     this.serviceMov.getlistMovimientos().subscribe((movimientos) => {
       this.dataSource = new MatTableDataSource(movimientos);
-      this.data = movimientos;
+      this.datosMov = movimientos;
     });
 
     this.service.getBeneficiario().subscribe(benef => {
       this.listaBenef = benef;
+      
     })
 
     this.service.getImpuesto().subscribe(impuesto => {
       this.listaImpuesto = impuesto;
+     
     })
 
     this.service.getMetodoPago().subscribe(pago => {
       this.listaMetodo = pago;
+      
     })
 
     this.service.getRetencion().subscribe(retencion => {
       this.listaRetencion = retencion;
+      
     })
 
     this.service.getCuenta().subscribe(cuenta => {
       this.listaCuenta = cuenta;
+     
     })
 
     this.service.getConcepto().subscribe(cuenta => {
       this.listaConcepto = cuenta;
+      
     })
-
-
-
+    
   }
-
 
   getBenef(num: number): String { return this.listaBenef[num - 1].nombre_benef }
 

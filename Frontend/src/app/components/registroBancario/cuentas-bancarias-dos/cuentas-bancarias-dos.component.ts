@@ -3,8 +3,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { CuentaBancaria } from 'src/app/entity/CuentaBancaria';
 import { ListaExtrasService } from 'src/app/service/ListaExtrasService';
-import { ListaUsiarioService } from 'src/app/service/ListaUsuarioService';
-import { Usuario } from 'src/app/entity/Usuario';
 import { PdfMakeWrapper, Table, Txt } from 'pdfmake-wrapper';
 import * as pdfFonts from "pdfmake/build/vfs_fonts";
 
@@ -17,33 +15,42 @@ const pdf = new PdfMakeWrapper;
   styleUrls: ['./cuentas-bancarias-dos.component.css']
 })
 export class CuentasBancariasDOSComponent implements OnInit {
-  data: any;
+  datos: any;
+  PDFexistente: boolean = false;
   public listaCuenta: CuentaBancaria[] = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(private service: ListaExtrasService) {
 
   }
   generarPDF(): void {
+    if (!this.PDFexistente) {
+      // PDF
+      pdf.info({
+        title: 'Reporte de Usuarios registrados',
+        subject: 'Se mostrara la cantida de usuarios que existen en la base de datos'
+      });
 
-    pdf.info({
-      title: 'Reporte de cuentas bancarias registrados',
-      subject: 'Se mostrara la cantida de cuentas bancarias que existen en la base de datos'
-    });
+      pdf.add(new Txt('Reportes de Usuarios').alignment('center').bold().fontSize(24).end)
+      const tabla = [this.TablaPdf]
 
-    pdf.styles({
-      centrado: {
-        alignment: 'center'
-      }
-    });
-    pdf.footer(new Txt('SRP technology').color('blue').fontSize(18).alignment('right').end)
-    //No agarra la informacion dentro de la tabla quien sea que lea esto se lo encargo :'v//
-    new Table([
-      this.displayedColumns, this.data
-    ]).end
-    pdf.add(Table)
-    pdf.add(new Txt('Reportes de Cuentas Bancarias').alignment('center').bold().fontSize(24).end)
-    pdf.add(pdf.ln(3))
-    pdf.create().open();
+      this.datos.forEach(i => {
+        let fila = []
+        for (let key in i) {
+          if (key != "notas_adicionales" && key != "id_tipo_cuenta" && key != "id_banco")
+            fila.push(i[key])
+
+        }
+        tabla.push(fila)
+      })
+      pdf.add(new Table(tabla).widths(['auto', 'auto', 'auto', 'auto', 'auto']).fontSize(20).alignment('center')
+        .margin(5).end)
+      pdf.pageOrientation("landscape")
+      pdf.footer(new Txt('SRP technology').color('blue').fontSize(18).alignment('center').end)
+      pdf.create().open();
+      this.PDFexistente = true;
+    }else {
+      alert("Porfavor recargue la pagina si desea intentar descargar el documento de nuevo.")
+    }
 
 
   }
@@ -51,10 +58,13 @@ export class CuentasBancariasDOSComponent implements OnInit {
     'saldo_cuenta', 'pais_cuenta', 'acciones'];
   dataSource = new MatTableDataSource<any>();
 
+  TablaPdf: string[] = ['id', 'Numero de cuenta', 'Saldo', 'Pais',
+  'Nombre Cuenta'];
+
   ngOnInit(): void {
     this.service.getCuenta().subscribe(cuenta => {
       this.dataSource = new MatTableDataSource(cuenta);
-      this.data = cuenta;
+      this.datos = cuenta;
     })
   }
   ngAfterViewInit() {
