@@ -44,7 +44,7 @@ export class CuentasBancariasDOSComponent implements OnInit {
     pdf.add(new Txt('Reportes de Cuentas Bancarias').alignment('center').bold().fontSize(24).end)
     pdf.add(pdf.ln(3))
     pdf.create().open();
-
+ 
 
   }
   displayedColumns: string[] = ['id_cuenta', 'num_cuenta', 'nombre_cuenta',
