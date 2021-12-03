@@ -7,7 +7,6 @@ body{
     height: 100vh;
     z-index: -1;
   }
-
   .nameTable {
     color: black;
     font-family: "Krub", sans-serif;
@@ -42,7 +41,7 @@ body{
     cursor: pointer;
   }
   .navcolor {
-    color: black;
+    color: rgb(109, 94, 94);
     font-family: "Krub", sans-serif;
     font-size: medium;
     display: flex;
@@ -51,36 +50,35 @@ body{
   }
   
 
- .boton btn-circle{
-    margin: 20px 0 12px 0;
-    width: 100%;
-    outline: none;
-    color: rgb(19, 18, 18);
-    border: none;
-    font-size: 18px;
-    font-weight: 500;
-    border-radius: 5px;
-    letter-spacing: 1px;
-    padding: 12px;
+ .boton{
+  margin: 20px 0 12px 0;
+  width: 100%;
+  outline: none;
+  color: rgb(19, 18, 18);
+  border: 0ch #75818a 0cm;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 2.5rem;
+  letter-spacing: 1px;
+  padding: 12px;
+  background-color: rgba(0, 128, 255, 0.5);
   }
   
   .botones{
     height: 45px;
     margin: 45px 0;
   }
-  
-  .botones input{
-    height: 45px;
-    width: 100%;
-    outline: none;
-    color: rgb(221, 211, 221);
-    border: none;
-    font-size: 18px;
-    font-weight: 500;
-    border-radius: 5px;
-    letter-spacing: 1px;
-    background:  linear-gradient(135deg, #71b7e6, #9b59b6);;
+  .volver{
+    color: #ffffff;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 23px;
+    text-decoration: none;
+    padding-left: 0.5rem;
+    text-transform: uppercase;
+    padding-top: 0.5rem;
   }
+ 
   
   .botones input:hover{
     background:  linear-gradient(-135deg, #71b7e6, #9b59b6);
@@ -89,6 +87,16 @@ body{
   .botones{
     margin: 20px 0 12px 0;
     width: 100%;
+   
+  }
+
+  
+  .ver{
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 700;
+    font-size: medium;
+
   }
   
   

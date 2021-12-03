@@ -6,9 +6,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  
 }
-
 
 
 .nameTable {
@@ -56,6 +54,7 @@ a{
   color: #ffff;
   text-decoration: none;
 }
+
 body{
   position: absolute;
   margin: 0;
