@@ -10,7 +10,7 @@
                 <input class="datos" type="number" [disabled]="true" [value]='numMov()'>
 
                 <span>Fecha</span>
-                <input class="datos" type="date" name="fecha" formControlName="fecha">
+                <input class="datos" type="date" name="fecha" formControlName="fecha" [max]="now">
                 <div class="alert-danger" *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)">
                     <div class="container-error-message" *ngIf="fecha.errors?.required">
                         La fecha es requerida.
@@ -102,7 +102,7 @@
                 </div>
 
                 <span>Cantidad</span>
-                <input class="datos" type="text" name="valor" formControlName="cantidad">
+                <input class="datos" type="text" name="valor" formControlName="cantidad" min="0">
                 <div class="alert-danger" *ngIf="cantidad.invalid && (cantidad.dirty || cantidad.touched)">
                     <div class="container-error-message" *ngIf="cantidad.errors?.required">
                         Por favor ingrese una cantidad.

@@ -95,8 +95,8 @@ export class AgregarCuentaComponent implements OnInit {
       TipoCuenta: new FormControl('', [Validators.required]),
       TipoBanco: new FormControl('', [Validators.required]),
       TipoPais: new FormControl('', [Validators.required]),
-      CuentaBancaria: new FormControl('', [Validators.required, Validators.minLength(7), Validators.pattern('[- +()0-9]+')]),
-      saldo: new FormControl('', [Validators.required, Validators.pattern('[- +()0-9]+')]),
+      CuentaBancaria: new FormControl('', [Validators.required, Validators.minLength(7), Validators.pattern('[+()0-9]+')]),
+      saldo: new FormControl('', [Validators.required, Validators.pattern('[+()0-9]+')]),
       notas: new FormControl('')
     })
   }

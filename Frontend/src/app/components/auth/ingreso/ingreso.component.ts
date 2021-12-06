@@ -10,6 +10,7 @@ import { Retencion } from 'src/app/entity/Retencion';
 import { ListaExtrasService } from 'src/app/service/ListaExtrasService';
 import { MovimientoService } from 'src/app/service/MovimientoService';
 import { Movimiento } from 'src/app/entity/Movimiento';
+import { DatePipe } from "@angular/common";
 
 @Component({
   selector: 'app-ingreso',
@@ -33,6 +34,7 @@ export class IngresoComponent implements OnInit {
   public ingreso: Movimiento;
   public currentDate: Date;
   public valorTotal: number;
+  now: any;
 
   constructor(private router: Router, private service: ListaExtrasService,
     private formBuilder: FormBuilder, private serviceMov: MovimientoService) {
@@ -42,6 +44,9 @@ export class IngresoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    const datePipe = new DatePipe('en-Us');
+    this.now = datePipe.transform(new Date(), 'yyyy-MM-dd');
 
     this.service.getImpuesto().subscribe(impuesto => {
       this.listaImpuesto = impuesto;
@@ -145,12 +150,12 @@ export class IngresoComponent implements OnInit {
       metodoPago: new FormControl('', [Validators.required]),
       notasAdicionales: new FormControl(''),
       concepto: new FormControl('', [Validators.required]),
-      valor_concepto: new FormControl('', [Validators.required, Validators.pattern('[- +()0-9]+')]),
+      valor_concepto: new FormControl('', [Validators.required, Validators.pattern('[+()0-9]+')]),
       impuesto: new FormControl('', [Validators.required]),
-      cantidad: new FormControl('', [Validators.required, Validators.pattern('[- +()0-9]+')]),
+      cantidad: new FormControl('', [Validators.required, Validators.pattern('[+()0-9]+')]),
       notasAdicionales2: new FormControl(''),
       tipoRetencion: new FormControl('', [Validators.required]),
-      extra: new FormControl('', [Validators.pattern('[- +()0-9]+')]),
+      extra: new FormControl('', [Validators.pattern('[+()0-9]+')]),
       subtotal: new FormControl(''),
       valorImpuesto: new FormControl(''),
       valorRetencion: new FormControl(''),
@@ -210,7 +215,7 @@ export class IngresoComponent implements OnInit {
       || this.notasAdicionales2.status == 'INVALID' || this.beneficiario.status == 'INVALID' ||
       this.metodoPago.status == 'INVALID' || this.concepto.status == 'INVALID' || this.cuentaBancaria.status == 'INVALID'
       || this.impuesto.status == 'INVALID' || this.tipoRetencion.status == 'INVALID') {
-        alert("Datos inválidos.")
+      alert("Datos inválidos.")
     } else {
 
       this.ingreso = {

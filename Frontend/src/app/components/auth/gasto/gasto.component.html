@@ -10,7 +10,7 @@
                 <input class="datos" type="number" [disabled]="true" [value]='numMov()'>
 
                 <span>Fecha</span>
-                <input class="datos" type="date" name="fecha" formControlName="fecha">
+                <input class="datos" type="date" name="fecha" formControlName="fecha" [max]="now">
                 <div class="alert-danger" *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)">
                     <div class="container-error-message" *ngIf="fecha.errors?.required">
                         La fecha es requerida.

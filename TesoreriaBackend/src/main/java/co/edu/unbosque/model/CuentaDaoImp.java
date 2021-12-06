@@ -22,7 +22,7 @@ public class CuentaDaoImp implements CuentaDao {
 	@Override
 	public List<CuentaBancaria> getCuenta() {
 
-		return entityManager.createQuery("FROM CuentaBancaria").getResultList();
+		return entityManager.createQuery("FROM CuentaBancaria order by cast(id_cuenta as int)").getResultList();
 
 	}
 

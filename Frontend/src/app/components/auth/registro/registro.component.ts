@@ -43,10 +43,10 @@ export class RegistroComponent {
       nombre: new FormControl('', [Validators.required, Validators.minLength(1)]),
       email: new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern(this.emailPattern)]),
       apellido: new FormControl('', [Validators.required, Validators.minLength(1), Validators.pattern('[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{2,} [a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{2,}')]),
-      telefono: new FormControl('', [Validators.required, Validators.minLength(7), Validators.maxLength(15), Validators.pattern('[- +()0-9]+')]),
+      telefono: new FormControl('', [Validators.required, Validators.minLength(7), Validators.maxLength(15), Validators.pattern('[+()0-9]+')]),
       contrasena: new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern('(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!#^~%*?&,.<>"\'\\;:\{\\\}\\\[\\\]\\\|\\\+\\\-\\\=\\\_\\\)\\\(\\\)\\\`\\\/\\\\\\]])[A-Za-z0-9\d$@].{7,}')]),
       tDocumento: new FormControl('', [Validators.required]),
-      nDocumento: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(15), Validators.pattern('[- +()0-9]+')]),
+      nDocumento: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(15), Validators.pattern('[+()0-9]+')]),
       funcionalidad: new FormControl('', [Validators.required]),
       tUsuario: new FormControl('', [Validators.required]),
       genero: new FormControl('', [Validators.required])

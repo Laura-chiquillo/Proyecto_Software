@@ -1,0 +1,27 @@
+.botones{
+    height: 45px;
+    margin: 45px 0;
+  }
+
+.botones .boton{
+    margin: 20px 0 12px 0;
+    width: 100%;
+  }
+
+  .botones input{
+    height: 45px;
+    width: 100%;
+    outline: none;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    background:  linear-gradient(135deg, #71b7e6, #9b59b6);;
+  }
+  
+  .botones input:hover{
+    background:  linear-gradient(-135deg, #71b7e6, #9b59b6);
+  }
+
